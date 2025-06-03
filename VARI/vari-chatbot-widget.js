@@ -1,94 +1,89 @@
 (function() {
-    // --- Configuration ---
-    const WIDGET_ROOT_ID = 'vari-chatbot-host'; // ID for the div user places on their page
-    const CHAT_CONTAINER_ID = 'variChatContainer'; // Main container for the widget's UI elements
-    const MARKED_JS_URL = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+    // --- Konfigurace Widgetu ---
+    const WIDGET_HOST_ID = 'vari-chatbot-host'; // ID elementu na stránce, kam se widget může vložit
+    const CHAT_CONTAINER_ID = 'chatContainer'; // ID hlavního kontejneru widgetu (z vašeho HTML)
     const POPPINS_FONT_URL = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap';
+    const MARKED_JS_URL = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
 
-    // --- Helper to load external scripts ---
-    function loadScript(src, callback) {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = callback;
-        script.onerror = () => console.error(`Vari Chatbot: Failed to load script: ${src}`);
-        document.head.appendChild(script);
-    }
+    // --- API a Klient ID (z vašeho kódu) ---
+    const API_BASE = 'https://chatbot-production-4d1d.up.railway.app';
+    const CLIENT_ID = 'VARI';
+    const STORAGE_KEY_PREFIX = 'vari_widget_'; // Prefix pro sessionStorage klíče
 
-    // --- Helper to load CSS ---
-    function loadCSS() {
+    // --- Funkce pro načtení CSS ---
+    function loadWidgetCSS() {
         const style = document.createElement('style');
         style.textContent = `
-            /* CSS Variables for the widget - consider prefixing if collision is likely */
-            :root {
-              --vari-widget-header-gradient: linear-gradient(90deg,#ff0101,#000000);
-              --vari-widget-user-gradient: #e4032e; /* Solid color from gradient for specific uses */
-              --vari-widget-assistant-color: #F4F4F9;
-              --vari-widget-text-light: #ffffff;
-              --vari-widget-text-dark: #000000;
-              --vari-widget-bg: #fff;
-              --vari-widget-shadow: rgba(0,0,0,0.1) 0 4px 12px;
-              --vari-widget-shadow-hover: rgba(0,0,0,0.2) 0 6px 16px;
-            }
-
-            /* Main widget container - ensure it doesn't inherit unwanted styles */
+            /* Widget Scoped Variables - Applied to #${CHAT_CONTAINER_ID} to avoid global :root conflicts if any */
             #${CHAT_CONTAINER_ID} {
-              font-family: 'Poppins', sans-serif;
-              position: fixed;
-              bottom: 20px;
-              right: 20px;
-              z-index: 99999; /* High z-index */
-              font-size: 16px; /* Base font size */
-              line-height: 1.4;
+              --header-gradient: linear-gradient(90deg,#ff0101,#000000);
+              --user-gradient: #e4032e;
+              --assistant-color: #F4F4F9;
+              --text-light: #ffffff;
+              --text-dark: #000000;
+              --bg: #fff;
+              --shadow: rgba(0,0,0,0.1) 0 4px 12px;
+              --shadow-hover: rgba(0,0,0,0.2) 0 6px 16px;
+              font-family: 'Poppins', sans-serif; /* Apply font family to the root of the widget */
               box-sizing: border-box;
             }
+
             #${CHAT_CONTAINER_ID} *, #${CHAT_CONTAINER_ID} *::before, #${CHAT_CONTAINER_ID} *::after {
                 box-sizing: border-box;
-                /* Resetting common inherited properties that might interfere */
                 margin: 0;
                 padding: 0;
-                border-width: 0; /* If borders are explicitly set, this is fine */
-                font: inherit; /* Inherit from #variChatContainer or set explicitly */
+                border-width: 0;
+                font: inherit;
                 color: inherit;
                 background: transparent;
-                text-align: left; /* Default text alignment */
-                pointer-events: auto; /* Enable pointer events for children */
+                text-align: left;
             }
              #${CHAT_CONTAINER_ID} button, #${CHAT_CONTAINER_ID} input {
-                font-family: 'Poppins', sans-serif; /* Ensure form elements inherit font */
+                font-family: 'Poppins', sans-serif;
              }
+            /* Poznámka: Původní styly pro 'html, body' a 'body::before' (s pozadi.png) byly odstraněny,
+               protože widget by neměl ovlivňovat globální styly hostitelské stránky. */
 
-
-            @keyframes vari-widget-gradientFlow {
+            @keyframes gradientFlow { /* Prefixed or ensure no name collision */
               0% { background-position: 0% 50%; }
               50% { background-position: 100% 50%; }
               100% { background-position: 0% 50%; }
             }
-            @keyframes vari-widget-pulse {
+            @keyframes pulse { /* Prefixed or ensure no name collision */
               0%, 100% { transform: scale(1); }
               50% { transform: scale(1.1); }
             }
-            @keyframes vari-widget-slideIn {
+            @keyframes slideIn { /* Prefixed or ensure no name collision */
               from { transform: translateX(-10px); opacity: 0; }
               to   { transform: translateX(0); opacity: 1; }
             }
 
+            /* Všechny následující styly jsou z vašeho původního <style> bloku,
+               a měly by být aplikovány v kontextu #${CHAT_CONTAINER_ID} */
+
+            #${CHAT_CONTAINER_ID} { /* Již existuje, sloučeno výše */
+              position: fixed; bottom: 20px; right: 20px;
+              z-index: 99999; /* Higher z-index for widget */
+            }
+            #${CHAT_CONTAINER_ID} * { pointer-events: auto; } /* Selektor upraven pro kontext widgetu */
+
             #${CHAT_CONTAINER_ID} #chatIcon {
               width: 64px; height: 64px; border-radius: 50%;
               display: flex; align-items: center; justify-content: center;
-              color: var(--vari-widget-text-light); font-size: 36px;
-              cursor: pointer; animation: vari-widget-pulse 2s infinite;
-              box-shadow: var(--vari-widget-shadow); position: relative; overflow: hidden;
-              /* background: transparent; ensure this is explicitly set if needed after reset */
+              color: var(--text-light); font-size: 36px;
+              cursor: pointer; animation: pulse 2s infinite;
+              box-shadow: var(--shadow); position: relative; overflow: hidden;
+              /* background: transparent; (již z resetu) */
             }
             #${CHAT_CONTAINER_ID} #chatIcon::before {
               content:""; position:absolute; inset:0;
-              background:var(--vari-widget-header-gradient); background-size:200% 200%;
-              animation:vari-widget-gradientFlow 8s infinite;
+              background:var(--header-gradient); background-size:200% 200%;
+              animation:gradientFlow 8s infinite;
               filter:blur(20px); transform:scale(1.2); z-index:-1;
             }
             #${CHAT_CONTAINER_ID} #chatIcon .tooltip {
               position:absolute; bottom:70px; right:0;
-              background:var(--vari-widget-header-gradient); color:var(--vari-widget-text-light);
+              background:var(--header-gradient); color:var(--text-light);
               padding:6px 10px; border-radius:12px; font-size:.85rem;
               white-space:nowrap; opacity:0; transition:opacity .3s;
               pointer-events:none;
@@ -97,25 +92,27 @@
 
             #${CHAT_CONTAINER_ID} #chatBoxContainer {
               display: none;
-              width: clamp(350px, 85vw, 600px); /* Max width adjusted slightly */
+              width: clamp(350px, 90vw, 900px);
               border-radius: 24px;
-              background: var(--vari-widget-bg);
-              box-shadow: var(--vari-widget-shadow);
-              position: absolute;
-              bottom: 85px; /* Approx icon height + spacing */
+              background: var(--bg);
+              box-shadow: var(--shadow);
+              /* position: fixed; Původně fixed, pro widget je lepší absolute vzhledem k #${CHAT_CONTAINER_ID} */
+              position: absolute; /* Upraveno pro lepší pozicování widgetu */
+              bottom: 85px; /* (Výška ikony + mezera) */
               right: 0;
               flex-direction: column;
               opacity: 0;
               overflow: hidden;
               transform: translateY(20px);
-              transition: opacity .6s ease, transform .6s ease, height .6s ease;
-              height: 0; /* Start with height 0 */
+              transition: all .8s ease;
+              height: 0px; /* Počáteční výška, .open ji přepíše */
             }
             #${CHAT_CONTAINER_ID} #chatBoxContainer.open {
               display: flex;
               opacity: 1;
               transform: translateY(0);
-              height: min(70vh, 600px) !important; /* Max height for chatbox */
+              height: 70vh !important; /* Maximální výška 70% viewportu */
+              max-height: 650px; /* Přidána maximální pevná výška */
             }
 
             #${CHAT_CONTAINER_ID} #chatHeader {
@@ -123,36 +120,38 @@
               display: flex; justify-content: space-between; align-items: center;
               border-top-left-radius: 24px; border-top-right-radius: 24px;
               position: relative;
-              overflow: visible;
-              /* background: transparent; */ /* from reset */
-              color: var(--vari-widget-text-light); /* Text color for header */
+              overflow: visible; /* Ponecháno dle originálu */
+              /* background: transparent; (již z resetu) */
+              color: var(--text-light); /* Přidáno pro text v hlavičce */
             }
             #${CHAT_CONTAINER_ID} #chatHeader::before {
               content:""; position:absolute; inset:0;
-              background:var(--vari-widget-header-gradient);
+              background:var(--header-gradient);
               filter:blur(20px); transform:scale(1.2);
-              z-index:-1; border-top-left-radius: 24px; border-top-right-radius: 24px;
+              z-index:-1;
+              border-top-left-radius: 24px; border-top-right-radius: 24px; /* Aby blur efekt kopíroval zaoblení */
             }
             #${CHAT_CONTAINER_ID} .assistant-title {
-                position: relative; font-size: 20px; color: var(--vari-widget-text-light); font-weight: 500;
+                position: relative; font-size: 20px; color: var(--text-light); /* Explicitně barva z proměnné */
+                font-weight: 500; /* Zvýraznění */
             }
-            #${CHAT_CONTAINER_ID} .assistant-title b { font-weight: 700; }
+             #${CHAT_CONTAINER_ID} .assistant-title b { font-weight: 700; } /* Pro tučné písmo v názvu */
             #${CHAT_CONTAINER_ID} .assistant-title:hover::after {
               content:'😉'; position:absolute; right:-25px; top:0;
-              animation:vari-widget-slideIn .8s forwards;
+              animation:slideIn .8s forwards;
             }
 
             #${CHAT_CONTAINER_ID} .icon-container {
               position: relative;
-              display: inline-block; /* Corrected from flex to inline-block if not a flex item directly */
+              display: inline-block;
               margin-left: 12px;
             }
             #${CHAT_CONTAINER_ID} .icon-container .icon {
               cursor: pointer;
               font-size: 20px;
-              color: var(--vari-widget-text-light);
+              color: var(--text-light);
               transition: transform .3s ease;
-              padding: 5px; /* Add some padding for easier clicking */
+              padding: 5px; /* Pro snadnější kliknutí */
             }
             #${CHAT_CONTAINER_ID} .icon-container .icon:hover {
               transform: rotate(90deg);
@@ -163,8 +162,8 @@
               left: 50%;
               transform: translateX(-50%);
               margin-top: 6px;
-              background: var(--vari-widget-bg);
-              color: var(--vari-widget-text-dark);
+              background: var(--bg); /* Použita proměnná */
+              color: var(--text-dark);
               padding: 4px 8px;
               border-radius: 6px;
               font-size: .8rem;
@@ -172,8 +171,8 @@
               opacity: 0;
               transition: opacity .2s ease;
               pointer-events: none;
-              box-shadow: var(--vari-widget-shadow);
-              z-index: 100000; /* Ensure tooltip is above other elements */
+              box-shadow: var(--shadow);
+              z-index: 10; /* Vyšší z-index pro tooltip v hlavičce */
             }
             #${CHAT_CONTAINER_ID} .icon-container:hover .icon-tooltip {
               opacity: 1;
@@ -183,55 +182,60 @@
               flex: 1; padding: 16px;
               display: flex; flex-direction: column; gap: 12px;
               overflow-y: auto;
-              background: var(--vari-widget-bg); /* Ensure chatbox has background */
+              background: var(--bg); /* Explicitní pozadí pro chatbox */
               scrollbar-width: thin;
-              scrollbar-color: var(--vari-widget-user-gradient) var(--vari-widget-assistant-color);
+              /* scrollbar-color: var(--header-gradient) var(--assistant-color); 'var(--header-gradient)' je gradient, použijeme solidní barvu */
+              scrollbar-color: var(--user-gradient) var(--assistant-color);
             }
             #${CHAT_CONTAINER_ID} #chatBox::-webkit-scrollbar { width: 6px; }
             #${CHAT_CONTAINER_ID} #chatBox::-webkit-scrollbar-thumb {
-              background: var(--vari-widget-user-gradient);
+              /* background: var(--header-gradient); Gradient pro scrollbar thumb není ideální */
+              background: var(--user-gradient); /* Použita solidní barva */
               border-radius: 3px;
             }
 
             #${CHAT_CONTAINER_ID} #chatBox .message {
-              /* display: inline-block; Removed, flex properties from parent handle alignment */
+              /* display: inline-block; Není potřeba, flex rodič se stará o zarovnání */
               width: auto;
               max-width: 85%;
               white-space: pre-wrap;
               overflow-wrap: break-word;
-              padding: 12px 18px; /* Adjusted padding */
-              border-radius: 18px; /* Adjusted radius */
-              box-shadow: var(--vari-widget-shadow);
+              transition: transform .3s cubic-bezier(.45,1.35,.55,1.02), box-shadow .3s cubic-bezier(.45,1.35,.55,1.02); /* Zrychlená animace */
+              position: relative; /* Pro save-icon */
+              padding: 12px 18px; /* Jednotné odsazení */
+              border-radius: 18px; /* Jednotné zaoblení */
               line-height: 1.5;
-              transition: transform .3s cubic-bezier(.45,1.35,.55,1.02), box-shadow .3s cubic-bezier(.45,1.35,.55,1.02);
-              position: relative; /* For save icon */
+              box-shadow: var(--shadow);
             }
-             #${CHAT_CONTAINER_ID} #chatBox .message p {
-                /* display: inline; Removed, causes issues with block elements from marked.js */
-                margin:0; /* Keep margin reset for p */
-                color: inherit; /* Ensure p inherits message text color */
-                font-size: 0.95rem; /* Control paragraph font size */
-             }
-            #${CHAT_CONTAINER_ID} #chatBox .message:hover {
-              transform: scale(1.02); /* Subtle hover effect */
-              box-shadow: var(--vari-widget-shadow-hover);
+            #${CHAT_CONTAINER_ID} #chatBox .message p {
+              /* display: inline; Může způsobovat problémy s blokovými elementy z marked.js */
+              margin: 0; /* Ponecháno */
+              font-size: 0.95rem; /* Velikost textu v bublině */
             }
 
-            #${CHAT_CONTAINER_ID} .assistant-message {
-              background: var(--vari-widget-assistant-color);
-              color: var(--vari-widget-text-dark);
-              align-self: flex-start;
+            #${CHAT_CONTAINER_ID} .message { /* Tento obecný selektor již máme pokrytý v #${CHAT_CONTAINER_ID} #chatBox .message */
+              /* Vlastnosti přesunuty do #${CHAT_CONTAINER_ID} #chatBox .message */
+            }
+            #${CHAT_CONTAINER_ID} #chatBox .message:hover { /* Upraven selektor */
+              transform: scale(1.02); /* Jemnější hover efekt */
+              box-shadow: var(--shadow-hover);
+            }
+            #${CHAT_CONTAINER_ID} .assistant-message { /* Specifické pro asistenta */
+                background: var(--assistant-color);
+                color: var(--text-dark);
+                align-self: flex-start;
             }
             #${CHAT_CONTAINER_ID} .assistant-message.loading { font-style: italic; opacity: .7; }
 
-            #${CHAT_CONTAINER_ID} .user-message {
-              background: var(--vari-widget-user-gradient);
-              color: var(--vari-widget-text-light);
+            #${CHAT_CONTAINER_ID} .user-message { /* Specifické pro uživatele */
+              background: var(--user-gradient);
+              color: var(--text-light);
               align-self: flex-end;
+              /* text-align: right; Není potřeba, align-self: flex-end se postará */
             }
 
             #${CHAT_CONTAINER_ID} .save-icon {
-              display: inline-block; /* Corrected */
+              display: inline-block;
               position: absolute;
               top: 8px;
               right: 10px;
@@ -240,14 +244,14 @@
               transition: opacity 0.25s cubic-bezier(.45,1.35,.55,1.02), transform 0.25s cubic-bezier(.45,1.35,.55,1.02);
               cursor: pointer;
               user-select: none;
-              font-size: 1.1em; /* Adjusted size */
-              background: var(--vari-widget-bg);
-              color: var(--vari-widget-text-dark); /* Icon color */
+              font-size: 1.1em; /* Upravena velikost */
+              background: var(--bg); /* Použita proměnná */
+              color: var(--text-dark); /* Barva ikony */
               border-radius: 7px;
-              padding: 2px 6px; /* Adjusted padding */
-              box-shadow: var(--vari-widget-shadow);
+              padding: 2px 6px; /* Upravené odsazení */
+              box-shadow: var(--shadow);
               z-index: 2;
-              pointer-events: all; /* Make sure it's clickable */
+              pointer-events: all;
             }
             #${CHAT_CONTAINER_ID} .save-icon.visible {
               opacity: 1;
@@ -256,10 +260,11 @@
 
             #${CHAT_CONTAINER_ID} #inputContainer {
               display: flex;
+              align-items: center; /* Vertikální zarovnání */
               border-top: 1px solid #eee;
               padding: 10px 16px;
-              background: var(--vari-widget-bg);
-              border-bottom-left-radius: 24px;
+              background: var(--bg); /* Explicitní pozadí */
+              border-bottom-left-radius: 24px; /* Aby kopírovalo zaoblení #chatBoxContainer */
               border-bottom-right-radius: 24px;
             }
             #${CHAT_CONTAINER_ID} #inputBox {
@@ -269,36 +274,35 @@
               border-radius: 20px;
               font-size: 1rem;
               outline: none;
-              transition: border-color .3s ease;
+              transition: border-color .3s ease; /* Zrychlená animace */
               font-style: italic;
-              color: var(--vari-widget-text-dark); /* Explicit color for input text */
-              background-color: #fff; /* Explicit background for input */
+              color: var(--text-dark); /* Explicitní barva textu */
+              background-color: #fff; /* Explicitní pozadí */
             }
             #${CHAT_CONTAINER_ID} #inputBox:focus {
-                border-color: var(--vari-widget-user-gradient); /* Use solid color for border */
-                font-style: normal;
+                /* border-color: var(--header-gradient); Gradient pro border není ideální */
+                border-color: var(--user-gradient); /* Použita solidní barva */
+                font-style: normal; /* Při focusu normální styl písma */
             }
-             #${CHAT_CONTAINER_ID} #inputBox::placeholder {
-                color: #aaa; /* Placeholder color */
+            #${CHAT_CONTAINER_ID} #inputBox::placeholder {
+                color: #aaa;
                 font-style: italic;
-             }
-
+            }
 
             #${CHAT_CONTAINER_ID} #sendButton {
-              background: none; /* from reset */
-              border: none; /* from reset */
+              /* background: none; (již z resetu) */
+              /* border: none; (již z resetu) */
               margin-left: 12px;
               width: 40px; height: 40px;
               display: flex; align-items: center; justify-content: center;
               cursor: pointer;
-              transition: transform .2s ease, background-color .3s ease;
+              transition: transform .2s ease, background-color .3s ease; /* Zrychlená animace */
               position: relative;
-              border-radius: 50%;
-              padding:0; /* from reset */
+              border-radius: 50%; /* Pro konzistentní hover efekt */
             }
             #${CHAT_CONTAINER_ID} #sendButton:hover {
               transform: scale(1.05);
-              background-color: rgba(228, 3, 46, 0.1); /* Use a color based on --vari-widget-user-gradient */
+              background-color: rgba(228, 3, 46, 0.1); /* Barva odvozená z --user-gradient */
             }
             #${CHAT_CONTAINER_ID} #sendButton .send-tooltip {
               position: absolute;
@@ -306,8 +310,8 @@
               left: 50%;
               transform: translateX(-50%);
               margin-bottom: 6px;
-              background: var(--vari-widget-bg);
-              color: var(--vari-widget-text-dark);
+              background: var(--bg);
+              color: var(--text-dark);
               padding: 4px 8px;
               border-radius: 6px;
               font-size: .8rem;
@@ -315,8 +319,8 @@
               opacity: 0;
               transition: opacity .2s ease;
               pointer-events: none;
-              box-shadow: var(--vari-widget-shadow);
-              z-index: 100000; /* High z-index */
+              box-shadow: var(--shadow);
+              z-index: 10; /* Vyšší z-index pro tooltip */
             }
             #${CHAT_CONTAINER_ID} #sendButton:hover .send-tooltip {
               opacity: 1;
@@ -324,25 +328,26 @@
 
             #${CHAT_CONTAINER_ID} #sendIcon {
               width: 20px; height: 20px;
-              fill: var(--vari-widget-user-gradient); /* Solid color */
+              /* fill: var(--header-gradient); Gradient pro fill SVG není přímo podporován */
+              fill: var(--user-gradient); /* Použita solidní barva */
             }
 
-            /* Responsive adjustments */
             @media (max-width: 600px) {
               #${CHAT_CONTAINER_ID} {
-                bottom: 10px; right: 10px; left: 10px;
-                width: auto; /* Occupy available width */
+                bottom: 10px; right: 10px; left: 10px; /* Roztažení na menších obrazovkách */
+                width: auto;
               }
               #${CHAT_CONTAINER_ID} #chatIcon { width: 50px; height: 50px; font-size: 28px; }
               #${CHAT_CONTAINER_ID} #chatBoxContainer {
-                right: 0; left: 0; /* Span full width of #variChatContainer */
-                width: 100%;
-                bottom: 70px; /* (50px icon height + 20px spacing) */
-                /* height set by .open class */
+                /* bottom: 80px; right: 10px; width: 90vw;  Původní hodnoty */
+                width: 100%; /* Plná šířka rodiče (#chatContainer) */
+                right: 0; left: 0;
+                bottom: 70px; /* (Výška ikony 50px + mezera 20px) */
               }
-              #${CHAT_CONTAINER_ID} #chatBoxContainer.open {
-                 height: min(75vh, 500px) !important; /* Adjusted height for smaller screens */
-              }
+               #${CHAT_CONTAINER_ID} #chatBoxContainer.open {
+                 height: 75vh !important; /* Výška na menších obrazovkách */
+                 max-height: 550px; /* Maximální pevná výška na menších obrazovkách */
+               }
               #${CHAT_CONTAINER_ID} #chatHeader { padding: 8px 12px; }
               #${CHAT_CONTAINER_ID} .assistant-title { font-size: 18px; }
               #${CHAT_CONTAINER_ID} #chatBox .message { padding: 10px 14px; font-size: 0.9rem; }
@@ -353,388 +358,405 @@
         `;
         document.head.appendChild(style);
 
+        // Načtení Google Fontu
         const fontLink = document.createElement('link');
         fontLink.href = POPPINS_FONT_URL;
         fontLink.rel = 'stylesheet';
         document.head.appendChild(fontLink);
     }
 
-    function createHTML() {
-        let hostElement = document.getElementById(WIDGET_ROOT_ID);
-        if (!hostElement) {
-            hostElement = document.createElement('div');
-            hostElement.id = WIDGET_ROOT_ID;
-            document.body.appendChild(hostElement);
-        }
-        // Clear host element in case of re-initialization or pre-existing content
-        hostElement.innerHTML = '';
-
-        const chatWidgetContainer = document.createElement('div');
-        chatWidgetContainer.id = CHAT_CONTAINER_ID;
-        chatWidgetContainer.innerHTML = `
-            <div id="chatIcon">
-              🤖<div class="tooltip">Potřebujete poradit?</div>
-            </div>
-            <div id="chatBoxContainer" class="close">
-              <div id="chatHeader">
-                <span class="assistant-title">🤖Virtuální asistent <b>VariQ</b></span>
-                <div style="display:flex;align-items:center;">
-                  <div class="icon-container">
-                    <span id="chatRefresh" class="icon" title="Nový chat">⟲</span>
-                    <div class="icon-tooltip">Nový chat</div>
-                  </div>
-                  <div class="icon-container">
-                    <span id="chatClose" class="icon" title="Zavřít">✖</span>
-                    <div class="icon-tooltip">Zavřít</div>
+    // --- Funkce pro vytvoření HTML struktury widgetu ---
+    function createWidgetHTML(hostElement) {
+        hostElement.innerHTML = `
+            <div id="${CHAT_CONTAINER_ID}">
+              <div id="chatIcon">
+                🤖<div class="tooltip">Potřebujete poradit?</div>
+              </div>
+              <div id="chatBoxContainer" class="close">
+                <div id="chatHeader">
+                  <span class="assistant-title">🤖Virtuální asistent <b>VariQ</b></span>
+                  <div style="display:flex;align-items:center;">
+                    <div class="icon-container">
+                      <span id="chatRefresh" class="icon" title="Nový chat">⟲</span>
+                      <div class="icon-tooltip">Nový chat</div>
+                    </div>
+                    <div class="icon-container">
+                      <span id="chatClose" class="icon" title="Zavřít">✖</span>
+                      <div class="icon-tooltip">Zavřít</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div id="chatBox"></div>
-              <div id="inputContainer">
-                <input id="inputBox" type="text" placeholder="Zadejte zprávu…" />
-                <button id="sendButton" aria-label="Odeslat zprávu">
-                  <svg id="sendIcon" viewBox="0 0 24 24">
-                    <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
-                  </svg>
-                  <div class="send-tooltip">Odeslat</div>
-                </button>
+                <div id="chatBox"></div>
+                <div id="inputContainer">
+                  <input id="inputBox" type="text" placeholder="Zadejte zprávu…" />
+                  <button id="sendButton" aria-label="Odeslat zprávu">
+                    <svg id="sendIcon" viewBox="0 0 24 24">
+                      <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+                    </svg>
+                    <div class="send-tooltip">Odeslat</div>
+                  </button>
+                </div>
               </div>
             </div>
         `;
-        hostElement.appendChild(chatWidgetContainer);
-        initializeChatLogic();
     }
 
-    function initializeChatLogic() {
-        const API_BASE = 'https://chatbot-production-4d1d.up.railway.app';
-        const clientID = 'VARI';
-        const STORAGE_KEY = 'vari_chat_history_widget_v1'; // Namespaced and versioned
-        const TOPIC_KEY = 'vari_etrieve_topic_id_widget_v1'; // Namespaced and versioned
-        let conversation = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
-        let topicId = sessionStorage.getItem(TOPIC_KEY) || null;
+    // --- Funkce pro inicializaci JavaScriptové logiky ---
+    function initializeWidgetLogic() {
+        // Následující kód je JavaScript z vašeho původního <script> bloku
+        // Konstanty API_BASE a CLIENT_ID jsou definovány na začátku IIFE
 
-        const chatIconEl = document.getElementById('chatIcon');
-        const chatBoxContainerEl = document.getElementById('chatBoxContainer');
-        const chatCloseEl = document.getElementById('chatClose');
-        const chatRefreshEl = document.getElementById('chatRefresh');
-        const chatBoxEl = document.getElementById('chatBox');
-        const inputBoxEl = document.getElementById('inputBox');
-        const sendButtonEl = document.getElementById('sendButton');
+        const storageChatHistoryKey = `${STORAGE_KEY_PREFIX}chat_history`;
+        const storageTopicIdKey = `${STORAGE_KEY_PREFIX}etrieve_topic_id`;
 
-        if (!chatIconEl || !chatBoxContainerEl || !chatCloseEl || !chatRefreshEl || !chatBoxEl || !inputBoxEl || !sendButtonEl) {
-            console.error("Vari Chatbot: Essential HTML elements not found. Initialization failed.");
+        let conversation = JSON.parse(sessionStorage.getItem(storageChatHistoryKey) || '[]');
+        let topicId = sessionStorage.getItem(storageTopicIdKey) || null;
+
+        // Získání DOM elementů widgetu (již jsou v DOMu díky createWidgetHTML)
+        const chatIcon = document.getElementById('chatIcon');
+        const chatBoxContainer = document.getElementById('chatBoxContainer');
+        const chatClose = document.getElementById('chatClose');
+        const chatRefresh = document.getElementById('chatRefresh');
+        const chatBox = document.getElementById('chatBox');
+        const inputBox = document.getElementById('inputBox');
+        const sendButton = document.getElementById('sendButton');
+
+        // Kontrola, zda byly všechny elementy nalezeny
+        if (!chatIcon || !chatBoxContainer || !chatClose || !chatRefresh || !chatBox || !inputBox || !sendButton) {
+            console.error('Vari Chatbot Widget: Chyba při inicializaci - některé DOM elementy nebyly nalezeny.');
             return;
         }
 
         function saveHistory() {
-            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(conversation));
+          sessionStorage.setItem(storageChatHistoryKey, JSON.stringify(conversation));
         }
 
         function addMessage(sender, content = '') {
-            const msg = document.createElement('div');
-            msg.className = `message ${sender}-message`;
+          const msg = document.createElement('div');
+          msg.className = `message ${sender}-message`; // Třídy jsou již ostylovány v CSS widgetu
 
-            if (typeof marked !== 'undefined' && marked.parse) {
-                // Sanitize content before parsing if it can come from untrusted user input directly into HTML
-                // For chatbot responses, usually it's fine. For user messages displayed back, sanitize if needed.
-                msg.innerHTML = marked.parse(content || ""); // Ensure content is string
-            } else {
-                const p = document.createElement('p');
-                p.textContent = content;
-                msg.appendChild(p);
-                if (typeof marked === 'undefined') console.warn("Vari Chatbot: marked.js not loaded, displaying plain text.");
-            }
+          if (typeof marked !== 'undefined' && marked.parse) {
+            msg.innerHTML = marked.parse(content || "");
+          } else {
+            const p = document.createElement('p');
+            p.textContent = content;
+            msg.appendChild(p);
+            if (typeof marked === 'undefined') console.warn("Vari Chatbot: Knihovna marked.js není načtena.");
+          }
 
-            msg.addEventListener('mouseenter', () => {
-                document.querySelectorAll(`#${CHAT_CONTAINER_ID} .save-icon.visible`).forEach(icon => {
-                    icon.classList.remove('visible');
-                    setTimeout(() => { if (icon.parentElement) icon.remove(); }, 250);
+          msg.addEventListener('mouseenter', () => {
+            document.querySelectorAll(`#${CHAT_CONTAINER_ID} .save-icon.visible`).forEach(el => {
+              el.classList.remove('visible');
+              setTimeout(() => { if (el.parentElement) el.remove(); }, 250);
+            });
+            if (!msg.querySelector('.save-icon')) {
+              const saveIcon = document.createElement('span');
+              saveIcon.className = 'save-icon';
+              saveIcon.textContent = '💾';
+              saveIcon.title = 'Zkopírovat zprávu';
+              msg.append(saveIcon);
+              setTimeout(() => { saveIcon.classList.add('visible'); }, 10);
+
+              let removeTimer;
+              const scheduleRemove = (timeout = 3000) => {
+                clearTimeout(removeTimer);
+                removeTimer = setTimeout(() => {
+                    saveIcon.classList.remove('visible');
+                    setTimeout(() => { if (saveIcon.parentElement) saveIcon.remove(); }, 250);
+                }, timeout);
+              };
+              scheduleRemove();
+
+              saveIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Zabráníme spuštění mouseleave na rodiči
+                clearTimeout(removeTimer);
+                const textToCopy = (msg.innerText || msg.textContent || "").replace(saveIcon.textContent, '').trim();
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                  saveIcon.textContent = '✅';
+                  saveIcon.title = 'Zkopírováno!';
+                  scheduleRemove(1200); // Necháme "zkopírováno" zobrazené kratší dobu
+                }).catch(err => {
+                  console.error('Vari Chatbot: Chyba při kopírování do schránky:', err);
+                  saveIcon.textContent = '⚠️';
+                  saveIcon.title = 'Chyba kopírování';
+                  scheduleRemove(1500);
                 });
-
-                if (!msg.querySelector('.save-icon')) {
-                    const saveIcon = document.createElement('span');
-                    saveIcon.className = 'save-icon';
-                    saveIcon.textContent = '💾';
-                    saveIcon.setAttribute('title', 'Zkopírovat zprávu');
-                    msg.appendChild(saveIcon); // Append before making visible
-                    setTimeout(() => saveIcon.classList.add('visible'), 10);
-
-                    let removeTimer;
-                    const scheduleRemove = () => {
-                        clearTimeout(removeTimer);
-                        removeTimer = setTimeout(() => {
-                            saveIcon.classList.remove('visible');
-                            setTimeout(() => { if (saveIcon.parentElement) saveIcon.remove(); }, 250);
-                        }, 3000);
-                    };
-                    scheduleRemove(); // Auto-hide after 3s
-
-                    saveIcon.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        clearTimeout(removeTimer);
-                        const textToCopy = msg.textContent.replace(saveIcon.textContent, '').trim();
-                        navigator.clipboard.writeText(textToCopy)
-                            .then(() => {
-                                saveIcon.textContent = '✅'; // Shorter "Copied"
-                                saveIcon.setAttribute('title', 'Zkopírováno!');
-                            })
-                            .catch(err => {
-                                console.error('Vari Chatbot: Failed to copy text:', err);
-                                saveIcon.textContent = '⚠️';
-                                saveIcon.setAttribute('title', 'Chyba kopírování');
-                            });
-                        setTimeout(() => { // Revert icon or remove after a short delay
-                             saveIcon.classList.remove('visible');
-                             setTimeout(() => { if (saveIcon.parentElement) saveIcon.remove(); }, 250);
-                        }, 1200);
-                    });
-                }
-            });
-
-            msg.addEventListener('mouseleave', () => {
-                const saveIcon = msg.querySelector('.save-icon.visible');
-                if (saveIcon) {
-                     let removeTimerLeave = setTimeout(() => {
-                        saveIcon.classList.remove('visible');
-                        setTimeout(() => { if (saveIcon.parentElement) saveIcon.remove(); }, 250);
-                    }, 300); // Short delay on mouse leave
-                     saveIcon.addEventListener('mouseenter', () => clearTimeout(removeTimerLeave)); // Cancel removal if mouse re-enters icon
-                }
-            });
-
-            chatBoxEl.appendChild(msg);
-
-            if (sender === 'assistant') {
-                msg.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                chatBoxEl.scrollTop = chatBoxEl.scrollHeight;
+              });
             }
-            return msg;
+          });
+
+          msg.addEventListener('mouseleave', () => {
+            const saveIcon = msg.querySelector('.save-icon.visible');
+            if (saveIcon) {
+                 // Krátké zpoždění, aby uživatel stihl kliknout, pokud se rychle vrátí
+                let leaveTimer = setTimeout(() => {
+                    saveIcon.classList.remove('visible');
+                    setTimeout(() => { if (saveIcon.parentElement) saveIcon.remove(); }, 250);
+                }, 300);
+                saveIcon.addEventListener('mouseenter', () => clearTimeout(leaveTimer)); // Pokud se vrátí na ikonu, nezmizí
+            }
+          });
+
+          chatBox.append(msg);
+
+          if (sender === 'assistant') {
+            msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            // Pro uživatelské zprávy je lepší okamžitý scroll, aby viděl své pole pro psaní
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
+          return msg;
         }
 
         async function clearChat() {
-            chatBoxEl.innerHTML = '';
-            // Add visual feedback for refresh icon if CSS for .rotate is defined
-            // chatRefreshEl.classList.add('rotate');
-            // setTimeout(() => chatRefreshEl.classList.remove('rotate'), 600);
+          chatBox.innerHTML = ''; // Efektivnější vyčištění
+          // chatRefresh.classList.add('rotate'); // Pokud máte CSS pro animaci rotace
+          // setTimeout(() => chatRefresh.classList.remove('rotate'), 600);
 
-            try {
-                const response = await fetch(`${API_BASE}/reset`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ clientID })
-                });
-                if (!response.ok) {
-                    console.warn("Vari Chatbot: Server-side reset might have failed.", response.status);
-                }
-            } catch (err) {
-                console.error("Vari Chatbot: Error resetting chat session on server:", err);
-            }
-
-            conversation = [];
-            topicId = null;
-            sessionStorage.removeItem(STORAGE_KEY);
-            sessionStorage.removeItem(TOPIC_KEY);
-            sendInitial();
+          try {
+            await fetch(`${API_BASE}/reset`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ clientID: CLIENT_ID })
+            });
+          } catch (err) {
+            console.error('Vari Chatbot: Chyba při resetování konverzace na serveru:', err);
+          }
+          
+          conversation = [];
+          topicId = null;
+          sessionStorage.removeItem(storageChatHistoryKey);
+          sessionStorage.removeItem(storageTopicIdKey);
+          sendInitial(); // Zobrazí úvodní zprávu po vyčištění
         }
 
         async function sendInitial() {
-            if (!chatBoxContainerEl.classList.contains('open')) {
-                // Don't send if chat isn't open, toggleChat will handle it
+            if (!chatBoxContainer.classList.contains('open')) return; // Neodesílat, pokud chat není otevřen
+
+            inputBox.focus();
+            const text = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně současné nabídky VARI😉';
+            
+            // Zabráníme duplicitnímu přidání úvodní zprávy, pokud již existuje
+            if (conversation.length > 0 && conversation[0].role === 'assistant' && conversation[0].content === text) {
                 return;
             }
-            inputBoxEl.focus();
-            const initialText = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně současné nabídky VARI😉';
-
-            if (conversation.some(m => m.role === 'assistant' && m.content === initialText)) {
-                // Avoid re-adding if already present (e.g. after history render)
-                return;
+            // Nebo pokud je chatbox prázdný, ale v konverzaci už zpráva je (např. po renderHistory)
+            if (chatBox.children.length === 0 && conversation.find(m => m.role === 'assistant' && m.content === text)) {
+                // Pokud je historie prázdná (vizuálně), ale konverzace obsahuje úvodní zprávu,
+                // renderHistory se postará o její zobrazení. Jinak by došlo k duplicitě.
+                // Toto je relevantní hlavně pokud by sendInitial bylo voláno i po renderHistory za určitých okolností.
             }
 
-            const bubble = addMessage('assistant', '');
-            const textElement = bubble.querySelector('p') || bubble;
-            textElement.textContent = ''; // Clear any default from addMessage with empty content
 
-            bubble.style.filter = 'blur(8px)';
-            bubble.style.opacity = '0';
-            bubble.style.transition = 'opacity 0.8s ease, filter 0.8s ease';
+            const bubble = document.createElement('div'); // Použijeme standardní addMessage pro konzistenci
+            bubble.className = 'message assistant-message'; // Třídy pro styl
+            
+            // Vnitřní textový element pro postupné psaní, pokud `marked.parse` vytvoří <p>
+            const textElement = document.createElement('p');
+            bubble.appendChild(textElement);
 
-            setTimeout(() => {
-                bubble.style.opacity = '1';
-                bubble.style.filter = 'blur(0)';
-            }, 50);
+            bubble.style.filter = 'blur(8px)'; bubble.style.opacity = '0';
+            chatBox.append(bubble);
+            bubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            bubble.style.transition = 'opacity .8s ease, filter .8s ease';
+            setTimeout(() => { bubble.style.opacity = '1'; bubble.style.filter = 'blur(0)'; }, 50);
 
             let idx = 0;
-            const revealSpeed = 30; // Slightly faster
+            const revealSpeed = 35; // Mírně upravená rychlost
+            
             function typeCharacter() {
-                if (idx < initialText.length) {
-                    textElement.textContent += initialText[idx++];
-                    bubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // 'nearest' can be smoother
+                if (idx < text.length) {
+                    textElement.textContent += text[idx++];
+                    bubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     setTimeout(typeCharacter, revealSpeed);
                 } else {
-                    if (!conversation.find(m => m.role === 'assistant' && m.content === initialText)) {
-                        conversation.push({ role: 'assistant', content: initialText });
+                    // Uložíme až po napsání celé zprávy
+                    // Zabráníme duplicitnímu uložení, pokud by se funkce volala vícekrát
+                    if (!conversation.find(m => m.role === 'assistant' && m.content === text)) {
+                        conversation.unshift({ role:'assistant', content:text }); // Přidáme na začátek pro případné budoucí renderování historie
                         saveHistory();
                     }
                 }
             }
-            typeCharacter();
+            typeCharacter(); // Spustíme psaní
         }
 
         async function sendMessage() {
-            const userText = inputBoxEl.value.trim();
-            if (!userText) return;
+          const userText = inputBox.value.trim();
+          if (!userText) return;
 
-            conversation.push({ role: 'user', content: userText });
-            saveHistory();
-            addMessage('user', userText);
-            inputBoxEl.value = '';
-            inputBoxEl.focus();
+          conversation.push({ role:'user', content:userText });
+          saveHistory();
+          addMessage('user', userText);
+          inputBox.value = '';
+          inputBox.focus();
 
-            const loadingMessages = ['Přemýšlím....', 'Momentík...', 'Ještě chvilinku...', 'Děkuji za trpělivost😉', 'Už to bude...'];
-            let loadingMsgIndex = 0;
-            const assistantBubble = addMessage('assistant', loadingMessages[loadingMsgIndex]);
-            assistantBubble.classList.add('loading');
-            const assistantTextElement = assistantBubble.querySelector('p') || assistantBubble;
 
-            const loadingInterval = setInterval(() => {
-                loadingMsgIndex = (loadingMsgIndex + 1) % loadingMessages.length;
-                assistantBubble.style.opacity = '0.3'; // Fade out slightly
-                setTimeout(() => {
-                    assistantTextElement.textContent = loadingMessages[loadingMsgIndex];
-                    assistantBubble.style.opacity = '1';
-                    assistantBubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 400);
-            }, 2000);
+          const loadingTexts = ['Přemýšlím....','Momentík...','Ještě chvilinku...','Děkuji za trpělivost😉','Už to bude...'];
+          let loadingIndex = 0;
+          const assistantBubble = addMessage('assistant', loadingTexts[loadingIndex]);
+          assistantBubble.classList.add('loading');
+          const assistantTextElement = assistantBubble.querySelector('p') || assistantBubble; // Cílový element pro text
 
-            let assistantResponseText = '';
-            try {
-                const response = await fetch(`${API_BASE}/chat`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ clientID, history: conversation, topic_id: topicId })
-                });
+          const loadingInterval = setInterval(() => {
+            loadingIndex = (loadingIndex + 1) % loadingTexts.length;
+            assistantBubble.style.opacity='0.3'; // Jemné ztmavení před změnou textu
+            setTimeout(() => {
+              assistantTextElement.textContent = loadingTexts[loadingIndex];
+              assistantBubble.style.opacity='1';
+              assistantBubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 400);
+          }, 2000);
 
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.status} ${response.statusText}`);
-                }
+          let assistantResponseText = '';
+          try {
+            const res = await fetch(`${API_BASE}/chat`, {
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify({ clientID: CLIENT_ID, history:conversation, topic_id:topicId })
+            });
 
-                const newTopic = response.headers.get('X-Trieve-Topic-ID');
-                if (newTopic) {
-                    topicId = newTopic;
-                    sessionStorage.setItem(TOPIC_KEY, topicId);
-                }
+            if (!res.ok) {
+                const errorData = await res.text(); // Zkusíme získat více info o chybě
+                throw new Error(`Chyba serveru: ${res.status} - ${errorData}`);
+            }
 
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-                let firstChunkReceived = false;
+            const newTopic = res.headers.get('X-Trieve-Topic-ID'); // Trieve hlavička
+            if(newTopic){ topicId=newTopic; sessionStorage.setItem(storageTopicIdKey,topicId); }
 
-                while (true) {
-                    const { value, done } = await reader.read();
-                    if (done) break;
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let firstChunkReceived = false;
 
-                    const chunk = decoder.decode(value, { stream: true });
-                    if (!firstChunkReceived) {
-                        clearInterval(loadingInterval);
-                        assistantBubble.classList.remove('loading');
-                        assistantTextElement.innerHTML = ''; // Clear loading text
-                        firstChunkReceived = true;
-                    }
-                    assistantResponseText += chunk;
-                    assistantTextElement.innerHTML = marked.parse(assistantResponseText);
-                    assistantBubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-                conversation.push({ role: 'assistant', content: assistantResponseText });
-                saveHistory();
-            } catch (error) {
+            while(true){
+              const {value, done} = await reader.read();
+              if(done) break;
+              
+              const chunk = decoder.decode(value, {stream:true});
+              if(!firstChunkReceived){
                 clearInterval(loadingInterval);
                 assistantBubble.classList.remove('loading');
-                assistantTextElement.textContent = 'Omlouvám se, došlo k chybě. Zkuste to prosím později.';
-                console.error('Vari Chatbot: Error sending message:', error);
-                // Add error to conversation for user visibility
-                conversation.push({ role: 'assistant', content: assistantTextElement.textContent });
-                saveHistory();
-            } finally {
-                inputBoxEl.focus();
+                assistantTextElement.innerHTML = ''; // Vyčistíme loading text
+                firstChunkReceived = true;
+              }
+              assistantResponseText += chunk;
+              assistantTextElement.innerHTML = marked.parse(assistantResponseText); // Inkrementální renderování Markdownu
+              assistantBubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
+            conversation.push({ role:'assistant', content:assistantResponseText });
+            saveHistory();
+          } catch(err){
+            clearInterval(loadingInterval); // Vždy vyčistit interval v případě chyby
+            assistantBubble.classList.remove('loading');
+            assistantTextElement.textContent = 'Omlouvám se, došlo k chybě při komunikaci se serverem.';
+            console.error('Vari Chatbot: Chyba sendMessage:', err);
+            // Přidáme chybovou hlášku i do konverzace pro uživatele
+            if (assistantResponseText === '') { // Pokud ještě nepřišla žádná část odpovědi
+                 conversation.push({ role:'assistant', content: assistantTextElement.textContent });
+                 saveHistory();
+            }
+          } finally {
+            inputBox.focus();
+          }
         }
 
-        function renderHistory() {
-            chatBoxEl.innerHTML = '';
-            conversation.forEach(msg => addMessage(msg.role, msg.content));
-            if (chatBoxEl.lastChild) {
-                chatBoxEl.lastChild.scrollIntoView({ behavior: 'auto', block: 'end' });
-            }
-            inputBoxEl.focus();
+        function renderHistory(){
+          chatBox.innerHTML = ''; // Vyčistíme chatbox před renderováním
+          conversation.forEach(msg => addMessage(msg.role, msg.content));
+          if (chatBox.lastChild) { // Scroll na poslední zprávu
+            chatBox.lastChild.scrollIntoView({ behavior: 'auto', block: 'end' });
+          }
+          inputBox.focus();
         }
 
-        function toggleChat(openState) {
-            const isOpen = chatBoxContainerEl.classList.contains('open');
-            if (openState === isOpen) return; // Already in desired state
+        function toggleChat(openState){
+            const isOpen = chatBoxContainer.classList.contains('open');
 
-            if (openState) {
-                chatIconEl.style.display = 'none';
-                chatBoxContainerEl.style.display = 'flex';
-                setTimeout(() => {
-                    chatBoxContainerEl.classList.remove('close');
-                    chatBoxContainerEl.classList.add('open');
+            if (openState) { // Chceme otevřít
+                if (isOpen) return; // Již otevřeno
+                chatIcon.style.display='none';
+                chatBoxContainer.style.display='flex';
+                setTimeout(() => { // Timeout pro CSS transition
+                    chatBoxContainer.classList.remove('close');
+                    chatBoxContainer.classList.add('open');
                 }, 10);
-
+                
                 if (conversation.length === 0) {
                     sendInitial();
                 } else {
                     renderHistory();
                 }
-                inputBoxEl.focus();
-            } else {
-                chatBoxContainerEl.classList.remove('open');
-                chatBoxContainerEl.classList.add('close');
+                inputBox.focus();
+            } else { // Chceme zavřít
+                if (!isOpen) return; // Již zavřeno
+                chatBoxContainer.classList.remove('open');
+                chatBoxContainer.classList.add('close');
                 setTimeout(() => {
-                    chatBoxContainerEl.style.display = 'none';
-                    chatIconEl.style.display = 'flex';
-                }, 600); // Match CSS transition duration
+                    chatBoxContainer.style.display='none';
+                    chatIcon.style.display='flex'; // Znovu zobrazíme ikonu
+                }, 780); // Doba by měla odpovídat délce CSS animace (all .8s)
             }
         }
 
-        chatIconEl.addEventListener('click', () => toggleChat(true));
-        chatCloseEl.addEventListener('click', () => toggleChat(false));
-        chatRefreshEl.addEventListener('click', clearChat);
-        sendButtonEl.addEventListener('click', sendMessage);
-        inputBoxEl.addEventListener('keypress', e => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
+        chatIcon.addEventListener('click', () => toggleChat(true));
+        chatClose.addEventListener('click', () => toggleChat(false));
+        chatRefresh.addEventListener('click', clearChat);
+        sendButton.addEventListener('click', sendMessage);
+        inputBox.addEventListener('keypress', e => {
+          if (e.key === 'Enter' && !e.shiftKey) { // Odeslat na Enter, Shift+Enter pro nový řádek
+            e.preventDefault(); // Zabráníme výchozí akci (např. nový řádek v textovém poli)
+            sendMessage();
+          }
         });
 
-        // Optional: Restore chat state if it was open previously (using a flag in sessionStorage)
-        // if (sessionStorage.getItem('vari_chat_was_open') === 'true' && conversation.length > 0) {
+        // Možnost: Automaticky otevřít chat, pokud byl naposledy otevřený (pomocí sessionStorage flagu)
+        // if (sessionStorage.getItem(`${STORAGE_KEY_PREFIX}was_open`) === 'true' && conversation.length > 0) {
         //    toggleChat(true);
         // }
-        // document.addEventListener('visibilitychange', () => {
-        //    if (document.visibilityState === 'hidden') {
-        //        if (chatBoxContainerEl.classList.contains('open')) {
-        //            sessionStorage.setItem('vari_chat_was_open', 'true');
-        //        } else {
-        //            sessionStorage.removeItem('vari_chat_was_open');
-        //        }
+        // window.addEventListener('beforeunload', () => {
+        //    if (chatBoxContainer.classList.contains('open')) {
+        //        sessionStorage.setItem(`${STORAGE_KEY_PREFIX}was_open`, 'true');
+        //    } else {
+        //        sessionStorage.removeItem(`${STORAGE_KEY_PREFIX}was_open`);
         //    }
         // });
+
+    } // Konec initializeWidgetLogic
+
+    // --- Funkce pro načtení externích skriptů ---
+    function loadExternalScript(url, callback) {
+        const script = document.createElement('script');
+        script.src = url;
+        script.onload = callback;
+        script.onerror = () => console.error(`Vari Chatbot Widget: Nepodařilo se načíst skript ${url}`);
+        document.head.appendChild(script);
     }
 
-    function init() {
-        // Ensure this runs after DOM is ready, especially if script is in <head>
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                loadCSS();
-                loadScript(MARKED_JS_URL, createHTML); // createHTML calls initializeChatLogic
-            });
-        } else {
-            loadCSS();
-            loadScript(MARKED_JS_URL, createHTML);
+    // --- Hlavní inicializační funkce widgetu ---
+    function initWidget() {
+        // Najdeme nebo vytvoříme hostitelský element pro widget
+        let hostElement = document.getElementById(WIDGET_HOST_ID);
+        if (!hostElement) {
+            hostElement = document.createElement('div');
+            hostElement.id = WIDGET_HOST_ID;
+            document.body.appendChild(hostElement);
         }
+        hostElement.innerHTML = ''; // Vyčistíme pro případ re-inicializace
+
+        loadWidgetCSS(); // Načteme CSS
+
+        // Načteme marked.js a až poté vytvoříme HTML a inicializujeme logiku
+        loadExternalScript(MARKED_JS_URL, () => {
+            createWidgetHTML(hostElement); // Vytvoříme HTML strukturu widgetu
+            initializeWidgetLogic();       // Aplikujeme JavaScriptovou logiku
+        });
     }
 
-    init();
+    // Spuštění widgetu po načtení DOMu
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWidget);
+    } else {
+        initWidget(); // DOM již načten
+    }
 
 })();
