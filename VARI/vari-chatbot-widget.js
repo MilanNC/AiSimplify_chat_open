@@ -1,27 +1,24 @@
 (function() {
     // --- Konfigurace Widgetu ---
-    const WIDGET_HOST_ID = 'vari-chatbot-host';
-    const CHAT_CONTAINER_ID = 'chatContainer'; // Použijeme ID z vašeho HTML
+    const WIDGET_HOST_ID = 'vari-chatbot-host'; // ID elementu na stránce, kam se widget může vložit
+    const CHAT_CONTAINER_ID = 'chatContainer';   // ID hlavního kontejneru widgetu (z vašeho HTML)
     const POPPINS_FONT_URL = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap';
     const MARKED_JS_URL = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
 
-    // --- API a Klient ID (z vašeho kódu) ---
+    // --- API, Klient ID a Storage klíče (přesně podle vašeho kódu) ---
     const API_BASE = 'https://chatbot-production-4d1d.up.railway.app';
-    const CLIENT_ID = 'VARI';
-    // Použijeme původní názvy klíčů, ale pro widget je lepší je prefixovat,
-    // aby se předešlo konfliktům na hostitelské stránce.
-    // Pro maximální shodu s kódem ponechávám původní, ale doporučuji zvážit prefix.
-    const STORAGE_KEY = 'chat_history'; // Původní: 'chat_history'; Doporučeno: `vari_widget_chat_history`
-    const TOPIC_KEY = 'etrieve_topic_id'; // Původní: 'etrieve_topic_id'; Doporučeno: `vari_widget_etrieve_topic_id`
+    const clientID = 'VARI'; // Přejmenováno z CLIENT_ID na clientID pro shodu s vaším JS kódem
+    const STORAGE_KEY = 'chat_history';
+    const TOPIC_KEY = 'etrieve_topic_id';
 
     // --- Funkce pro načtení CSS ---
     function loadWidgetCSS() {
         const style = document.createElement('style');
         style.textContent = `
             /* CSS Proměnné z vašeho :root - budou platit v kontextu widgetu */
-            #${CHAT_CONTAINER_ID} { /* Aplikujeme font-family přímo na root widgetu */
-              font-family: 'Poppins', sans-serif;
-              /* CSS proměnné pro widget */
+            /* Pro widget je definujeme přímo na jeho hlavním kontejneru */
+            #${CHAT_CONTAINER_ID} {
+              font-family: 'Poppins', sans-serif; /* Základní font pro widget */
               --header-gradient: linear-gradient(90deg,#ff0101,#000000);
               --user-gradient: #e4032e;
               --assistant-color: #F4F4F9;
@@ -30,28 +27,31 @@
               --bg: #fff;
               --shadow: rgba(0,0,0,0.1) 0 4px 12px;
               --shadow-hover: rgba(0,0,0,0.2) 0 6px 16px;
-              box-sizing: border-box;
+              box-sizing: border-box; /* Základní box-sizing pro widget */
             }
 
-            /* Základní reset pro prvky uvnitř widgetu, aby se minimalizoval vliv stylů hostitelské stránky */
+            /* Reset pro prvky uvnitř widgetu, aby se co nejvíce omezil vliv stylů hostitelské stránky. */
+            /* Tento reset je velmi mírný, aby co nejvíce odpovídal vašemu původnímu stavu, kde nebyl explicitní reset. */
             #${CHAT_CONTAINER_ID} *, #${CHAT_CONTAINER_ID} *::before, #${CHAT_CONTAINER_ID} *::after {
-                box-sizing: border-box;
-                /* margin: 0;  Ponecháme původní CSS, pokud explicitně nastavuje margin/padding */
-                /* padding: 0; */
-                /* border-width: 0; */
-                /* font: inherit; Dědí z #${CHAT_CONTAINER_ID} */
-                /* color: inherit; */
-                /* background: transparent; */
-                /* text-align: left; */
+                box-sizing: border-box; /* Klíčové pro konzistentní layout */
+                /* margin: 0;  Ponecháváme na individuálních pravidlech níže */
+                /* padding: 0; Ponecháváme na individuálních pravidlech níže */
             }
-             #${CHAT_CONTAINER_ID} button, #${CHAT_CONTAINER_ID} input, #${CHAT_CONTAINER_ID} div, #${CHAT_CONTAINER_ID} span {
-                font-family: 'Poppins', sans-serif; /* Zajistíme, že všechny relevantní prvky dědí font */
+             #${CHAT_CONTAINER_ID} button, #${CHAT_CONTAINER_ID} input, #${CHAT_CONTAINER_ID} div, #${CHAT_CONTAINER_ID} span, #${CHAT_CONTAINER_ID} p, #${CHAT_CONTAINER_ID} b, #${CHAT_CONTAINER_ID} svg {
+                font-family: inherit; /* Dědí 'Poppins' z #${CHAT_CONTAINER_ID} */
+                background: transparent; /* Výchozí transparentní pozadí */
+                border: 0; /* Výchozí bez borderu, pokud není specifikováno */
+                margin: 0; /* Výchozí bez marginu */
+                padding: 0; /* Výchozí bez paddingu */
+                color: inherit; /* Dědí barvu */
+                text-align: left; /* Výchozí zarovnání */
              }
 
-            /* Původní styly pro 'html, body' a 'body::before' (s pozadi.png) jsou VYNECHÁNY. */
-            /* Widget nemůže a neměl by stylovat globální prvky hostitelské stránky. */
 
-            /* Keyframes - ponechány, jak jsou */
+            /* STYLY PRO 'html, body' a 'body::before' (s pozadi.png) Z PŮVODNÍHO KÓDU JSOU ZDE ZÁMĚRNĚ VYNECHÁNY. */
+            /* Widget je samostatná komponenta a neměl by modifikovat globální styly hostitelské stránky. */
+
+            /* Keyframes - přeneseny 1:1 */
             @keyframes gradientFlow {
               0% { background-position: 0% 50%; }
               50% { background-position: 100% 50%; }
@@ -66,14 +66,15 @@
               to   { transform: translateX(0); opacity: 1; }
             }
 
-            /* Styly pro #${CHAT_CONTAINER_ID} a jeho potomky - přeneseny 1:1 z vašeho kódu */
-            /* Je důležité, aby se všechny selektory vztahovaly k prvkům *uvnitř* #${CHAT_CONTAINER_ID} */
+            /* Následující styly jsou přeneseny co nejvěrněji z vašeho <style> bloku. */
+            /* Všechny selektory by měly být automaticky "scoped" díky tomu, že budou aplikovány */
+            /* na HTML strukturu vytvořenou uvnitř #${WIDGET_HOST_ID} (který obsahuje #${CHAT_CONTAINER_ID}) */
 
-            #${CHAT_CONTAINER_ID} {
+            #${CHAT_CONTAINER_ID} { /* Již definováno výše pro proměnné a font, zde doplníme zbytek */
               position: fixed; bottom: 20px; right: 20px;
               z-index: 99999; /* Zvýšený z-index pro widget */
             }
-            #${CHAT_CONTAINER_ID} * { pointer-events: auto; } /* Tento styl je v pořádku */
+            #${CHAT_CONTAINER_ID} * { pointer-events: auto; }
 
             #${CHAT_CONTAINER_ID} #chatIcon {
               width: 64px; height: 64px; border-radius: 50%;
@@ -81,7 +82,7 @@
               color: var(--text-light); font-size: 36px;
               cursor: pointer; animation: pulse 2s infinite;
               box-shadow: var(--shadow); position: relative; overflow: hidden;
-              background: transparent;
+              background: transparent; /* Toto je explicitně z vašeho kódu */
             }
             #${CHAT_CONTAINER_ID} #chatIcon::before {
               content:""; position:absolute; inset:0;
@@ -104,13 +105,10 @@
               border-radius: 24px;
               background: var(--bg);
               box-shadow: var(--shadow);
-              /* Původní: position: fixed; bottom:100px; right:20px; */
-              /* Pro widget je vhodnější pozicovat relativně k #${CHAT_CONTAINER_ID} nebo ponechat fixed, pokud má být nezávislý */
-              /* Ponecháme fixed, jak bylo v originále, aby se co nejvíce shodovalo */
-              position: fixed; bottom:100px; right:20px;
+              position: fixed; bottom:100px; right:20px; /* Přesně dle vašeho kódu */
               flex-direction: column;
               opacity: 0;
-              overflow: hidden; /* Ponecháno, ale může oříznout stíny/tooltipy, pokud přesahují */
+              overflow: hidden; /* Přesně dle vašeho kódu */
               transform: translateY(20px);
               transition: all .8s ease;
             }
@@ -118,7 +116,7 @@
               display: flex;
               opacity: 1;
               transform: translateY(0);
-              height: 70vh !important; /* Ponecháno !important dle originálu */
+              height: 70vh !important; /* Přesně dle vašeho kódu */
             }
 
             #${CHAT_CONTAINER_ID} #chatHeader {
@@ -126,23 +124,25 @@
               display: flex; justify-content: space-between; align-items: center;
               border-top-left-radius: 24px; border-top-right-radius: 24px;
               position: relative;
-              overflow: visible; /* Důležité pro blur efekt ::before */
-              background: transparent;
-              color: var(--text-light); /* Přidáno pro jistotu, že text bude bílý */
+              overflow: visible; /* Přesně dle vašeho kódu */
+              background: transparent; /* Přesně dle vašeho kódu */
+              color: white; /* Z .assistant-title, pro jistotu i zde */
             }
             #${CHAT_CONTAINER_ID} #chatHeader::before {
               content:""; position:absolute; inset:0;
               background:var(--header-gradient);
-              filter:blur(20px); transform:scale(1.2); /* Efekt přesahu pro rozmazání */
+              filter:blur(20px); transform:scale(1.2);
               z-index:-1;
-              border-top-left-radius: inherit; /* Dědí zaoblení z rodiče */
+              /* Aby blur efekt správně kopíroval rohy hlavičky */
+              border-top-left-radius: inherit;
               border-top-right-radius: inherit;
             }
-            #${CHAT_CONTAINER_ID} .assistant-title { /* Selektor je již správně obecný */
-                position: relative; font-size: 20px; color: white; /* color: white; z originálu */
-                font-weight: normal; /* Explicitně, pokud by dědil něco jiného */
+            /* Selektor .assistant-title je použitelný, protože bude uvnitř #chatContainer */
+            #${CHAT_CONTAINER_ID} .assistant-title {
+                position: relative; font-size: 20px; color: white; /* Přesně dle vašeho kódu */
+                font-weight: normal; /* Normalizujeme, <b> se postará o tučné */
             }
-            #${CHAT_CONTAINER_ID} .assistant-title b { font-weight: bold; } /* Zachování tučného písma */
+             #${CHAT_CONTAINER_ID} .assistant-title b { font-weight: bold; } /* Zachování tučného z HTML */
 
             #${CHAT_CONTAINER_ID} .assistant-title:hover::after {
               content:'😉'; position:absolute; right:-25px; top:0;
@@ -156,10 +156,10 @@
             }
             #${CHAT_CONTAINER_ID} .icon-container .icon {
               cursor: pointer;
-              font-size: 20px;
-              color: var(--text-light);
-              transition: transform .3s ease;
-              padding: 2px; /* Malé odsazení pro lepší klikatelnost */
+              font-size: 20px; /* Přesně dle vašeho kódu */
+              color: var(--text-light); /* Přesně dle vašeho kódu */
+              transition: transform .3s ease; /* Přesně dle vašeho kódu */
+              padding: 2px; /* Malý padding pro lepší klikání, lze odstranit, pokud to mění vzhled */
             }
             #${CHAT_CONTAINER_ID} .icon-container .icon:hover {
               transform: rotate(90deg);
@@ -170,17 +170,17 @@
               left: 50%;
               transform: translateX(-50%);
               margin-top: 6px;
-              background: #fff; /* Ponecháno #fff dle originálu */
-              color: var(--text-dark);
-              padding: 4px 8px;
-              border-radius: 6px;
-              font-size: .8rem;
+              background: #fff; /* Přesně dle vašeho kódu */
+              color: var(--text-dark); /* Přesně dle vašeho kódu */
+              padding: 4px 8px; /* Přesně dle vašeho kódu */
+              border-radius: 6px; /* Přesně dle vašeho kódu */
+              font-size: .8rem; /* Přesně dle vašeho kódu */
               white-space: nowrap;
               opacity: 0;
               transition: opacity .2s ease;
               pointer-events: none;
               box-shadow: var(--shadow);
-              z-index: 100000; /* Zvýšený z-index pro tooltip */
+              z-index: 100001; /* Zvýšen z-index pro jistotu nad ostatními prvky widgetu */
             }
             #${CHAT_CONTAINER_ID} .icon-container:hover .icon-tooltip {
               opacity: 1;
@@ -190,55 +190,58 @@
               flex: 1; padding: 16px;
               display: flex; flex-direction: column; gap: 12px;
               overflow-y: auto;
-              background-color: var(--bg); /* Explicitně pozadí chatboxu, pokud se liší od #chatBoxContainer */
+              background-color: var(--bg); /* Explicitně, aby bylo pozadí boxu bílé */
               scrollbar-width: thin;
-              scrollbar-color: var(--user-gradient) var(--assistant-color); /* Upraveno na solidní barvu pro první argument */
+              scrollbar-color: var(--user-gradient) var(--assistant-color); /* Solidní barva pro první parametr */
             }
             #${CHAT_CONTAINER_ID} #chatBox::-webkit-scrollbar { width: 6px; }
             #${CHAT_CONTAINER_ID} #chatBox::-webkit-scrollbar-thumb {
-              background: var(--user-gradient); /* Upraveno na solidní barvu */
+              background: var(--user-gradient); /* Solidní barva, gradient zde není dobře podporován */
               border-radius: 3px;
             }
 
+            /* Styly pro .message uvnitř #chatBox */
             #${CHAT_CONTAINER_ID} #chatBox .message {
-              display: inline-block; /* Dle originálu */
-              width: auto; /* Dle originálu */
-              max-width: 85%;
-              white-space: pre-wrap;
-              overflow-wrap: break-word;
-              transition: transform .8s cubic-bezier(.45,1.35,.55,1.02), box-shadow .8s cubic-bezier(.45,1.35,.55,1.02);
-              position: relative; /* Pro save-icon */
-              /* Padding a border-radius jsou definovány níže v .message */
-              line-height: 1.5; /* Přesunuto z .message níže pro sjednocení */
-              box-shadow: var(--shadow); /* Přesunuto z .message níže pro sjednocení */
+              display: inline-block; /* Dle vašeho kódu */
+              width: auto; /* Dle vašeho kódu */
+              max-width: 85%; /* Dle vašeho kódu */
+              white-space: pre-wrap; /* Dle vašeho kódu */
+              overflow-wrap: break-word; /* Dle vašeho kódu */
+              transition: transform .8s cubic-bezier(.45,1.35,.55,1.02), box-shadow .8s cubic-bezier(.45,1.35,.55,1.02); /* Dle vašeho kódu */
+              /* Následující vlastnosti jsou z obecnějšího .message pravidla, ale platí zde */
+              position: relative;
+              padding: 16px 24px; /* Dle vašeho .message pravidla */
+              border-radius: 24px; /* Dle vašeho .message pravidla */
+              box-shadow: var(--shadow); /* Dle vašeho .message pravidla */
+              line-height: 1.5; /* Dle vašeho .message pravidla */
             }
             #${CHAT_CONTAINER_ID} #chatBox .message p {
-              display: inline; /* Dle originálu */
-              margin: 0; /* Dle originálu */
-              /* font-size a color by měly být zděděny z .message */
+              display: inline; /* Dle vašeho kódu */
+              margin: 0; /* Dle vašeho kódu */
+              /* Barva a velikost písma by měly být zděděny z .message kontejneru */
             }
 
-            /* Tento .message je obecnější, ale měl by se aplikovat na zprávy v chatBoxu */
-            /* Pro větší specificitu by bylo lepší #${CHAT_CONTAINER_ID} #chatBox .message, ale držím se originálu */
-            #${CHAT_CONTAINER_ID} .message { /* Tento styl ovlivní jak .user-message tak .assistant-message pokud nemají vlastní přepsání */
+            /* Obecné .message pravidlo, které se aplikuje na .user-message a .assistant-message */
+            /* Toto pravidlo nastavuje výchozí vzhled pro .assistant-message */
+            #${CHAT_CONTAINER_ID} .message { /* Tento selektor je méně specifický než ten výše, ale ponechávám kvůli struktuře originálu */
               position: relative;
-              background: var(--assistant-color); /* Výchozí pro assistant */
-              color: var(--text-dark); /* Výchozí pro assistant */
-              align-self: flex-start; /* Výchozí pro assistant */
-              padding: 16px 24px; /* Dle originálu */
-              border-radius: 24px; /* Dle originálu */
-              /* line-height a box-shadow přesunuty výše do #${CHAT_CONTAINER_ID} #chatBox .message */
+              background: var(--assistant-color); /* Výchozí pro asistenta */
+              color: var(--text-dark); /* Výchozí pro asistenta */
+              align-self: flex-start; /* Výchozí pro asistenta */
+              /* padding, border-radius, box-shadow, line-height jsou již definovány ve specifičtějším #${CHAT_CONTAINER_ID} #chatBox .message */
             }
             #${CHAT_CONTAINER_ID} .message:hover { /* Platí pro všechny .message */
               transform: scale(1.03);
               box-shadow: var(--shadow-hover);
             }
             #${CHAT_CONTAINER_ID} .assistant-message.loading { font-style: italic; opacity: .7; }
-            #${CHAT_CONTAINER_ID} .user-message { /* Specifické pro uživatele, přepíše .message */
+
+            /* Specifické styly pro .user-message, přepíší obecné .message tam, kde je to potřeba */
+            #${CHAT_CONTAINER_ID} .user-message {
               background: var(--user-gradient);
               color: var(--text-light);
               align-self: flex-end;
-              text-align: right; /* Dle originálu */
+              text-align: right; /* Dle vašeho kódu */
             }
 
             #${CHAT_CONTAINER_ID} .save-icon {
@@ -251,14 +254,14 @@
               transition: opacity 0.25s cubic-bezier(.45,1.35,.55,1.02), transform 0.25s cubic-bezier(.45,1.35,.55,1.02);
               cursor: pointer;
               user-select: none;
-              font-size: 1.15em;
-              background: #fff; /* Dle originálu */
-              color: var(--text-dark); /* Barva pro ikonu, aby byla viditelná na bílém pozadí */
-              border-radius: 7px;
-              padding: 1px 8px;
-              box-shadow: var(--shadow);
-              z-index: 2; /* Dle originálu */
-              pointer-events: all; /* Dle originálu */
+              font-size: 1.15em; /* Dle vašeho kódu */
+              background: #fff; /* Dle vašeho kódu */
+              color: var(--text-dark); /* Aby byla ikona viditelná na bílém pozadí */
+              border-radius: 7px; /* Dle vašeho kódu */
+              padding: 1px 8px; /* Dle vašeho kódu */
+              box-shadow: var(--shadow); /* Dle vašeho kódu */
+              z-index: 2; /* Dle vašeho kódu */
+              pointer-events: all; /* Dle vašeho kódu */
             }
             #${CHAT_CONTAINER_ID} .save-icon.visible {
               opacity: 1;
@@ -267,49 +270,51 @@
 
             #${CHAT_CONTAINER_ID} #inputContainer {
               display: flex;
-              align-items: center; /* Pro vertikální zarovnání obsahu */
-              border-top: 1px solid #eee; /* Dle originálu */
-              padding: 10px 16px; /* Dle originálu */
-              background-color: var(--bg); /* Zajistí pozadí, pokud by #chatBoxContainer mělo jiné */
+              align-items: center; /* Vertikální zarovnání */
+              border-top: 1px solid #eee; /* Dle vašeho kódu */
+              padding: 10px 16px; /* Dle vašeho kódu */
+              background-color: var(--bg); /* Explicitní pozadí */
               border-bottom-left-radius: 24px; /* Aby odpovídalo kontejneru */
               border-bottom-right-radius: 24px;
             }
             #${CHAT_CONTAINER_ID} #inputBox {
               flex: 1;
-              padding: 10px 14px;
-              border: 1px solid #ddd; /* Dle originálu */
-              border-radius: 20px;
-              font-size: 1rem;
+              padding: 10px 14px; /* Dle vašeho kódu */
+              border: 1px solid #ddd; /* Dle vašeho kódu */
+              border-radius: 20px; /* Dle vašeho kódu */
+              font-size: 1rem; /* Dle vašeho kódu */
               outline: none;
-              transition: border-color .8s ease;
-              font-style: italic;
-              color: var(--text-dark); /* Barva textu v inputu */
-              background-color: #fff; /* Barva pozadí inputu */
+              transition: border-color .8s ease; /* Dle vašeho kódu */
+              font-style: italic; /* Dle vašeho kódu */
+              color: var(--text-dark); /* Barva textu */
+              background-color: #fff; /* Barva pozadí */
             }
             #${CHAT_CONTAINER_ID} #inputBox:focus {
                 /* border-color: var(--header-gradient); Gradient není pro border ideální */
-                border: 1px solid var(--user-gradient); /* Použita solidní červená barva pro focus */
-                font-style: normal; /* Při focusu normální styl */
+                border: 1px solid var(--user-gradient); /* Pevná barva z vašeho gradientu */
+                font-style: normal; /* Při focusu změna stylu */
             }
-            #${CHAT_CONTAINER_ID} #inputBox::placeholder {
-                color: #999; /* Barva placeholderu */
+             #${CHAT_CONTAINER_ID} #inputBox::placeholder {
+                color: #aaa; /* Světlejší placeholder */
                 font-style: italic;
             }
 
+
             #${CHAT_CONTAINER_ID} #sendButton {
-              background: none;
-              border: none;
-              margin-left: 12px;
-              width: 40px; height: 40px;
-              display: flex; align-items: center; justify-content: center;
-              cursor: pointer;
-              transition: transform .4s ease, background-color .8s ease;
-              position: relative;
-              border-radius: 50%; /* Přidáno pro hover efekt */
+              background: none; /* Dle vašeho kódu */
+              border: none; /* Dle vašeho kódu */
+              margin-left: 12px; /* Dle vašeho kódu */
+              width: 40px; height: 40px; /* Dle vašeho kódu */
+              display: flex; align-items: center; justify-content: center; /* Dle vašeho kódu */
+              cursor: pointer; /* Dle vašeho kódu */
+              transition: transform .4s ease, background-color .8s ease; /* Dle vašeho kódu */
+              position: relative; /* Dle vašeho kódu */
+              border-radius: 50%; /* Přidáno pro hover efekt, pokud má mít kulaté pozadí */
             }
             #${CHAT_CONTAINER_ID} #sendButton:hover {
-              transform: scale(1.05);
-              background: rgba(228, 3, 46, 0.1); /* Světlejší červená pro hover, odvozeno z --user-gradient */
+              transform: scale(1.05); /* Dle vašeho kódu */
+              background: rgba(113,93,228,0.1); /* Dle vašeho kódu - pozor, tato barva (fialová) neodpovídá vašim gradientům (červeno-černá) */
+              /* Pokud chcete použít barvu z gradientu, např. červenou: background: rgba(228, 3, 46, 0.1); */
             }
             #${CHAT_CONTAINER_ID} #sendButton .send-tooltip {
               position: absolute;
@@ -317,35 +322,35 @@
               left: 50%;
               transform: translateX(-50%);
               margin-bottom: 6px;
-              background: #fff; /* Dle originálu */
-              color: var(--text-dark);
-              padding: 4px 8px;
-              border-radius: 6px;
-              font-size: .8rem;
+              background: #fff; /* Dle vašeho kódu */
+              color: var(--text-dark); /* Dle vašeho kódu */
+              padding: 4px 8px; /* Dle vašeho kódu */
+              border-radius: 6px; /* Dle vašeho kódu */
+              font-size: .8rem; /* Dle vašeho kódu */
               white-space: nowrap;
               opacity: 0;
               transition: opacity .2s ease;
               pointer-events: none;
               box-shadow: var(--shadow);
-              z-index: 100000; /* Zvýšený z-index */
+              z-index: 100001; /* Zvýšený z-index */
             }
             #${CHAT_CONTAINER_ID} #sendButton:hover .send-tooltip {
               opacity: 1;
             }
 
             #${CHAT_CONTAINER_ID} #sendIcon {
-              width: 20px; height: 20px;
-              /* fill: var(--header-gradient); Gradient pro fill není přímo podporován */
-              fill: var(--user-gradient); /* Použita solidní červená barva */
+              width: 20px; height: 20px; /* Dle vašeho kódu */
+              /* fill: var(--header-gradient); Gradient pro fill SVG není přímo podporován */
+              fill: var(--user-gradient); /* Použita červená barva z vašeho gradientu */
             }
 
-            /* Media queries - ponechány, jak jsou, jen obaleny do #${CHAT_CONTAINER_ID} pokud by bylo potřeba */
-            /* Většina selektorů uvnitř je již s ID, takže by měly fungovat správně */
+            /* Media queries - přeneseny 1:1 */
             @media (max-width: 600px) {
               #${CHAT_CONTAINER_ID} #chatIcon { width: 50px; height: 50px; font-size: 28px; }
-              #${CHAT_CONTAINER_ID} #chatBoxContainer { bottom: 80px; right: 10px; width: 90vw; } /* Ponecháno dle originálu */
+              #${CHAT_CONTAINER_ID} #chatBoxContainer { bottom: 80px; right: 10px; width: 90vw; }
               #${CHAT_CONTAINER_ID} #chatHeader { padding: 8px 12px; }
-              #${CHAT_CONTAINER_ID} .message { padding: 12px 16px; } /* Platí pro všechny zprávy */
+              /* Pravidlo .message v media query by mělo být specifičtější, pokud má ovlivnit pouze zprávy v chatBoxu */
+              #${CHAT_CONTAINER_ID} #chatBox .message { padding: 12px 16px; }
               #${CHAT_CONTAINER_ID} #inputContainer { padding: 8px 12px; }
               #${CHAT_CONTAINER_ID} #inputBox { font-size: .9rem; }
               #${CHAT_CONTAINER_ID} #sendButton { width: 36px; height: 36px; }
@@ -360,7 +365,7 @@
     }
 
     function createWidgetHTML(hostElement) {
-        // Použijeme přesnou HTML strukturu z vašeho kódu
+        // HTML struktura je přenesena 1:1 z vašeho <body> bloku pro chatContainer
         hostElement.innerHTML = `
             <div id="${CHAT_CONTAINER_ID}">
               <div id="chatIcon">
@@ -396,8 +401,8 @@
     }
 
     function initializeWidgetLogic() {
-        // JavaScript logika je přenesena 1:1 z vašeho <script> bloku
-        // Konstanty API_BASE, CLIENT_ID, STORAGE_KEY, TOPIC_KEY jsou definovány na začátku IIFE
+        // JavaScript logika je přenesena 1:1 z vašeho <script> bloku.
+        // Konstanty API_BASE, clientID, STORAGE_KEY, TOPIC_KEY jsou definovány na začátku IIFE.
 
         let conversation = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
         let topicId = sessionStorage.getItem(TOPIC_KEY) || null;
@@ -423,46 +428,44 @@
           const msg = document.createElement('div');
           msg.className = `message ${sender}-message`;
           
-          // Zajištění, že `marked.parse` je dostupné a `content` není null/undefined
           if (typeof marked !== 'undefined' && marked.parse && content != null) {
             msg.innerHTML = marked.parse(String(content));
           } else {
-            msg.textContent = String(content); // Fallback na prostý text
+            msg.textContent = String(content);
             if (typeof marked === 'undefined') console.warn("Vari Chatbot: Knihovna marked.js není načtena.");
           }
 
-
           msg.addEventListener('mouseenter', () => {
-            document.querySelectorAll(`#${CHAT_CONTAINER_ID} .save-icon`).forEach(el => { // Zacílení v rámci widgetu
+            document.querySelectorAll(`#${CHAT_CONTAINER_ID} .save-icon`).forEach(el => {
               el.classList.remove('visible');
-              setTimeout(() => { if(el.parentElement) el.remove(); }, 250);
+              setTimeout(() => { if (el.parentElement) el.remove(); }, 250);
             });
             if (!msg.querySelector('.save-icon')) {
               const saveIcon = document.createElement('span');
               saveIcon.className = 'save-icon';
               saveIcon.textContent = '💾';
-              saveIcon.title = 'Zkopírovat';
+              saveIcon.title = "Zkopírovat";
               msg.append(saveIcon);
               setTimeout(() => { saveIcon.classList.add('visible'); }, 10);
 
               const removeIcon = (delay = 250) => {
                 saveIcon.classList.remove('visible');
-                setTimeout(() => { if(saveIcon.parentElement) saveIcon.remove(); }, delay);
+                setTimeout(() => { if (saveIcon.parentElement) saveIcon.remove(); }, delay);
               };
-              let timer = setTimeout(() => removeIcon(250), 3000); // Automatické odstranění po 3s
+              let timer = setTimeout(() => removeIcon(250), 3000);
 
               saveIcon.addEventListener('click', (e) => {
                 e.stopPropagation();
                 clearTimeout(timer);
                 const textToCopy = (msg.innerText || msg.textContent || "").replace(saveIcon.textContent, '').trim();
                 navigator.clipboard.writeText(textToCopy).then(() => {
-                    saveIcon.textContent = '✅';
-                    saveIcon.title = 'Zkopírováno!';
-                    timer = setTimeout(() => removeIcon(250), 1000); // Zmizí po 1s
+                    saveIcon.textContent = '✅Zkopírováno'; // Přesně dle vašeho kódu
+                    saveIcon.title = "Zkopírováno!";
+                    timer = setTimeout(() => removeIcon(250), 1000); // Přesně dle vašeho kódu
                 }).catch(err => {
-                    console.error("Chyba kopírování: ", err);
+                    console.error("Chyba kopírování:", err);
                     saveIcon.textContent = '⚠️';
-                    saveIcon.title = 'Chyba kopírování';
+                    saveIcon.title = "Chyba kopírování";
                     timer = setTimeout(() => removeIcon(250), 1500);
                 });
               });
@@ -470,17 +473,11 @@
           });
 
           msg.addEventListener('mouseleave', () => {
-            // Odstranění všech save-icon, které by mohly zůstat viset
-            // Původní kód odstraňoval všechny, zde zacílíme na ikonu v této zprávě
-            const currentSaveIcon = msg.querySelector('.save-icon.visible');
-            if (currentSaveIcon) {
-                let leaveTimer = setTimeout(() => {
-                    currentSaveIcon.classList.remove('visible');
-                    setTimeout(() => { if(currentSaveIcon.parentElement) currentSaveIcon.remove(); }, 250);
-                }, 300); // Krátké zpoždění
-                // Pokud uživatel najede zpět na ikonu, neodstraňuj
-                currentSaveIcon.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
-            }
+            // Ponecháváme původní logiku z vašeho kódu
+            document.querySelectorAll(`#${CHAT_CONTAINER_ID} .save-icon`).forEach(el => {
+              el.classList.remove('visible');
+              setTimeout(() => { if (el.parentElement) el.remove(); }, 250);
+            });
           });
 
           chatBox.append(msg);
@@ -494,66 +491,71 @@
         }
 
         async function clearChat() {
-          chatBox.innerHTML = ''; // Efektivnější vymazání zpráv z DOMu
-          // Původní: document.querySelectorAll('.message').forEach(m => m.remove());
-          
-          // chatRefresh.classList.add('rotate'); // Pokud máte CSS pro '.rotate'
-          // setTimeout(() => chatRefresh.classList.remove('rotate'), 600);
-          
+          document.querySelectorAll(`#${CHAT_CONTAINER_ID} .message`).forEach(m => m.remove()); // Cíleno na widget
+          // chatRefresh.classList.add('rotate'); // Předpokládá existenci CSS pro .rotate
+
           try {
             await fetch(`${API_BASE}/reset`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ clientID: CLIENT_ID }) // Použita konstanta z vrchu skriptu
+              body: JSON.stringify({ clientID }) // clientID z vrchu skriptu
             });
-          } catch(err) {
+          } catch (err) {
             console.error("Chyba při resetování chatu na serveru:", err);
           }
-
-          conversation = [];
-          topicId = null;
-          sessionStorage.removeItem(STORAGE_KEY);
-          sessionStorage.removeItem(TOPIC_KEY);
-          sendInitial();
+          
+          // setTimeout(() => { // Původní setTimeout
+            conversation = [];
+            topicId = null;
+            sessionStorage.removeItem(STORAGE_KEY);
+            sessionStorage.removeItem(TOPIC_KEY);
+            // chatRefresh.classList.remove('rotate');
+            if (chatBoxContainer.classList.contains('open')) { // Odeslat initial jen pokud je chat otevřený
+                sendInitial();
+            }
+          // }, 600); // Původní zpoždění
         }
         
         async function sendInitial() {
-            // Nyní voláno pouze pokud je chat otevřený a prázdný
-            if (!chatBoxContainer.classList.contains('open') || chatBox.children.length > 0) {
-                 if (chatBoxContainer.classList.contains('open')) inputBox.focus();
-                 return;
+            // Tato funkce by měla být volána jen když se chat poprvé otevře a je prázdný,
+            // nebo po clearChat, pokud je chat stále otevřený.
+             if (!chatBoxContainer.classList.contains('open')) {
+                return; // Neinicializovat, pokud není okno otevřené
             }
+            // Pokud už v chatBoxu něco je (např. z renderHistory), nevolat znovu
+            if (chatBox.children.length > 0 && conversation.length > 0) {
+                inputBox.focus();
+                return;
+            }
+
 
             inputBox.focus();
             const text = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně současné nabídky VARI😉';
             
-            // Použijeme addMessage pro konzistenci, ale s vlastní logikou pro "psaní"
-            const bubbleContainer = addMessage('assistant', ''); // Vytvoří kontejner zprávy
-            const textElement = bubbleContainer.querySelector('p') || bubbleContainer; // Najdeme element pro text
-            textElement.textContent = ''; // Vyčistíme případný obsah z addMessage
-
-            bubbleContainer.style.filter = 'blur(10px)'; bubbleContainer.style.opacity = '0';
-            // chatBox.append(bubbleContainer); // Již je appendnuto v addMessage
-            bubbleContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            bubbleContainer.style.transition = 'opacity 1s ease, filter 1s ease';
-            setTimeout(() => { bubbleContainer.style.opacity = '1'; bubbleContainer.style.filter = 'blur(0)'; }, 50);
+            const bubble = document.createElement('div'); // Přesně dle vašeho kódu
+            bubble.className = 'message assistant-message';
+            bubble.style.filter = 'blur(10px)'; bubble.style.opacity = '0';
+            chatBox.append(bubble);
+            bubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            bubble.style.transition = 'opacity 1s ease,filter 1s ease';
+            setTimeout(() => { bubble.style.opacity = '1'; bubble.style.filter = 'blur(0)'; }, 50);
 
             let idx = 0;
             const revealSpeed = 40;
             const ti = setInterval(() => {
-              if (idx < text.length) {
-                textElement.textContent += text[idx++];
-                bubbleContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (idx < text.length) { // Zajištění, že idx nepřekročí délku textu
+                bubble.textContent += text[idx++];
+                bubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
               } else {
                 clearInterval(ti);
-                if (!conversation.find(m => m.role === 'assistant' && m.content === text)) {
-                    conversation.push({ role:'assistant', content:text }); // Použijeme text, ne bubble.textContent
+                // Uložíme, pouze pokud tato zpráva ještě není v konverzaci (pro případ opakovaného volání)
+                if (!conversation.some(m => m.role === 'assistant' && m.content === bubble.textContent)) {
+                    conversation.push({ role:'assistant', content:bubble.textContent });
                     saveHistory();
                 }
               }
             }, revealSpeed);
         }
-
 
         async function sendMessage() {
           const userText = inputBox.value.trim();
@@ -561,39 +563,40 @@
           
           conversation.push({ role:'user', content:userText });
           saveHistory(); 
-          addMessage('user', userText); // Přidá uživatelskou zprávu do DOMu
+          addMessage('user', userText);
           inputBox.value = '';
-          inputBox.focus();
-
+          inputBox.focus(); // Focus po odeslání a vymazání
 
           const loading = ['Přemýšlím....','Momentík...','Ještě chvilinku...','Děkuji za trpělivost😉','Už to bude...'];
           let li=0;
-          const bubble = addMessage('assistant', loading[li]); // Přidá "loading" zprávu
+          const bubble = addMessage('assistant', loading[li]);
           bubble.classList.add('loading');
-          const textElement = bubble.querySelector('p') || bubble; // Element pro text v loading bublině
+          // Původní kód: bubble.style.transition='opacity .8s ease'; bubble.style.opacity='1';
+          // Toto by mělo být řešeno CSS pravidly pro .message a .loading, explicitní styl zde není nutný
+          // a může přepsat přirozené přechody z CSS. Ponechávám pro shodu, pokud to bylo záměrné.
+          bubble.style.transition='opacity .8s ease'; // Pokud chcete explicitní transition jen pro loading
+          bubble.style.opacity='1';
 
-          // Původní kód měl transition na opacity, což je v pořádku
-          // bubble.style.transition='opacity .8s ease'; bubble.style.opacity='1'; 
-          // Toto je implicitně nastaveno třídou .loading nebo .message
+          const textElement = bubble.querySelector('p') || bubble; // Cílový element pro text
 
           const loadInt = setInterval(()=>{
-            bubble.style.opacity='0'; // Fade out
+            bubble.style.opacity='0';
             setTimeout(()=>{
-              textElement.textContent = loading[++li % loading.length]; // Změníme text
-              bubble.style.opacity='1'; // Fade in
+              textElement.textContent = loading[++li % loading.length];
+              bubble.style.opacity='1';
               bubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            },500); // Půl sekundy na fade out a změnu textu
+            },500);
           },2000);
 
-          let assistantText = '';
+          let assistantText = ''; // Přejmenováno z assistantText pro zamezení konfliktu s vnější proměnnou, pokud by existovala
           try {
             const res = await fetch(`${API_BASE}/chat`, {
               method:'POST',
               headers:{'Content-Type':'application/json'},
-              body: JSON.stringify({ clientID: CLIENT_ID, history:conversation, topic_id:topicId })
+              body: JSON.stringify({ clientID, history:conversation, topic_id:topicId }) // clientID z vrchu skriptu
             });
 
-            if (!res.ok) { // Lepší ošetření chyb
+            if (!res.ok) {
                 const errorBody = await res.text();
                 throw new Error(`Server error: ${res.status} ${res.statusText} - ${errorBody}`);
             }
@@ -603,32 +606,34 @@
 
             const reader = res.body.getReader();
             const dec=new TextDecoder();
-            let firstChunkReceived = false; // Renamed from 'first' for clarity
+            let firstChunkReceived = false; // Přejmenováno z 'first'
 
             while(true){
               const {value,done} = await reader.read();
               if(done) break;
               
               const chunk = dec.decode(value,{stream:true});
-              if(!firstChunkReceived){ // Původně 'first'
+              if(!firstChunkReceived){
                 clearInterval(loadInt);
                 bubble.classList.remove('loading');
-                textElement.innerHTML = ''; // Vyčistíme loading text z <p> elementu
+                textElement.innerHTML = ''; // Vyčistíme text v <p> nebo přímo v bubble
                 firstChunkReceived = true;
               }
               assistantText += chunk;
-              textElement.innerHTML = marked.parse(assistantText); // Renderujeme do <p> elementu
+              textElement.innerHTML = marked.parse(assistantText); // Vkládáme do <p> nebo bubble
               bubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            conversation.push({ role:'assistant', content:assistantText });
-            saveHistory();
+            // Uložíme až kompletní odpověď
+            if (assistantText) { // Uložíme, jen pokud nějaká odpověď přišla
+                conversation.push({ role:'assistant', content:assistantText });
+                saveHistory();
+            }
           } catch(err){
-            clearInterval(loadInt); // Důležité i zde
+            clearInterval(loadInt);
             bubble.classList.remove('loading');
-            textElement.textContent = 'Chyba při komunikaci se serverem.';
+            textElement.textContent = 'Chyba při komunikaci se serverem.'; // Do <p> nebo bubble
             console.error("Chyba sendMessage:", err);
-            // Přidáme i do konverzace, pokud ještě nebyla přidána odpověď
-             if (assistantText === '') {
+             if (assistantText === '') { // Pokud chyba nastala před jakoukoliv odpovědí
                  conversation.push({ role:'assistant', content: textElement.textContent });
                  saveHistory();
             }
@@ -639,43 +644,52 @@
         }
 
         function renderHistory(){
-          chatBox.innerHTML = ''; // Vyčistíme DOM
+          chatBox.innerHTML = '';
           conversation.forEach(m => addMessage(m.role, m.content));
-          if (chatBox.lastChild) { // Scroll na konec po renderování historie
-            chatBox.lastChild.scrollIntoView({behavior: "auto", block: "end"});
+          if (chatBox.lastChild) {
+              chatBox.lastChild.scrollIntoView({behavior: "auto", block: "end"});
           }
           inputBox.focus();
         }
 
         function toggleChat(open){
           const isCurrentlyOpen = chatBoxContainer.classList.contains('open');
-          if (open && isCurrentlyOpen) { // Chceme otevřít, už je otevřeno
-              inputBox.focus();
-              return;
-          }
-          if (!open && !isCurrentlyOpen) return; // Chceme zavřít, už je zavřeno
 
           if(open){
-            chatIcon.style.display='none';
-            chatBoxContainer.style.display='flex'; // Nejdříve zobrazit, pak animovat
-            setTimeout(()=> {
-                chatBoxContainer.classList.remove('close'); // Odebereme 'close'
-                chatBoxContainer.classList.add('open');
-            }, 10); // Krátký timeout pro CSS transition
-            
-            if (conversation.length === 0) { // Pokud je historie prázdná
-                sendInitial();
-            } else {
-                renderHistory();
+            if (isCurrentlyOpen) { // Pokud je již otevřen, jen focus
+                inputBox.focus();
+                return;
             }
-            // inputBox.focus(); // Již je v sendInitial a renderHistory
+            chatIcon.style.display='none';
+            chatBoxContainer.style.display='flex';
+            setTimeout(()=>{
+                chatBoxContainer.classList.remove('close'); // Ujistíme se, že 'close' je pryč
+                chatBoxContainer.classList.add('open');
+            } ,10); // Původní hodnota
+            
+            // Volání renderHistory nebo sendInitial se provede uvnitř setTimeout pro zajištění,
+            // že se `classList.add('open')` stihne aplikovat a `sendInitial` nebude volat zbytečně,
+            // pokud se chat otevře a hned se renderuje historie.
+            setTimeout(() => {
+                if (conversation.length > 0) {
+                    renderHistory();
+                } else {
+                    sendInitial(); // sendInitial si samo zkontroluje, zda má běžet
+                }
+            }, 20); // Malé zpoždění po otevření
+
           } else {
+            if (!isCurrentlyOpen) return; // Pokud je již zavřený
+
+            // Původní kód: chatBoxContainer.classList.replace('open','close');
+            // Pro větší jistotu:
             chatBoxContainer.classList.remove('open');
-            chatBoxContainer.classList.add('close'); // Přidáme 'close'
+            chatBoxContainer.classList.add('close');
+
             setTimeout(()=>{
               chatBoxContainer.style.display='none';
               chatIcon.style.display='flex';
-            }, 780); // Odpovídá transition duration (all .8s)
+            }, 780); // Původně 400, ale transition je .8s, takže 780-800ms je lepší
           }
         }
 
@@ -684,22 +698,24 @@
         chatRefresh.addEventListener('click', clearChat);
         sendButton.addEventListener('click', sendMessage);
         inputBox.addEventListener('keypress', e=>{ 
-            if(e.key==='Enter' && !e.shiftKey) { // Odeslat na Enter, pokud není držen Shift
-                e.preventDefault(); // Zabráníme např. vložení nového řádku
+            if(e.key==='Enter' && !e.shiftKey) { // Původní podmínka byla jen e.key==='Enter'
+                e.preventDefault();
                 sendMessage(); 
             }
         });
-        // Konec JavaScript logiky
+        // Konec JavaScriptové logiky
     }
 
+    // --- Pomocná funkce pro načtení externích skriptů ---
     function loadExternalScript(url, callback) {
         const script = document.createElement('script');
         script.src = url;
         script.onload = callback;
-        script.onerror = () => console.error(`Vari Chatbot Widget: Nepodařilo se načíst ${url}`);
+        script.onerror = () => console.error(`Vari Chatbot Widget: Nepodařilo se načíst externí skript ${url}`);
         document.head.appendChild(script);
     }
 
+    // --- Hlavní inicializační funkce widgetu ---
     function initWidget() {
         let hostElement = document.getElementById(WIDGET_HOST_ID);
         if (!hostElement) {
@@ -707,18 +723,21 @@
             hostElement.id = WIDGET_HOST_ID;
             document.body.appendChild(hostElement);
         }
-        hostElement.innerHTML = '';
+        hostElement.innerHTML = ''; // Vyčistíme host element pro případ re-inicializace
 
-        loadWidgetCSS();
-        loadExternalScript(MARKED_JS_URL, () => {
-            createWidgetHTML(hostElement);
-            initializeWidgetLogic();
+        loadWidgetCSS(); // Načteme CSS
+
+        loadExternalScript(MARKED_JS_URL, () => { // Načteme marked.js
+            createWidgetHTML(hostElement);     // Vytvoříme HTML strukturu
+            initializeWidgetLogic();           // Aplikujeme JS logiku
         });
     }
 
+    // Spuštění widgetu
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initWidget);
     } else {
-        initWidget();
+        initWidget(); // DOM je již načten
     }
+
 })();
