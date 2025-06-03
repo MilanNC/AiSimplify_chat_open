@@ -235,7 +235,6 @@
 
     #inputContainer {
       display: flex;
-      border-top: 1px solid #eee;
       padding: 10px 16px;
     }
     #inputBox {
