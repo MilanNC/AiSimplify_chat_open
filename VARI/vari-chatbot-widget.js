@@ -22,7 +22,7 @@
             #${CHAT_CONTAINER_ID} { /* Aplikujeme font-family přímo na root widgetu */
               font-family: 'Poppins', sans-serif;
               /* CSS proměnné pro widget */
-              --header-gradient: linear-gradient(90deg,#ffffff,#000000);
+              --header-gradient: linear-gradient(90deg,#ff0101,#000000);
               --user-gradient: #e4032e;
               --assistant-color: #F4F4F9;
               --text-light: #ffffff;
