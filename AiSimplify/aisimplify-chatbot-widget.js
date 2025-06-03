@@ -87,7 +87,7 @@
       display: none;
       width: clamp(350px, 90vw, 900px);
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
@@ -181,6 +181,7 @@
       white-space: pre-wrap;
       overflow-wrap: break-word;
       transition: transform .8s cubic-bezier(.45,1.35,.55,1.02), box-shadow .8s cubic-bezier(.45,1.35,.55,1.02);
+      font-size:15px;
     }
     #chatBox .message p {
       display: inline;
