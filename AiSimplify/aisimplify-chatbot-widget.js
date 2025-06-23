@@ -87,7 +87,7 @@
       display: none;
       width: clamp(350px, 90vw, 900px);
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
