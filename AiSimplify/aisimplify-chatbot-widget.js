@@ -28,9 +28,26 @@
 
     /* --- Animace --- */
     @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% { 
+        background-position: 0% 50%; 
+        transform: scale(1.2) rotate(0deg);
+      }
+      25% { 
+        background-position: 100% 25%; 
+        transform: scale(1.3) rotate(90deg);
+      }
+      50% { 
+        background-position: 100% 75%; 
+        transform: scale(1.4) rotate(180deg);
+      }
+      75% { 
+        background-position: 0% 100%; 
+        transform: scale(1.3) rotate(270deg);
+      }
+      100% { 
+        background-position: 0% 50%; 
+        transform: scale(1.2) rotate(360deg);
+      }
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -58,13 +75,39 @@
       color: var(--text-light); font-size: 36px;
       cursor: pointer; animation: pulse 2.5s infinite;
       box-shadow: var(--shadow); position: relative; overflow: hidden;
-      background: transparent;
+      background: white;
+    }
+    #chatIcon img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+    }
+    #chatIcon:hover::before {
+      animation: gradientFlow 2s ease-in-out infinite;
+      filter: blur(10px);
+    }
+    #chatIcon:hover::after {
+      animation: gradientFlow 3s ease-in-out infinite reverse;
+      opacity: 1;
     }
     #chatIcon::before {
       content: ""; position: absolute; inset: 0;
-      background: var(--header-gradient); background-size: 200% 200%;
-      animation: gradientFlow 8s infinite;
-      filter: blur(20px); transform: scale(1.2); z-index: -1;
+      background: var(--header-gradient); background-size: 300% 300%;
+      animation: gradientFlow 4s ease-in-out infinite;
+      filter: blur(15px); z-index: 1;
+      border-radius: 50%;
+    }
+    #chatIcon::after {
+      content: ""; position: absolute; inset: -5px;
+      background: linear-gradient(45deg, #b477ff, transparent, #000000, transparent, #b477ff);
+      background-size: 400% 400%;
+      animation: gradientFlow 6s ease-in-out infinite reverse;
+      filter: blur(20px); opacity: 0.7;
+      border-radius: 50%;
+      z-index: 0;
     }
     #chatIcon .tooltip {
       position: absolute; bottom: 70px; right: 0;
@@ -117,16 +160,59 @@
     .assistant-title {
       font-size: 20px;
       color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .assistant-title img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    #chatHeader > div {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Větší mezera mezi tlačítky */
+    }
+    #chatHeader .icon-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px; /* Jednotná výška pro zarovnání */
     }
     #chatHeader .icon-container .icon {
       cursor: pointer;
       font-size: 20px;
       color: var(--text-light);
       transition: transform 0.3s ease;
-      padding: 5px; /* Větší plocha pro kliknutí */
+      padding: 8px; /* Větší plocha pro kliknutí a lepší zarovnání */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     #chatHeader .icon-container .icon:hover {
       transform: scale(1.1) rotate(90deg);
+    }
+    #chatHeader .icon-container .icon-tooltip {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%); /* Vycentrování tooltipů */
+      background: white;
+      color: black;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+    #chatHeader .icon-container:hover .icon-tooltip {
+      opacity: 1;
     }
 
     /* --- Oblast se zprávami (scroll) --- */
@@ -155,7 +241,7 @@
       position: relative; /* Pro pozicování ikony pro kopírování */
       white-space: normal; /* Umožní správné zalamování bloků jako <p> a <ul> */
       overflow-wrap: break-word;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.6s ease, box-shadow 0.6s ease; /* Pomalejší hover animace */
       font-size: 15px;
       padding: 12px 20px;
       border-radius: 18px;
@@ -163,7 +249,7 @@
       line-height: 1.6;
     }
     #chatBox .message:hover {
-      transform: translateY(-2px); /* Jemná animace při najetí myší */
+      transform: translateY(-3px); /* Mírně větší posun pro lepší efekt */
       box-shadow: var(--shadow-hover);
     }
 
@@ -228,7 +314,7 @@
       z-index: 2;
       pointer-events: none; /* Důležité, aby neblokovalo hover na zprávě */
     }
-    /* Zobrazí se, když je myš nad zprávou */
+    /* Zobrazí se, když je myš nad zprávě */
     .message:hover .save-icon {
       opacity: 1;
       transform: translateY(0);
@@ -264,12 +350,32 @@
       cursor: pointer;
       transition: transform .2s ease, background-color .2s ease;
       border-radius: 50%;
+      position: relative;
     }
     #sendButton:hover {
       background: rgba(180, 119, 255, 0.1);
     }
     #sendIcon path {
       fill: var(--user-gradient); /* Správné nastavení barvy ikony */
+    }
+    #sendButton .send-tooltip {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%); /* Vycentrování tooltipů */
+      background: white;
+      color: black;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+    #sendButton:hover .send-tooltip {
+      opacity: 1;
     }
 
     /* --- Responzivní design --- */
@@ -289,12 +395,16 @@
     const widgetHTML = `
       <div id="chatContainer">
         <div id="chatIcon">
-          🤖<div class="tooltip">Potřebujete poradit?</div>
+          <img src="https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png" alt="Virtuální asistent Milan" />
+          <div class="tooltip">Potřebujete poradit?</div>
         </div>
         <div id="chatBoxContainer" class="close">
           <div id="chatHeader">
-            <span class="assistant-title">🤖Virtuální asistent <b>Milan</b></span>
-            <div style="display:flex;align-items:center">
+            <span class="assistant-title">
+              <img src="https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png" alt="Avatar" />
+              Virtuální asistent <b>Milan</b>
+            </span>
+            <div>
               <div class="icon-container">
                 <span id="chatRefresh" class="icon">⟲</span>
                 <div class="icon-tooltip">Nový chat</div>
