@@ -28,26 +28,18 @@
 
     /* --- Animace --- */
     @keyframes gradientFlow {
-      0% { 
-        background-position: 0% 50%; 
-        transform: scale(1.2) rotate(0deg);
-      }
-      25% { 
-        background-position: 100% 25%; 
-        transform: scale(1.3) rotate(90deg);
-      }
-      50% { 
-        background-position: 100% 75%; 
-        transform: scale(1.4) rotate(180deg);
-      }
-      75% { 
-        background-position: 0% 100%; 
-        transform: scale(1.3) rotate(270deg);
-      }
-      100% { 
-        background-position: 0% 50%; 
-        transform: scale(1.2) rotate(360deg);
-      }
+      0% { background-position: 0% 50%; }
+      25% { background-position: 100% 25%; }
+      50% { background-position: 100% 75%; }
+      75% { background-position: 0% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes gradientRotate {
+      0% { transform: scale(1.2) rotate(0deg); }
+      25% { transform: scale(1.3) rotate(90deg); }
+      50% { transform: scale(1.4) rotate(180deg); }
+      75% { transform: scale(1.3) rotate(270deg); }
+      100% { transform: scale(1.2) rotate(360deg); }
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -56,6 +48,10 @@
     @keyframes slideIn {
       from { transform: translateX(-10px); opacity: 0; }
       to   { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes formSpinner {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* --- Hlavní kontejner a ikona chatu --- */
@@ -86,7 +82,7 @@
       z-index: 2;
     }
     #chatIcon:hover::before {
-      animation: gradientFlow 2s ease-in-out infinite;
+      animation: gradientFlow 2s ease-in-out infinite, gradientRotate 2s ease-in-out infinite;
       filter: blur(10px);
     }
     #chatIcon:hover::after {
@@ -96,7 +92,7 @@
     #chatIcon::before {
       content: ""; position: absolute; inset: 0;
       background: var(--header-gradient); background-size: 300% 300%;
-      animation: gradientFlow 4s ease-in-out infinite;
+      animation: gradientFlow 4s ease-in-out infinite, gradientRotate 4s ease-in-out infinite;
       filter: blur(15px); z-index: 1;
       border-radius: 50%;
     }
@@ -314,6 +310,18 @@
       z-index: 2;
       pointer-events: none; /* Důležité, aby neblokovalo hover na zprávě */
     }
+    /* Zobrazí se, když je myš nad zprávou */
+    .message:hover .save-icon {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all; /* Zpřístupní ikonu pro kliknutí */
+    }
+      border-radius: 8px;
+      padding: 2px 8px;
+      box-shadow: var(--shadow);
+      z-index: 2;
+      pointer-events: none; /* Důležité, aby neblokovalo hover na zprávě */
+    }
     /* Zobrazí se, když je myš nad zprávě */
     .message:hover .save-icon {
       opacity: 1;
@@ -388,6 +396,27 @@
       }
       #chatBox .message { max-width: 90%; }
       #inputContainer { padding-bottom: 20px; }
+    }
+
+    /* --- Načítací kolečko pro formulář --- */
+    .form-generator-loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      background: rgba(180, 119, 255, 0.1);
+      border-radius: 12px;
+      margin: 10px 0;
+      font-style: italic;
+      color: var(--user-gradient);
+    }
+    .form-spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(180, 119, 255, 0.3);
+      border-top: 2px solid var(--user-gradient);
+      border-radius: 50%;
+      animation: formSpinner 1s linear infinite;
     }
 `;
 
@@ -628,6 +657,11 @@
           },2000);
 
           let assistantText='';
+          let isGeneratingForm = false;
+          let formBuffer = '';
+          let formLoadingElement = null;
+          let formTimeout = null;
+          
           try {
             const res = await fetch(`${API_BASE}/chat`, {
               method:'POST',
@@ -639,6 +673,23 @@
 
             const reader = res.body.getReader(), dec=new TextDecoder();
             let firstChunkReceived=false;
+            
+            // Funkce pro ukončení generování formuláře
+            const finishFormGeneration = () => {
+              if (isGeneratingForm && formLoadingElement) {
+                isGeneratingForm = false;
+                formLoadingElement.remove();
+                loadingBubble.innerHTML = marked.parse(assistantText);
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                formBuffer = '';
+                formLoadingElement = null;
+                if (formTimeout) {
+                  clearTimeout(formTimeout);
+                  formTimeout = null;
+                }
+              }
+            };
+            
             while(true){
               const {value,done} = await reader.read();
               if(done) break;
@@ -649,10 +700,61 @@
                 loadingBubble.innerHTML=''; // Vyčistíme "Přemýšlím..."
                 firstChunkReceived=true;
               }
+              
               assistantText += chunk;
-              loadingBubble.innerHTML = marked.parse(assistantText); // Použijte marked.parse
-              loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              
+              // Detekce začátku formuláře
+              if (!isGeneratingForm && (assistantText.includes('<form') || assistantText.toLowerCase().includes('formulář'))) {
+                isGeneratingForm = true;
+                formBuffer = assistantText;
+                
+                // Vytvoříme načítací element
+                formLoadingElement = document.createElement('div');
+                formLoadingElement.className = 'form-generator-loading';
+                formLoadingElement.innerHTML = `
+                  <div class="form-spinner"></div>
+                  <span>Generuji formulář na míru, prosím chvilinku strpení...</span>
+                `;
+                
+                // Zobrazíme text před formulářem + loading
+                const textBeforeForm = assistantText.split('<form')[0];
+                loadingBubble.innerHTML = marked.parse(textBeforeForm);
+                loadingBubble.appendChild(formLoadingElement);
+                
+                // Timeout pro případ zaseknutí (10 sekund)
+                formTimeout = setTimeout(() => {
+                  console.log('Form generation timeout, showing content anyway');
+                  finishFormGeneration();
+                }, 10000);
+                
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                continue;
+              }
+              
+              // Pokud generujeme formulář, uložíme do bufferu
+              if (isGeneratingForm) {
+                formBuffer += chunk;
+                
+                // Detekce konce formuláře nebo jiných ukončovacích podmínek
+                if (formBuffer.includes('</form>') || 
+                    assistantText.length > 5000 || // Pokud je text příliš dlouhý
+                    assistantText.includes('\n\n---') || // Oddělovač sekce
+                    assistantText.includes('Pokud máte')) { // Typická fráze na konci
+                  
+                  finishFormGeneration();
+                }
+              } else {
+                // Normální streamování mimo formulář
+                loadingBubble.innerHTML = marked.parse(assistantText);
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
             }
+            
+            // Ujistíme se, že formulář je ukončen po dokončení streamu
+            if (isGeneratingForm) {
+              finishFormGeneration();
+            }
+            
             // Přidáme do konverzace, pouze pokud assistantText není prázdný
             if (assistantText.trim()) {
                 conversation.push({ role:'assistant', content:assistantText });
@@ -668,6 +770,11 @@
             loadingBubble.textContent = 'Omlouváme se, došlo k chybě při komunikaci se serverem.';
             loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
             console.error("Chyba při odesílání zprávy:", err);
+            
+            // Vyčistíme form timeout při chybě
+            if (formTimeout) {
+              clearTimeout(formTimeout);
+            }
           }
           inputBox.focus();
         }
@@ -760,4 +867,3 @@
     }
 
 })();
-    
