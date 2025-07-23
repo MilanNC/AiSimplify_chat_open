@@ -396,6 +396,11 @@
       }
       #chatBox .message { max-width: 90%; }
       #inputContainer { padding-bottom: 20px; }
+      
+      /* Explicitně bílá barva pro ikony v mobilní verzi */
+      #chatHeader .icon-container .icon {
+        color: #ffffff !important;
+      }
     }
 
     /* --- Načítací kolečko pro formulář --- */
