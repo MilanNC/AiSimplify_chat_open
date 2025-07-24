@@ -316,18 +316,6 @@
       transform: translateY(0);
       pointer-events: all; /* Zpřístupní ikonu pro kliknutí */
     }
-      border-radius: 8px;
-      padding: 2px 8px;
-      box-shadow: var(--shadow);
-      z-index: 2;
-      pointer-events: none; /* Důležité, aby neblokovalo hover na zprávě */
-    }
-    /* Zobrazí se, když je myš nad zprávě */
-    .message:hover .save-icon {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all; /* Zpřístupní ikonu pro kliknutí */
-    }
 
     /* --- Vstupní pole a tlačítko --- */
     #inputContainer {
@@ -663,9 +651,9 @@
 
           let assistantText='';
           let isGeneratingForm = false;
-          let formBuffer = '';
           let formLoadingElement = null;
           let formTimeout = null;
+          let textBeforeForm = '';
           
           try {
             const res = await fetch(`${API_BASE}/chat`, {
@@ -682,16 +670,15 @@
             // Funkce pro ukončení generování formuláře
             const finishFormGeneration = () => {
               if (isGeneratingForm && formLoadingElement) {
-                isGeneratingForm = false;
+                clearTimeout(formTimeout);
                 formLoadingElement.remove();
+                isGeneratingForm = false;
+                formLoadingElement = null;
+                formTimeout = null;
+                
+                // Zobrazíme kompletní obsah
                 loadingBubble.innerHTML = marked.parse(assistantText);
                 loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                formBuffer = '';
-                formLoadingElement = null;
-                if (formTimeout) {
-                  clearTimeout(formTimeout);
-                  formTimeout = null;
-                }
               }
             };
             
@@ -699,6 +686,7 @@
               const {value,done} = await reader.read();
               if(done) break;
               const chunk = dec.decode(value,{stream:true});
+              
               if(!firstChunkReceived){
                 clearInterval(loadingInterval);
                 loadingBubble.classList.remove('loading');
@@ -708,10 +696,29 @@
               
               assistantText += chunk;
               
-              // Detekce začátku formuláře
-              if (!isGeneratingForm && (assistantText.includes('<form') || assistantText.toLowerCase().includes('formulář'))) {
+              // Detekce začátku formuláře - kontrolujeme různé varianty
+              const formTriggers = [
+                '<form',
+                'formulář na míru',
+                'vyplňte formulář',
+                'poptávkový formulář',
+                'kontaktní formulář'
+              ];
+              
+              const shouldGenerateForm = !isGeneratingForm && 
+                formTriggers.some(trigger => assistantText.toLowerCase().includes(trigger.toLowerCase()));
+              
+              if (shouldGenerateForm) {
                 isGeneratingForm = true;
-                formBuffer = assistantText;
+                
+                // Uložíme text před formulářem
+                const formIndex = assistantText.toLowerCase().indexOf('<form');
+                if (formIndex !== -1) {
+                  textBeforeForm = assistantText.substring(0, formIndex);
+                } else {
+                  // Pokud ještě není <form tag, použijeme celý text dosud
+                  textBeforeForm = assistantText;
+                }
                 
                 // Vytvoříme načítací element
                 formLoadingElement = document.createElement('div');
@@ -721,35 +728,37 @@
                   <span>Generuji formulář na míru, prosím chvilinku strpení...</span>
                 `;
                 
-                // Zobrazíme text před formulářem + loading
-                const textBeforeForm = assistantText.split('<form')[0];
+                // Zobrazíme pouze text před formulářem + loading (bez blikání)
                 loadingBubble.innerHTML = marked.parse(textBeforeForm);
                 loadingBubble.appendChild(formLoadingElement);
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 
-                // Timeout pro případ zaseknutí (10 sekund)
+                // Timeout pro případ zaseknutí (15 sekund)
                 formTimeout = setTimeout(() => {
                   console.log('Form generation timeout, showing content anyway');
                   finishFormGeneration();
-                }, 10000);
+                }, 15000);
                 
-                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                continue;
+                continue; // Přeskočíme další zpracování tohoto chunku
               }
               
-              // Pokud generujeme formulář, uložíme do bufferu
+              // Pokud generujeme formulář, NESPRACOVÁVÁME obsah dokud není hotový
               if (isGeneratingForm) {
-                formBuffer += chunk;
+                // Kontrolujeme ukončovací podmínky
+                const shouldFinishForm = 
+                  assistantText.includes('</form>') || 
+                  assistantText.length > 8000 || // Zvýšený limit
+                  assistantText.includes('\n\n---') ||
+                  assistantText.includes('Pokud máte další dotazy') ||
+                  assistantText.includes('S pozdravem') ||
+                  assistantText.includes('Děkuji za váš zájem');
                 
-                // Detekce konce formuláře nebo jiných ukončovacích podmínek
-                if (formBuffer.includes('</form>') || 
-                    assistantText.length > 5000 || // Pokud je text příliš dlouhý
-                    assistantText.includes('\n\n---') || // Oddělovač sekce
-                    assistantText.includes('Pokud máte')) { // Typická fráze na konci
-                  
+                if (shouldFinishForm) {
                   finishFormGeneration();
                 }
+                // Během generování formuláře NEAKTUALIZUJEME obsah bubliny
               } else {
-                // Normální streamování mimo formulář
+                // Normální streamování - pouze když NEgenerujeme formulář
                 loadingBubble.innerHTML = marked.parse(assistantText);
                 loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
