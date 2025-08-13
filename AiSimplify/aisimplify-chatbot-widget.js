@@ -602,7 +602,7 @@
 
           chatBoxContainer.classList.add('open');
           inputBox.focus();
-          const text = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně nabízených služeb AiSimplify!😉';
+          const text = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně nabízených služeb AiSimplify! Odpovím Vám do pár vteřin😉';
           const bubble = document.createElement('div');
           bubble.className = 'message assistant-message';
           bubble.style.filter = 'blur(10px)'; bubble.style.opacity = '0';
