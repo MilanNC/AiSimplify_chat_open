@@ -2,7 +2,7 @@
     // Unikátní ID pro kontejner widgetu na cílové stránce
     const WIDGET_CONTAINER_ID = 'vyvoj-chat-widget-container';
 
-    // --- 1. CSS STYLY ---//
+    // --- 1. CSS STYLY ---
     const styles = `
     :root {
       --header-gradient: linear-gradient(90deg, #2E8B57, #228B22);
@@ -277,9 +277,13 @@
         const STORAGE_KEY = 'chat_history_' + clientID;
         const TOPIC_KEY = 'etrieve_topic_id_' + clientID;
         
-        // API konfigurace - můžete změnit na localhost pro vývoj
-        const API_BASE = 'http://localhost:8080';
-        // const API_BASE = 'https://chatbot-production-4d1d.up.railway.app';
+        // API konfigurace - auto-detekce podle prostředí
+        const isLocalDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalDevelopment 
+            ? 'http://localhost:8080' 
+            : 'https://chatbot-production-4d1d.up.railway.app';
+        
+        console.log('🔧 API Base URL:', API_BASE);
 
         let currentTopicId = null;
         let isLoading = false;
@@ -368,15 +372,40 @@
         // Načtení konfigurace klienta
         async function loadClientConfig() {
             try {
+                console.log('🔄 Načítání konfigurace z:', `${API_BASE}/config/${clientID}`);
+                
                 const response = await fetch(`${API_BASE}/config/${clientID}`);
                 if (response.ok) {
                     chatConfig = await response.json();
-                    console.log('Konfigurace načtena:', chatConfig);
+                    console.log('✅ Konfigurace načtena:', chatConfig);
                 } else {
-                    console.warn('Chyba při načítání konfigurace:', response.status);
+                    console.warn('⚠️ Chyba při načítání konfigurace:', response.status);
                 }
             } catch (error) {
-                console.error('Chyba při načítání konfigurace:', error);
+                console.error('❌ Chyba při načítání konfigurace:', error);
+                console.log('ℹ️ Widget bude fungovat bez konfigurace serveru');
+            }
+        }
+
+        // Test konektivity se serverem
+        async function testServerConnection() {
+            try {
+                console.log('🔍 Testování připojení k serveru...');
+                const response = await fetch(`${API_BASE}/config/${clientID}`, { 
+                    method: 'GET',
+                    signal: AbortSignal.timeout(5000) // 5 sekundový timeout
+                });
+                
+                if (response.ok) {
+                    console.log('✅ Server je dostupný');
+                    return true;
+                } else {
+                    console.warn('⚠️ Server odpověděl s chybou:', response.status);
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Server není dostupný:', error.message);
+                return false;
             }
         }
 
@@ -609,7 +638,18 @@
             } catch (error) {
                 console.error('Chyba při odesílání zprávy:', error);
                 hideTypingIndicator();
-                addMessage('Omlouváme se, došlo k chybě. Zkuste to prosím znovu.', 'assistant');
+                
+                let errorMessage = 'Omlouváme se, došlo k chybě při komunikaci se serverem.';
+                
+                if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                    errorMessage = `🔌 Nepodařilo se připojit k serveru (${API_BASE}). Zkontrolujte připojení nebo zkuste později.`;
+                } else if (error.message.includes('HTTP 404')) {
+                    errorMessage = '❌ Server nenalezen. Zkontrolujte konfiguraci.';
+                } else if (error.message.includes('HTTP 500')) {
+                    errorMessage = '⚠️ Chyba serveru. Zkuste to za chvilku.';
+                }
+                
+                addMessage(errorMessage, 'assistant');
             } finally {
                 isLoading = false;
                 sendButton.disabled = false;
@@ -858,6 +898,16 @@
 
         // Inicializace
         async function init() {
+            console.log('🚀 Inicializace Vyvoj Chat Widget...');
+            console.log('🔧 Client ID:', clientID);
+            console.log('🌐 API Base:', API_BASE);
+            
+            // Test konektivity
+            const serverAvailable = await testServerConnection();
+            if (!serverAvailable) {
+                console.warn('⚠️ Server není dostupný, některé funkce nemusí fungovat');
+            }
+            
             // Načtení konfigurace
             await loadClientConfig();
             
@@ -868,7 +918,7 @@
             setupEventListeners();
             setupAutoResize();
             
-            console.log('Vyvoj Chat Widget inicializován');
+            console.log('✅ Vyvoj Chat Widget inicializován');
         }
 
         // Spuštění inicializace
