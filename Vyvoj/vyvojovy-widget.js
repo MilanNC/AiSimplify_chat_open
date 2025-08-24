@@ -1,13 +1,18 @@
 (function() {
     // Unikátní ID pro kontejner widgetu na cílové stránce
-    const WIDGET_CONTAINER_ID = 'vyvoj-chat-widget-container';
+    const WIDGET_CONTAINER_ID = 'ai-simplify-chat-widget-container';
 
     // --- 1. CSS STYLY ---
+    // (Poznámka: Cestu k 'pozadi.png' bude možná potřeba upravit podle toho,
+    // kde bude obrázek hostován vzhledem k widget.js nebo použít absolutní URL)
+    // Pravidlo body::before jsem zakomentoval, protože widget by neměl přímo
+    // modifikovat pozadí celé stránky. Pozadí by mělo být řešeno na úrovni
+    // stránky, kam widget vkládáte. Pokud ho tam chcete, odkomentujte a zajistěte správnou cestu k obrázku.
     const styles = `
     :root {
-      --header-gradient: linear-gradient(90deg, #2E8B57, #228B22);
-      --user-gradient: #2E8B57;
-      --assistant-color: #f0f8f0;
+      --header-gradient: linear-gradient(90deg, #b477ff, #000000);
+      --user-gradient: #b477ff;
+      --assistant-color: #f0f0f5; /* Mírně upraveno pro lepší kontrast */
       --text-light: #ffffff;
       --text-dark: #000000;
       --bg: #fff;
@@ -16,7 +21,7 @@
     }
 
     #${WIDGET_CONTAINER_ID} {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       position: relative;
       z-index: 0;
     }
@@ -93,332 +98,570 @@
     }
     #chatIcon::after {
       content: ""; position: absolute; inset: -5px;
-      background: var(--header-gradient); background-size: 300% 300%;
-      border-radius: 50%; z-index: 0; opacity: 0.7;
+      background: linear-gradient(45deg, #b477ff, transparent, #000000, transparent, #b477ff);
+      background-size: 400% 400%;
+      animation: gradientFlow 6s ease-in-out infinite reverse;
+      filter: blur(20px); opacity: 0.7;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    #chatIcon .tooltip {
+      position: absolute; bottom: 70px; right: 0;
+      background: var(--header-gradient); color: var(--text-light);
+      padding: 6px 10px; border-radius: 12px; font-size: 0.85rem;
+      white-space: nowrap; opacity: 0; transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    #chatIcon:hover .tooltip {
+      opacity: 1;
     }
 
-    /* --- Chat okno --- */
-    #chatWindow {
+    /* --- Okno chatu --- */
+    #chatBoxContainer {
+      display: none;
+      width: clamp(350px, 90vw, 900px);
+      height: 70vh; /* Přesunuto z .open pro konzistenci */
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
       position: fixed; bottom: 100px; right: 20px;
-      width: 350px; height: 500px; background: var(--bg);
-      border-radius: 16px; box-shadow: var(--shadow-hover);
-      display: none; flex-direction: column; overflow: hidden; z-index: 9998;
+      flex-direction: column;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: all 0.5s ease-out; /* Zpomalená animace */
+    }
+    #chatBoxContainer.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* --- Header --- */
+    /* --- Hlavička chatu --- */
     #chatHeader {
-      background: var(--header-gradient); background-size: 300% 300%;
-      animation: gradientFlow 4s ease-in-out infinite;
-      color: var(--text-light); padding: 15px 20px;
-      font-weight: 600; position: relative; overflow: hidden;
-      border-radius: 16px 16px 0 0;
+      padding: 10px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative;
+      background: transparent;
+      flex-shrink: 0; /* Zabrání zmenšení hlavičky */
     }
-
     #chatHeader::before {
       content: ""; position: absolute; inset: 0;
-      background: var(--header-gradient); background-size: 300% 300%;
-      animation: gradientFlow 3s ease-in-out infinite reverse;
-      opacity: 0.5; z-index: 1;
+      background: var(--header-gradient);
+      filter: blur(20px); transform: scale(1.2);
+      z-index: -1;
+    }
+    .assistant-title {
+      font-size: 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .assistant-title img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    #chatHeader > div {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Větší mezera mezi tlačítky */
+    }
+    #chatHeader .icon-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px; /* Jednotná výška pro zarovnání */
+    }
+    #chatHeader .icon-container .icon {
+      cursor: pointer;
+      font-size: 20px;
+      color: var(--text-light);
+      transition: transform 0.3s ease;
+      padding: 8px; /* Větší plocha pro kliknutí a lepší zarovnání */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #chatHeader .icon-container .icon:hover {
+      transform: scale(1.1) rotate(90deg);
+    }
+    #chatHeader .icon-container .icon-tooltip {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%); /* Vycentrování tooltipů */
+      background: white;
+      color: black;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+    #chatHeader .icon-container:hover .icon-tooltip {
+      opacity: 1;
     }
 
-    #chatHeader span {
-      position: relative; z-index: 2;
+    /* --- Oblast se zprávami (scroll) --- */
+    #chatBox {
+      flex: 1; padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--user-gradient) transparent;
     }
-
-    #closeButton {
-      position: absolute; top: 50%; right: 15px;
-      transform: translateY(-50%); background: none;
-      border: none; color: var(--text-light); font-size: 20px;
-      cursor: pointer; z-index: 3; border-radius: 50%;
-      width: 30px; height: 30px; display: flex;
-      align-items: center; justify-content: center;
-      transition: background 0.3s ease;
-    }
-
-    #closeButton:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* --- Chat messages area --- */
-    #chatMessages {
-      flex: 1; overflow-y: auto; padding: 20px 15px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-
-    .message {
-      margin-bottom: 15px; animation: slideIn 0.3s ease-out;
-    }
-
-    .user-message {
-      text-align: right;
-    }
-
-    .user-message .message-content {
+    #chatBox::-webkit-scrollbar { width: 6px; }
+    #chatBox::-webkit-scrollbar-thumb {
       background: var(--user-gradient);
-      color: var(--text-light); padding: 12px 16px;
-      border-radius: 18px 18px 4px 18px; display: inline-block;
-      max-width: 80%; word-wrap: break-word; position: relative;
-      box-shadow: 0 2px 8px rgba(46, 139, 87, 0.3);
+      border-radius: 3px;
     }
 
-    .assistant-message .message-content {
+    /* ======================================================= */
+    /* === VYLEPŠENÉ STYLY PRO SAMOTNÉ ZPRÁVY (DŮLEŽITÉ) === */
+    /* ======================================================= */
+
+    #chatBox .message {
+      display: flex; /* Použijeme flexbox pro správné zarovnání obsahu */
+      flex-direction: column; /* Obsah půjde pod sebe (klíčové pro odstavce a seznamy) */
+      width: auto;
+      max-width: 85%;
+      position: relative; /* Pro pozicování ikony pro kopírování */
+      white-space: normal; /* Umožní správné zalamování bloků jako <p> a <ul> */
+      overflow-wrap: break-word;
+      transition: transform 0.6s ease, box-shadow 0.6s ease; /* Pomalejší hover animace */
+      font-size: 15px;
+      padding: 12px 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      line-height: 1.6;
+    }
+    #chatBox .message:hover {
+      transform: translateY(-3px); /* Mírně větší posun pro lepší efekt */
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* -- Styly pro obsah generovaný z Markdownu -- */
+    /* Opravuje zobrazení odstavců, nadpisů a seznamů uvnitř bubliny */
+    #chatBox .message > * {
+      margin: 0 0 10px 0; /* Mezera pod každým blokem (<p>, <ul>, <h3> atd.) */
+    }
+    #chatBox .message > *:last-child {
+      margin-bottom: 0; /* Poslední blok ve zprávě nemá mezeru pod sebou */
+    }
+    
+    #chatBox .assistant-message {
       background: var(--assistant-color);
-      color: var(--text-dark); padding: 12px 16px;
-      border-radius: 18px 18px 18px 4px; display: inline-block;
-      max-width: 80%; word-wrap: break-word;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      color: var(--text-dark);
+      align-self: flex-start;
+      border-top-left-radius: 4px; /* "Ocas" bubliny */
+    }
+    #chatBox .user-message {
+      background: var(--user-gradient);
+      color: var(--text-light);
+      align-self: flex-end;
+      border-top-right-radius: 4px; /* "Ocas" bubliny */
     }
 
-    /* --- Input area --- */
-    #chatInputArea {
-      padding: 15px; border-top: 1px solid #e0e0e0;
-      background: var(--bg); display: flex; gap: 10px;
-      align-items: flex-end;
+    #chatBox .assistant-message.loading {
+      font-style: italic;
+      opacity: .7;
     }
 
-    #chatInput {
-      flex: 1; border: 2px solid #e0e0e0; border-radius: 20px;
-      padding: 12px 16px; font-size: 14px; resize: none;
-      outline: none; transition: border-color 0.3s ease;
-      min-height: 20px; max-height: 80px; line-height: 1.4;
-      font-family: inherit;
+    /* -- Styly pro seznamy (<ul>, <li>) -- */
+    #chatBox .assistant-message ul {
+      padding-left: 20px; /* Odsazení seznamu od kraje */
+    }
+    #chatBox .assistant-message li {
+      margin-bottom: 8px; /* Mezera mezi položkami seznamu */
+    }
+    /* Vlastní odrážka pro moderní vzhled */
+    #chatBox .assistant-message li::marker {
+      color: var(--user-gradient);
+      font-weight: bold;
+    }
+    #chatBox .assistant-message li strong {
+        color: #000; /* Zvýraznění tučného textu v seznamu */
     }
 
-    #chatInput:focus {
-      border-color: var(--user-gradient);
+    /* --- Ikona pro kopírování zprávy --- */
+    .save-icon {
+      position: absolute;
+      top: -10px; /* Umístění nad bublinu */
+      right: 10px;
+      opacity: 0; /* Skryté ve výchozím stavu */
+      transform: translateY(5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.1em;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2px 8px;
+      box-shadow: var(--shadow);
+      z-index: 2;
+      pointer-events: none; /* Důležité, aby neblokovalo hover na zprávě */
+    }
+    /* Zobrazí se, když je myš nad zprávou */
+    .message:hover .save-icon {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all; /* Zpřístupní ikonu pro kliknutí */
     }
 
+    /* --- Vstupní pole a tlačítko --- */
+    #inputContainer {
+      display: flex;
+      padding: 10px 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08); /* Jemný oddělovač */
+      flex-shrink: 0;
+    }
+    #inputBox {
+      flex: 1;
+      padding: 10px 16px; /* Zvětšený padding pro pohodlnější psaní */
+      border: 1px solid transparent; /* Průhledný rámeček na startu */
+      background-color: #f0f0f5;
+      border-radius: 20px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .3s ease, box-shadow .3s ease;
+    }
+    #inputBox:focus {
+      border-color: #b477ff;
+      box-shadow: 0 0 0 3px rgba(180, 119, 255, 0.2);
+    }
     #sendButton {
-      background: var(--user-gradient); color: var(--text-light);
-      border: none; border-radius: 50%; width: 44px; height: 44px;
+      background: none; border: none;
+      margin-left: 10px;
+      width: 44px; height: 44px; /* Zvětšeno pro snadnější kliknutí */
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 18px; transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(46, 139, 87, 0.3);
+      cursor: pointer;
+      transition: transform .2s ease, background-color .2s ease;
+      border-radius: 50%;
+      position: relative;
     }
-
     #sendButton:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(46, 139, 87, 0.4);
+      background: rgba(180, 119, 255, 0.1);
+    }
+    #sendIcon path {
+      fill: var(--user-gradient); /* Správné nastavení barvy ikony */
+    }
+    #sendButton .send-tooltip {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%); /* Vycentrování tooltipů */
+      background: white;
+      color: black;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+    #sendButton:hover .send-tooltip {
+      opacity: 1;
     }
 
-    #sendButton:disabled {
-      opacity: 0.6; cursor: not-allowed; transform: none;
-    }
-
-    /* --- Loading animation --- */
-    .typing-indicator {
-      display: flex; align-items: center; gap: 4px;
-      padding: 12px 16px; background: var(--assistant-color);
-      border-radius: 18px; max-width: 60px; margin-bottom: 15px;
-    }
-
-    .typing-dot {
-      width: 6px; height: 6px; background: #666;
-      border-radius: 50%; animation: typing 1.5s infinite;
-    }
-
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typing {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-10px); opacity: 1; }
-    }
-
-    /* --- Scrollbar styling --- */
-    #chatMessages::-webkit-scrollbar { width: 6px; }
-    #chatMessages::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-    #chatMessages::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 10px; }
-    #chatMessages::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
-
-    /* --- Responsive design --- */
-    @media (max-width: 480px) {
-      #chatWindow {
-        width: calc(100% - 40px); height: 70%; bottom: 20px;
-        right: 20px; left: 20px; max-width: none;
+    /* --- Responzivní design --- */
+    @media (max-width: 600px) {
+      #chatIcon { width: 50px; height: 50px; font-size: 28px; }
+      #chatBoxContainer {
+        bottom: 0; right: 0; top: 0; left: 0;
+        width: 100%; height: 100%;
+        border-radius: 0;
       }
-      #chatContainer { bottom: 15px; right: 15px; }
+      #chatBox .message { max-width: 90%; }
+      #inputContainer { padding-bottom: 20px; }
+      
+      /* Explicitně bílá barva pro ikony v mobilní verzi */
+      #chatHeader .icon-container .icon {
+        color: #ffffff !important;
+      }
     }
-    `;
 
-    // --- 2. HTML STRUKTURA ---
-    const chatHTML = `
-    <div id="chatContainer">
+    /* --- Načítací kolečko pro formulář --- */
+    .form-generator-loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      background: rgba(180, 119, 255, 0.1);
+      border-radius: 12px;
+      margin: 10px 0;
+      font-style: italic;
+      color: var(--user-gradient);
+    }
+    .form-spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(180, 119, 255, 0.3);
+      border-top: 2px solid var(--user-gradient);
+      border-radius: 50%;
+      animation: formSpinner 1s linear infinite;
+    }
+`;
+
+    // --- 2. HTML STRUKTURA WIDGETU ---
+    const widgetHTML = `
+      <div id="chatContainer">
         <div id="chatIcon">
-            🌱
+          <img src="https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png" alt="Virtuální asistent Milan" />
+          <div class="tooltip">Potřebujete poradit?</div>
         </div>
-        
-        <div id="chatWindow">
-            <div id="chatHeader">
-                <span>🌿 Vyvoj Chat Assistant</span>
-                <button id="closeButton">×</button>
+        <div id="chatBoxContainer" class="close">
+          <div id="chatHeader">
+            <span class="assistant-title">
+              <img src="https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png" alt="Avatar" />
+              Virtuální asistent <b>Milan</b>
+            </span>
+            <div>
+              <div class="icon-container">
+                <span id="chatRefresh" class="icon">⟲</span>
+                <div class="icon-tooltip">Nový chat</div>
+              </div>
+              <div class="icon-container">
+                <span id="chatClose" class="icon">✖</span>
+                <div class="icon-tooltip">Zavřít</div>
+              </div>
             </div>
-            
-            <div id="chatMessages">
-                <div class="message assistant-message">
-                    <div class="message-content">
-                        Ahoj! 👋 Jsem váš asistent pro rostliny a zahradničení. Jak vám mohu pomoci?
-                    </div>
-                </div>
-            </div>
-            
-            <div id="chatInputArea">
-                <textarea id="chatInput" placeholder="Napište svou zprávu..." rows="1"></textarea>
-                <button id="sendButton">➤</button>
-            </div>
+          </div>
+          <div id="chatBox"></div>
+          <div id="inputContainer">
+            <input id="inputBox" type="text" placeholder="Zadejte zprávu…" />
+            <button id="sendButton" aria-label="Odeslat zprávu">
+              <svg id="sendIcon" viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+                <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+              </svg>
+              <div class="send-tooltip">Odeslat</div>
+            </button>
+          </div>
         </div>
-    </div>
+      </div>
     `;
 
-    // --- 3. HLAVNÍ FUNKCE ---
-    function initVyvojChatWidget() {
-        // Konfigurace pro klienta Vyvoj
-        const clientID = 'Vyvoj';
-        const STORAGE_KEY = 'chat_history_' + clientID;
+    // --- 3. VLOŽENÍ CSS A HTML DO STRÁNKY ---
+    function injectWidget() {
+        // Vložení CSS
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = styles; // Použijte textContent pro <style>
+        document.head.appendChild(styleSheet);
+
+        // Vložení HTML
+        const widgetContainer = document.getElementById(WIDGET_CONTAINER_ID);
+        if (widgetContainer) {
+            widgetContainer.innerHTML = widgetHTML;
+            initializeChatLogic(); // Spustí logiku až po vložení HTML
+        } else {
+            console.error(`Kontejner pro AiSimplify Chat Widget (ID: ${WIDGET_CONTAINER_ID}) nebyl na stránce nalezen.`);
+        }
+    }
+
+    // --- 4. JAVASCRIPT LOGIKA CHATU ---
+    function initializeChatLogic() {
+        if (typeof marked === 'undefined') {
+            console.error('Knihovna Marked.js není načtena. Prosím, vložte ji před script widgetu.');
+            // Můžete zde přidat i dynamické načtení Marked.js, pokud chcete
+            // Např. pomocí:
+            // const script = document.createElement('script');
+            // script.src = "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
+            // script.onload = () => { /* ... zbytek inicializace ... */ };
+            // document.head.appendChild(script);
+            return;
+        }
+
+        const API_BASE = 'https://chatbot-production-4d1d.up.railway.app';
+        const clientID = 'Vyvoj'; // Můžete zvážit předání jako data atributu na kontejneru
+        const STORAGE_KEY = 'chat_history_' + clientID; // Unikátní klíč pro různé instance
         const TOPIC_KEY = 'etrieve_topic_id_' + clientID;
-        
-        // API konfigurace - auto-detekce podle prostředí
-        const isLocalDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_BASE = isLocalDevelopment 
-            ? 'http://localhost:8080' 
-            : 'https://chatbot-production-4d1d.up.railway.app';
-        
-        console.log('🔧 API Base URL:', API_BASE);
+        let conversation = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
+        let topicId = sessionStorage.getItem(TOPIC_KEY) || null;
 
-        let currentTopicId = null;
-        let isLoading = false;
-        let chatConfig = null;
+        const chatIcon = document.getElementById('chatIcon');
+        const chatBoxContainer = document.getElementById('chatBoxContainer');
+        const chatClose = document.getElementById('chatClose');
+        const chatRefresh = document.getElementById('chatRefresh');
+        const chatBox = document.getElementById('chatBox');
+        const inputBox = document.getElementById('inputBox');
+        const sendButton = document.getElementById('sendButton');
+        const sendIconSVG = document.getElementById('sendIcon'); // Reference na SVG
 
-        // Načtení historie chatu
-        function loadChatHistory() {
-            try {
-                const history = sessionStorage.getItem(STORAGE_KEY);
-                return history ? JSON.parse(history) : [];
-            } catch (error) {
-                console.error('Chyba při načítání historie chatu:', error);
-                return [];
+        // Aplikace barvy na sendIcon pomocí CSS proměnné
+        // Pokud by přímé `fill: var(...)` v CSS nefungovalo spolehlivě ve všech prohlížečích
+        // pro SVG vložené jako string, můžeme to nastavit přes JS:
+        if (sendIconSVG) {
+            const sendIconPath = sendIconSVG.querySelector('path');
+            if (sendIconPath) {
+                 // Získání hodnoty CSS proměnné
+                const headerGradientColor = getComputedStyle(document.documentElement).getPropertyValue('--header-gradient').trim();
+                // Pokud je to gradient, vezmeme první barvu nebo fallback
+                const firstColorOfGradient = headerGradientColor.startsWith('linear-gradient') ? headerGradientColor.split(',')[1].trim() : headerGradientColor;
+                sendIconPath.style.fill = firstColorOfGradient || '#000000'; // Fallback na černou
             }
         }
 
-        // Uložení historie chatu
-        function saveChatHistory(messages) {
-            try {
-                sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-            } catch (error) {
-                console.error('Chyba při ukládání historie chatu:', error);
-            }
+
+        function saveHistory() {
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(conversation));
         }
 
-        // Načtení topic ID
-        function loadTopicId() {
-            return localStorage.getItem(TOPIC_KEY);
-        }
+        function addMessage(sender, content = '') {
+          const msg = document.createElement('div');
+          msg.className = `message ${sender}-message`;
+          msg.innerHTML = marked.parse(content); // Použijte marked.parse
 
-        // Uložení topic ID
-        function saveTopicId(topicId) {
-            if (topicId) {
-                localStorage.setItem(TOPIC_KEY, topicId);
-                currentTopicId = topicId;
-            }
-        }
-
-        // Reset chatu
-        async function resetChat() {
-            try {
-                await fetch(`${API_BASE}/reset`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ clientID })
-                });
-                
-                // Vymazání lokálních dat
-                sessionStorage.removeItem(STORAGE_KEY);
-                localStorage.removeItem(TOPIC_KEY);
-                currentTopicId = null;
-                
-                // Vymazání zpráv v UI
-                const messagesContainer = document.getElementById('chatMessages');
-                messagesContainer.innerHTML = `
-                    <div class="message assistant-message">
-                        <div class="message-content">
-                            Ahoj! 👋 Jsem váš asistent pro rostliny a zahradničení. Jak vám mohu pomoci?
-                        </div>
-                    </div>
-                `;
-                
-                console.log('Chat byl resetován');
-            } catch (error) {
-                console.error('Chyba při resetování chatu:', error);
-            }
-        }
-
-        // Debug funkce pro výpis konverzace
-        function logConversation() {
-            const messages = [];
-            const messageElements = document.querySelectorAll('.message');
-            
-            messageElements.forEach(msg => {
-                if (msg.id === 'typingIndicator') return;
-                
-                const content = msg.querySelector('.message-content').textContent;
-                const type = msg.classList.contains('user-message') ? 'user' : 'assistant';
-                messages.push({ content, type });
+          msg.addEventListener('mouseenter', () => {
+            document.querySelectorAll(`#${WIDGET_CONTAINER_ID} .save-icon`).forEach(el => { // Omezit na widget
+              el.classList.remove('visible');
+              setTimeout(() => { el.remove(); }, 250);
             });
-            
-            console.log('💬 Aktuální konverzace:', messages);
-            return messages;
+            if (!msg.querySelector('.save-icon')) {
+              const saveIcon = document.createElement('span');
+              saveIcon.className = 'save-icon';
+              saveIcon.textContent = '💾';
+              msg.append(saveIcon);
+              setTimeout(() => { saveIcon.classList.add('visible'); }, 10);
+
+              const removeIcon = () => {
+                saveIcon.classList.remove('visible');
+                setTimeout(() => { saveIcon.remove(); }, 250);
+              };
+              const timer = setTimeout(removeIcon, 3000);
+              saveIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Zabráníme propagaci na mouseleave zprávy
+                clearTimeout(timer);
+                const textToCopy = msg.innerText.replace(saveIcon.textContent, '').trim();
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        saveIcon.textContent = '✅Zkopírováno';
+                    })
+                    .catch(err => {
+                        console.error('Nepodařilo se zkopírovat text: ', err);
+                        saveIcon.textContent = '⚠️Chyba';
+                    });
+                setTimeout(removeIcon, 1000);
+              });
+            }
+          });
+
+          msg.addEventListener('mouseleave', () => {
+            const saveIconInstance = msg.querySelector('.save-icon');
+            if (saveIconInstance && saveIconInstance.textContent === '💾') { // Odstraní jen pokud neproběhlo kopírování
+                 saveIconInstance.classList.remove('visible');
+                 setTimeout(() => { saveIconInstance.remove(); }, 250);
+            }
+          });
+
+          chatBox.append(msg);
+
+          if (sender === 'assistant') {
+            msg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
+          return msg;
         }
 
-        // Načtení konfigurace klienta
-        async function loadClientConfig() {
+        async function clearChat() {
+          document.querySelectorAll(`#${WIDGET_CONTAINER_ID} #chatBox .message`).forEach(m => m.remove()); // Omezit na widget
+          if (chatRefresh) chatRefresh.classList.add('rotate'); // Přidat kontrolu existence
+          try {
+            await fetch(`${API_BASE}/reset`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ clientID })
+            });
+          } catch (err) {
+            console.error("Chyba při resetu chatu na serveru:", err);
+            // Můžeme zde zobrazit uživateli chybu, pokud je to žádoucí
+          } finally {
+            setTimeout(() => {
+              conversation = [];
+              topicId = null;
+              sessionStorage.removeItem(STORAGE_KEY);
+              sessionStorage.removeItem(TOPIC_KEY);
+              if (chatRefresh) chatRefresh.classList.remove('rotate');
+              sendInitial();
+            }, 600);
+          }
+        }
+
+        async function sendInitial() {
+          if (!chatBoxContainer || !inputBox || !chatBox) return; // Kontrola existence prvků
+
+          chatBoxContainer.classList.add('open');
+          inputBox.focus();
+          const text = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně nabízených služeb AiSimplify! Odpovím Vám do pár vteřin😉';
+          const bubble = document.createElement('div');
+          bubble.className = 'message assistant-message';
+          bubble.style.filter = 'blur(10px)'; bubble.style.opacity = '0';
+          chatBox.append(bubble);
+          bubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          bubble.style.transition = 'opacity 1s ease,filter 1s ease';
+          setTimeout(() => { bubble.style.opacity = '1'; bubble.style.filter = 'blur(0)'; }, 50);
+
+          let idx = 0, revealSpeed = 40;
+          const ti = setInterval(() => {
+            bubble.textContent += text[idx++];
+            bubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (idx >= text.length) {
+              clearInterval(ti);
+              // Pouze přidáme do konverzace, pokud ještě neexistuje stejná úvodní zpráva
+              if (!conversation.find(m => m.role === 'assistant' && m.content === bubble.textContent)) {
+                  conversation.push({ role:'assistant', content:bubble.textContent });
+                  saveHistory();
+              }
+            }
+          }, revealSpeed);
+        }
+
+        // === KONFIGURACE PRO SCRAPOVÁNÍ ===
+        let scrapeConfig = null;
+        let lastScrapedContent = '';
+        let lastScrapedUrl = '';
+
+        // Načtení konfigurace scrapování ze serveru
+        async function loadScrapeConfig() {
             try {
-                console.log('🔄 Načítání konfigurace z:', `${API_BASE}/config/${clientID}`);
-                
                 const response = await fetch(`${API_BASE}/config/${clientID}`);
                 if (response.ok) {
-                    chatConfig = await response.json();
-                    console.log('✅ Konfigurace načtena:', chatConfig);
-                } else {
-                    console.warn('⚠️ Chyba při načítání konfigurace:', response.status);
+                    const config = await response.json();
+                    scrapeConfig = config.current_page_scrape;
+                    console.log('📄 Scrape config loaded:', scrapeConfig);
                 }
             } catch (error) {
-                console.error('❌ Chyba při načítání konfigurace:', error);
-                console.log('ℹ️ Widget bude fungovat bez konfigurace serveru');
+                console.warn('Nepodařilo se načíst konfiguraci scrapování:', error);
             }
         }
 
-        // Test konektivity se serverem
-        async function testServerConnection() {
-            try {
-                console.log('🔍 Testování připojení k serveru...');
-                const response = await fetch(`${API_BASE}/config/${clientID}`, { 
-                    method: 'GET',
-                    signal: AbortSignal.timeout(5000) // 5 sekundový timeout
-                });
-                
-                if (response.ok) {
-                    console.log('✅ Server je dostupný');
-                    return true;
-                } else {
-                    console.warn('⚠️ Server odpověděl s chybou:', response.status);
-                    return false;
-                }
-            } catch (error) {
-                console.error('❌ Server není dostupný:', error.message);
-                return false;
-            }
-        }
-
-        // Scraping obsahu stránky
+        // === INTELIGENTNÍ SCRAPOVÁNÍ OBSAHU STRÁNKY ===
         function scrapePageContent() {
-            if (!chatConfig?.current_page_scrape?.enabled) {
+            if (!scrapeConfig || !scrapeConfig.enabled) {
                 return null;
             }
 
             try {
+                const currentUrl = window.location.href;
+                
+                // Cache: pokud se URL nezměnila, použij cache
+                if (currentUrl === lastScrapedUrl && lastScrapedContent) {
+                    console.log('📄 Using cached page content');
+                    return lastScrapedContent;
+                }
+
                 console.log('🔍 Scrapování obsahu stránky...');
                 
-                const currentUrl = window.location.href;
                 let extractedContent = {
                     url: currentUrl,
                     title: document.title || '',
@@ -435,31 +678,29 @@
                 }
 
                 // Extrakce podle selektorů
-                const includeSelectors = chatConfig.current_page_scrape.selectors?.include || ['h1', 'h2', 'h3', 'p'];
-                const excludeSelectors = chatConfig.current_page_scrape.selectors?.exclude || [];
+                const includeSelectors = scrapeConfig.selectors?.include || ['h1', 'h2', 'h3', 'p'];
+                const excludeSelectors = scrapeConfig.selectors?.exclude || [];
 
-                // Vytvoření temp kontejneru pro bezpečné odebírání elementů
+                // Nejdříve odebereme nežádoucí elementy (ale pouze pro scrapování, ne ze stránky)
                 const tempContainer = document.createElement('div');
                 tempContainer.innerHTML = document.body.innerHTML;
 
-                // Odebrání nežádoucích elementů
                 excludeSelectors.forEach(selector => {
                     try {
                         const elements = tempContainer.querySelectorAll(selector);
                         elements.forEach(el => el.remove());
                     } catch (e) {
-                        console.warn('Chybný exclude selector:', selector);
+                        // Ignoruj chybné selektory
                     }
                 });
 
-                // Odebrání widgetu a podobných elementů
+                // Odebereme náš widget a podobné elementy
                 const widgetSelectors = [
                     `#${WIDGET_CONTAINER_ID}`,
                     '[id*="chat"]',
                     '[class*="chat"]',
-                    'script',
-                    'style',
-                    'noscript'
+                    '[id*="widget"]',
+                    '[class*="widget"]'
                 ];
                 
                 widgetSelectors.forEach(selector => {
@@ -475,484 +716,410 @@
                 includeSelectors.forEach(selector => {
                     try {
                         const elements = tempContainer.querySelectorAll(selector);
-                        elements.forEach(element => {
-                            const text = element.textContent.trim();
-                            if (text && text.length > 10) {
-                                if (selector.match(/^h[1-6]$/i)) {
+                        elements.forEach(el => {
+                            const text = cleanText(el.textContent);
+                            if (text && text.length > 10) { // Ignoruj krátké texty
+                                
+                                if (selector.match(/h[1-6]/i) || selector.includes('heading')) {
                                     extractedContent.headings.push(text);
-                                } else {
-                                    extractedContent.content.push(text);
                                 }
+                                
+                                // Detekce produktových informací
+                                if (selector.toLowerCase().includes('product') || 
+                                    selector.toLowerCase().includes('price') ||
+                                    selector.toLowerCase().includes('cena')) {
+                                    extractedContent.products.push(text);
+                                }
+                                
+                                extractedContent.content.push(text);
                             }
                         });
                     } catch (e) {
-                        console.warn('Chybný include selector:', selector);
+                        console.warn('Chyba při zpracování selektoru:', selector, e);
                     }
                 });
 
-                // Detekce produktů
-                const productSelectors = ['.product', '.product-card', '[class*="product"]'];
-                productSelectors.forEach(selector => {
-                    try {
-                        const elements = tempContainer.querySelectorAll(selector);
-                        elements.forEach(element => {
-                            const productData = {
-                                name: element.querySelector('h1, h2, h3, .title, .name')?.textContent?.trim(),
-                                price: element.querySelector('.price, [class*="price"]')?.textContent?.trim(),
-                                description: element.querySelector('.description, .desc, p')?.textContent?.trim()?.substring(0, 200)
-                            };
-                            
-                            if (productData.name) {
-                                extractedContent.products.push(productData);
-                            }
-                        });
-                    } catch (e) {
-                        // Ignoruj chyby
+                // Pokud jsme nic nezískali, použij fallback
+                if (extractedContent.content.length === 0) {
+                    const mainContent = tempContainer.querySelector('main') || 
+                                      tempContainer.querySelector('[role="main"]') || 
+                                      tempContainer.querySelector('.content') ||
+                                      tempContainer.querySelector('#content') ||
+                                      tempContainer;
+                    
+                    if (mainContent) {
+                        const text = cleanText(mainContent.textContent);
+                        if (text) {
+                            extractedContent.content.push(text);
+                        }
                     }
-                });
-
-                // Formátování výsledku
-                let formattedContent = '';
-                
-                if (extractedContent.title) {
-                    formattedContent += `Název stránky: ${extractedContent.title}\n\n`;
-                }
-                
-                if (extractedContent.metadata.description) {
-                    formattedContent += `Popis: ${extractedContent.metadata.description}\n\n`;
-                }
-                
-                if (extractedContent.headings.length > 0) {
-                    formattedContent += `Nadpisy:\n${extractedContent.headings.slice(0, 5).join('\n')}\n\n`;
-                }
-                
-                if (extractedContent.content.length > 0) {
-                    const contentText = extractedContent.content.slice(0, 10).join(' ').substring(0, 1500);
-                    formattedContent += `Obsah:\n${contentText}\n\n`;
-                }
-                
-                if (extractedContent.products.length > 0) {
-                    formattedContent += `Produkty na stránce:\n`;
-                    extractedContent.products.slice(0, 3).forEach(product => {
-                        formattedContent += `- ${product.name}${product.price ? ` (${product.price})` : ''}\n`;
-                    });
                 }
 
-                console.log('📄 Extrakovaný obsah:', formattedContent.substring(0, 200) + '...');
+                // Formátování pro AI
+                const formattedContent = formatContentForAI(extractedContent);
                 
-                return {
+                // Oříznutí podle max_content_length
+                const maxLength = scrapeConfig.max_content_length || 5000;
+                const finalContent = formattedContent.length > maxLength ? 
+                    formattedContent.substring(0, maxLength) + '...' : formattedContent;
+
+                // Cache
+                lastScrapedContent = finalContent;
+                lastScrapedUrl = currentUrl;
+
+                console.log('✅ Obsah stránky úspěšně načten:', {
                     url: currentUrl,
-                    title: extractedContent.title,
-                    content: formattedContent.trim().substring(0, 3000) // Limit na 3000 znaků
-                };
-                
+                    contentLength: finalContent.length,
+                    headingsCount: extractedContent.headings.length,
+                    productsCount: extractedContent.products.length
+                });
+
+                return finalContent;
+
             } catch (error) {
-                console.error('Chyba při scrapingu stránky:', error);
+                console.error('❌ Chyba při scrapování:', error);
                 return null;
             }
         }
 
-        // Odeslání zprávy
-        async function sendMessage(message) {
-            if (isLoading || !message.trim()) return;
-
-            isLoading = true;
-            const sendButton = document.getElementById('sendButton');
-            const chatInput = document.getElementById('chatInput');
-            
-            sendButton.disabled = true;
-            chatInput.disabled = true;
-
-            // Přidání uživatelské zprávy
-            addMessage(message, 'user');
-            chatInput.value = '';
-            
-            // Zobrazení typing indikátoru
-            showTypingIndicator();
-
-            try {
-                // Příprava dat pro odeslání
-                const requestData = {
-                    message,
-                    clientID,
-                    topicId: currentTopicId
-                };
-
-                // Přidání scrapovaného obsahu pokud je povolen
-                const pageContent = scrapePageContent();
-                if (pageContent) {
-                    requestData.pageContent = pageContent;
-                }
-
-                const res = await fetch(`${API_BASE}/chat`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(requestData)
-                });
-
-                if (!res.ok) {
-                    throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-                }
-
-                const reader = res.body.getReader();
-                const decoder = new TextDecoder();
-                let assistantMessage = '';
-                let messageElement = null;
-
-                // Odstranění typing indikátoru
-                hideTypingIndicator();
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    const chunk = decoder.decode(value, { stream: true });
-                    const lines = chunk.split('\n');
-
-                    for (const line of lines) {
-                        if (line.startsWith('data: ')) {
-                            try {
-                                const data = JSON.parse(line.slice(6));
-                                
-                                if (data.type === 'topic_id' && data.topicId) {
-                                    saveTopicId(data.topicId);
-                                } else if (data.type === 'content' && data.content) {
-                                    assistantMessage += data.content;
-                                    
-                                    if (!messageElement) {
-                                        messageElement = addMessage('', 'assistant');
-                                    }
-                                    
-                                    updateMessageContent(messageElement, assistantMessage);
-                                }
-                            } catch (parseError) {
-                                console.warn('Chyba při parsování SSE:', parseError);
-                            }
-                        }
-                    }
-                }
-
-                // Uložení konverzace
-                saveConversation();
-
-            } catch (error) {
-                console.error('Chyba při odesílání zprávy:', error);
-                hideTypingIndicator();
-                
-                let errorMessage = 'Omlouváme se, došlo k chybě při komunikaci se serverem.';
-                
-                if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
-                    errorMessage = `🔌 Nepodařilo se připojit k serveru (${API_BASE}). Zkontrolujte připojení nebo zkuste později.`;
-                } else if (error.message.includes('HTTP 404')) {
-                    errorMessage = '❌ Server nenalezen. Zkontrolujte konfiguraci.';
-                } else if (error.message.includes('HTTP 500')) {
-                    errorMessage = '⚠️ Chyba serveru. Zkuste to za chvilku.';
-                }
-                
-                addMessage(errorMessage, 'assistant');
-            } finally {
-                isLoading = false;
-                sendButton.disabled = false;
-                chatInput.disabled = false;
-                chatInput.focus();
-            }
+        // Pomocné funkce
+        function cleanText(text) {
+            if (!text) return '';
+            return text
+                .replace(/\s+/g, ' ')
+                .replace(/\n+/g, ' ')
+                .trim();
         }
 
-        // Přidání zprávy do chatu
-        function addMessage(content, type) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}-message`;
+        function formatContentForAI(scrapedData) {
+            let parts = [];
+
+            if (scrapedData.title) {
+                parts.push(`NÁZEV STRÁNKY: ${scrapedData.title}`);
+            }
+
+            if (scrapedData.url) {
+                parts.push(`URL: ${scrapedData.url}`);
+            }
+
+            if (scrapedData.metadata.description) {
+                parts.push(`POPIS STRÁNKY: ${scrapedData.metadata.description}`);
+            }
+
+            if (scrapedData.headings.length > 0) {
+                parts.push(`HLAVNÍ NADPISY: ${scrapedData.headings.slice(0, 5).join(', ')}`);
+            }
+
+            if (scrapedData.products.length > 0) {
+                parts.push(`PRODUKTOVÉ INFORMACE: ${scrapedData.products.slice(0, 3).join(', ')}`);
+            }
+
+            if (scrapedData.content.length > 0) {
+                const contentText = scrapedData.content.join(' ');
+                parts.push(`OBSAH STRÁNKY: ${contentText}`);
+            }
+
+            return parts.join('\n\n');
+        }
+
+        // === FUNKCE PRO ZÍSKÁNÍ OBSAHU STRÁNKY ===
+        function getCurrentPageHTML() {
+            // Tato funkce je nyní nahrazena scrapePageContent()
+            return scrapePageContent();
+        }
+
+        async function sendMessage() {
+          if (!inputBox || !chatBox) return; // Kontrola existence prvků
+
+          const userText = inputBox.value.trim();
+          if (!userText) return;
+          conversation.push({ role:'user', content:userText });
+          saveHistory(); addMessage('user', userText);
+          inputBox.value = '';
+
+          const loadingTexts = ['Přemýšlím....','Momentík...','Ještě chvilinku...','Děkuji za trpělivost😉','Už to bude...'];
+          let loadingIndex=0;
+          const loadingBubble = addMessage('assistant', loadingTexts[loadingIndex]);
+          loadingBubble.classList.add('loading');
+          loadingBubble.style.transition='opacity .8s ease'; loadingBubble.style.opacity='1';
+          const loadingInterval = setInterval(()=>{
+            loadingBubble.style.opacity='0';
+            setTimeout(()=>{
+              loadingBubble.textContent = loadingTexts[++loadingIndex % loadingTexts.length];
+              loadingBubble.style.opacity='1';
+              loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            },500);
+          },2000);
+
+          let assistantText='';
+          let isGeneratingForm = false;
+          let formLoadingElement = null;
+          let formTimeout = null;
+          let textBeforeForm = '';
+          
+          try {
+            // Získání obsahu stránky (rychlé frontend scrapování)
+            const pageContent = scrapePageContent();
             
-            const messageContent = document.createElement('div');
-            messageContent.className = 'message-content';
+            const requestBody = {
+              clientID,
+              history: conversation,
+              topic_id: topicId
+            };
             
-            // Použití marked pro markdown rendering pokud je k dispozici
-            if (typeof marked !== 'undefined') {
-                messageContent.innerHTML = marked.parse(content);
+            // Přidáme zpracovaný obsah stránky
+            if (pageContent) {
+              requestBody.page_content = pageContent;
+            }
+            
+            const res = await fetch(`${API_BASE}/chat`, {
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify(requestBody)
+            });
+            const newTopic = res.headers.get('X-Trieve-Topic-ID');
+            if(newTopic){ topicId=newTopic; sessionStorage.setItem(TOPIC_KEY,topicId); }
+
+            const reader = res.body.getReader(), dec=new TextDecoder();
+            let firstChunkReceived=false;
+            
+            // Funkce pro ukončení generování formuláře
+            const finishFormGeneration = () => {
+              if (isGeneratingForm && formLoadingElement) {
+                clearTimeout(formTimeout);
+                formLoadingElement.remove();
+                isGeneratingForm = false;
+                formLoadingElement = null;
+                formTimeout = null;
+                
+                // Zobrazíme kompletní obsah
+                loadingBubble.innerHTML = marked.parse(assistantText);
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            };
+            
+            while(true){
+              const {value,done} = await reader.read();
+              if(done) break;
+              const chunk = dec.decode(value,{stream:true});
+              
+              if(!firstChunkReceived){
+                clearInterval(loadingInterval);
+                loadingBubble.classList.remove('loading');
+                loadingBubble.innerHTML=''; // Vyčistíme "Přemýšlím..."
+                firstChunkReceived=true;
+              }
+              
+              assistantText += chunk;
+              
+              // Detekce začátku formuláře - kontrolujeme různé varianty
+              const formTriggers = [
+                '<form',
+                'formulář na míru',
+                'vyplňte formulář',
+                'poptávkový formulář',
+                'kontaktní formulář'
+              ];
+              
+              const shouldGenerateForm = !isGeneratingForm && 
+                formTriggers.some(trigger => assistantText.toLowerCase().includes(trigger.toLowerCase()));
+              
+              if (shouldGenerateForm) {
+                isGeneratingForm = true;
+                
+                // Uložíme text před formulářem
+                const formIndex = assistantText.toLowerCase().indexOf('<form');
+                if (formIndex !== -1) {
+                  textBeforeForm = assistantText.substring(0, formIndex);
+                } else {
+                  // Pokud ještě není <form tag, použijeme celý text dosud
+                  textBeforeForm = assistantText;
+                }
+                
+                // Vytvoříme načítací element
+                formLoadingElement = document.createElement('div');
+                formLoadingElement.className = 'form-generator-loading';
+                formLoadingElement.innerHTML = `
+                  <div class="form-spinner"></div>
+                  <span>Generuji formulář na míru, prosím chvilinku strpení...</span>
+                `;
+                
+                // Zobrazíme pouze text před formulářem + loading (bez blikání)
+                loadingBubble.innerHTML = marked.parse(textBeforeForm);
+                loadingBubble.appendChild(formLoadingElement);
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Timeout pro případ zaseknutí (15 sekund)
+                formTimeout = setTimeout(() => {
+                  console.log('Form generation timeout, showing content anyway');
+                  finishFormGeneration();
+                }, 15000);
+                
+                continue; // Přeskočíme další zpracování tohoto chunku
+              }
+              
+              // Pokud generujeme formulář, NESPRACOVÁVÁME obsah dokud není hotový
+              if (isGeneratingForm) {
+                // Kontrolujeme ukončovací podmínky
+                const shouldFinishForm = 
+                  assistantText.includes('</form>') || 
+                  assistantText.length > 8000 || // Zvýšený limit
+                  assistantText.includes('\n\n---') ||
+                  assistantText.includes('Pokud máte další dotazy') ||
+                  assistantText.includes('S pozdravem') ||
+                  assistantText.includes('Děkuji za váš zájem');
+                
+                if (shouldFinishForm) {
+                  finishFormGeneration();
+                }
+                // Během generování formuláře NEAKTUALIZUJEME obsah bubliny
+              } else {
+                // Normální streamování - pouze když NEgenerujeme formulář
+                loadingBubble.innerHTML = marked.parse(assistantText);
+                loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+            
+            // Ujistíme se, že formulář je ukončen po dokončení streamu
+            if (isGeneratingForm) {
+              finishFormGeneration();
+            }
+            
+            // Přidáme do konverzace, pouze pokud assistantText není prázdný
+            if (assistantText.trim()) {
+                conversation.push({ role:'assistant', content:assistantText });
+                saveHistory();
+            } else if (!firstChunkReceived) { // Pokud nepřišel žádný chunk, ale fetch byl úspěšný (např. 204 No Content)
+                clearInterval(loadingInterval);
+                loadingBubble.remove(); // Odstraníme "Přemýšlím..." bublinu
+            }
+
+          } catch(err){
+            clearInterval(loadingInterval);
+            loadingBubble.classList.remove('loading');
+            loadingBubble.textContent = 'Omlouváme se, došlo k chybě při komunikaci se serverem.';
+            loadingBubble.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            console.error("Chyba při odesílání zprávy:", err);
+            
+            // Vyčistíme form timeout při chybě
+            if (formTimeout) {
+              clearTimeout(formTimeout);
+            }
+          }
+          inputBox.focus();
+        }
+
+        function renderHistory(){
+          if (!chatBox || !inputBox) return; // Kontrola
+          chatBox.innerHTML = '';
+          conversation.forEach(m => addMessage(m.role, m.content));
+          inputBox.focus();
+           // Po vykreslení historie srolujeme na poslední zprávu
+          if (chatBox.lastChild) {
+            chatBox.lastChild.scrollIntoView({ behavior: 'auto', block: 'end' });
+          }
+        }
+
+        function toggleChat(openState){
+          if (!chatIcon || !chatBoxContainer) return; // Kontrola
+
+          if(openState){
+            chatIcon.style.display='none';
+            chatBoxContainer.style.display='flex';
+            setTimeout(()=>{
+                chatBoxContainer.classList.remove('close'); // Odebere 'close'
+                chatBoxContainer.classList.add('open');    // Přidá 'open'
+            },10);
+            // Pokud je konverzace prázdná, pošle úvodní zprávu, jinak vykreslí historii
+            if (conversation.length === 0) {
+                sendInitial();
             } else {
-                messageContent.textContent = content;
+                renderHistory();
             }
-            
-            messageDiv.appendChild(messageContent);
-            
-            // Přidání copy funkcionality pro zprávy asistenta
-            if (type === 'assistant') {
-                messageDiv.addEventListener('mouseenter', () => {
-                    // Odebrání existujících ikon
-                    document.querySelectorAll('.save-icon').forEach(el => {
-                        el.classList.remove('visible');
-                        setTimeout(() => el.remove(), 250);
-                    });
-                    
-                    if (!messageDiv.querySelector('.save-icon')) {
-                        const saveIcon = document.createElement('span');
-                        saveIcon.className = 'save-icon';
-                        saveIcon.textContent = '💾';
-                        saveIcon.style.cssText = `
-                            position: absolute;
-                            top: 5px;
-                            right: 5px;
-                            cursor: pointer;
-                            background: rgba(0,0,0,0.1);
-                            border-radius: 50%;
-                            width: 24px;
-                            height: 24px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 12px;
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                        `;
-                        
-                        messageDiv.style.position = 'relative';
-                        messageDiv.appendChild(saveIcon);
-                        
-                        setTimeout(() => saveIcon.style.opacity = '1', 10);
-                        
-                        const removeIcon = () => {
-                            saveIcon.style.opacity = '0';
-                            setTimeout(() => saveIcon.remove(), 250);
-                        };
-                        
-                        const timer = setTimeout(removeIcon, 3000);
-                        
-                        saveIcon.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            clearTimeout(timer);
-                            const textToCopy = messageContent.textContent.trim();
-                            navigator.clipboard.writeText(textToCopy)
-                                .then(() => {
-                                    saveIcon.textContent = '✅';
-                                    setTimeout(removeIcon, 1000);
-                                })
-                                .catch(err => {
-                                    console.error('Chyba při kopírování:', err);
-                                    saveIcon.textContent = '❌';
-                                    setTimeout(removeIcon, 1000);
-                                });
-                        });
-                    }
-                });
-                
-                messageDiv.addEventListener('mouseleave', () => {
-                    const saveIcon = messageDiv.querySelector('.save-icon');
-                    if (saveIcon) {
-                        saveIcon.style.opacity = '0';
-                        setTimeout(() => saveIcon.remove(), 250);
-                    }
-                });
+          } else {
+            chatBoxContainer.classList.remove('open'); // Odebere 'open'
+            chatBoxContainer.classList.add('close');   // Přidá 'close'
+            setTimeout(()=>{
+              chatBoxContainer.style.display='none';
+              chatIcon.style.display='flex';
+            },400); // Čas musí odpovídat délce animace v CSS
+          }
+        }
+
+        function sendForm(formElement) {
+    const submitButton = formElement.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Odesílám...';
+    submitButton.disabled = true;
+
+    const formData = new FormData(formElement);
+    fetch(formElement.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        const fields = formElement.querySelectorAll('input, textarea');
+        fields.forEach(field => { field.disabled = true; });
+        const thankYouMessage = document.createElement('div');
+        thankYouMessage.className = 'thank-you-message';
+        thankYouMessage.innerHTML = '<h3>✅ Děkujeme!</h3><p>Vaše poptávka byla odeslána.</p>';
+        submitButton.parentNode.replaceChild(thankYouMessage, submitButton);
+      } else {
+        throw new Error('Odpověď serveru nebyla v pořádku.');
+      }
+    })
+    .catch(error => {
+      console.error('Chyba při odesílání formuláře:', error);
+      formElement.innerHTML = '<h3>❌ Chyba</h3><p>Při odesílání došlo k chybě.</p>';
+    });
+  }
+        
+        // Event Listeners - přidat kontroly existence prvků
+        if (chatIcon) chatIcon.addEventListener('click', ()=>toggleChat(true));
+        if (chatClose) chatClose.addEventListener('click', ()=>toggleChat(false));
+        if (chatRefresh) chatRefresh.addEventListener('click', clearChat);
+        if (sendButton) sendButton.addEventListener('click', sendMessage);
+        if (inputBox) inputBox.addEventListener('keypress', e=>{ if(e.key==='Enter') sendMessage(); });
+
+        // Inicializace - načtení konfigurace
+        loadScrapeConfig().catch(err => {
+            console.warn('Nepodařilo se načíst konfiguraci scrapování:', err);
+        });
+
+        // Sledování změn URL pro invalidaci cache
+        let currentUrl = window.location.href;
+        const urlChangeObserver = new MutationObserver(() => {
+            if (window.location.href !== currentUrl) {
+                currentUrl = window.location.href;
+                lastScrapedContent = '';
+                lastScrapedUrl = '';
+                console.log('🔄 URL changed, cache invalidated');
             }
-            
-            messagesContainer.appendChild(messageDiv);
-            
-            // Scroll na konec
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
-            return messageContent;
+        });
+        
+        // Pozorování změn v DOM (pro SPA aplikace)
+        urlChangeObserver.observe(document, { subtree: true, childList: true });
+        
+        // Poslouchání popstate událostí (historie prohlížeče)
+        window.addEventListener('popstate', () => {
+            lastScrapedContent = '';
+            lastScrapedUrl = '';
+            console.log('🔄 Navigation detected, cache invalidated');
+        });
+
+        // Automatické otevření chatu, pokud je v sessionStorage nějaká historie a uživatel se vrátí na stránku
+        // Můžete tuto logiku upravit/odstranit dle potřeby
+        if (conversation.length > 0 && chatBoxContainer && chatBoxContainer.classList.contains('close')) {
+            // toggleChat(true); // Volitelně automaticky otevřít, pokud existuje historie
         }
-
-        // Aktualizace obsahu zprávy (pro streaming)
-        function updateMessageContent(element, content) {
-            element.textContent = content;
-            const messagesContainer = document.getElementById('chatMessages');
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        // Zobrazení typing indikátoru
-        function showTypingIndicator() {
-            const messagesContainer = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = `
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-            `;
-            messagesContainer.appendChild(typingDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        // Skrytí typing indikátoru
-        function hideTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-
-        // Uložení konverzace
-        function saveConversation() {
-            const messages = [];
-            const messageElements = document.querySelectorAll('.message');
-            
-            messageElements.forEach(msg => {
-                if (msg.id === 'typingIndicator') return;
-                
-                const content = msg.querySelector('.message-content').textContent;
-                const type = msg.classList.contains('user-message') ? 'user' : 'assistant';
-                messages.push({ content, type });
-            });
-            
-            saveChatHistory(messages);
-        }
-
-        // Načtení historie zpráv
-        function loadMessages() {
-            const history = loadChatHistory();
-            const messagesContainer = document.getElementById('chatMessages');
-            
-            // Vymazání existujících zpráv kromě úvodní
-            const existingMessages = messagesContainer.querySelectorAll('.message');
-            existingMessages.forEach((msg, index) => {
-                if (index > 0) msg.remove(); // Ponechat první úvodní zprávu
-            });
-            
-            // Přidání zpráv z historie
-            history.forEach(msg => {
-                addMessage(msg.content, msg.type);
-            });
-        }
-
-        // Auto-resize textarey
-        function setupAutoResize() {
-            const textarea = document.getElementById('chatInput');
-            
-            textarea.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = Math.min(this.scrollHeight, 80) + 'px';
-            });
-        }
-
-        // Event listenery
-        function setupEventListeners() {
-            const chatIcon = document.getElementById('chatIcon');
-            const chatWindow = document.getElementById('chatWindow');
-            const closeButton = document.getElementById('closeButton');
-            const sendButton = document.getElementById('sendButton');
-            const chatInput = document.getElementById('chatInput');
-
-            let clickCount = 0;
-            let clickTimer = null;
-
-            // Otevření/zavření chatu s multi-click funkcemi
-            chatIcon.addEventListener('click', (e) => {
-                clickCount++;
-                
-                if (clickCount === 1) {
-                    clickTimer = setTimeout(() => {
-                        // Single click - otevření/zavření chatu
-                        const isVisible = chatWindow.style.display === 'flex';
-                        chatWindow.style.display = isVisible ? 'none' : 'flex';
-                        
-                        if (!isVisible) {
-                            chatInput.focus();
-                            loadMessages();
-                        }
-                        clickCount = 0;
-                    }, 300);
-                } else if (clickCount === 2) {
-                    clearTimeout(clickTimer);
-                    clickTimer = setTimeout(() => {
-                        // Double click - reset chatu
-                        e.preventDefault();
-                        if (confirm('Opravdu chcete vymazat historii chatu?')) {
-                            resetChat();
-                        }
-                        clickCount = 0;
-                    }, 300);
-                } else if (clickCount === 3) {
-                    clearTimeout(clickTimer);
-                    // Triple click - výpis konverzace do konzole
-                    e.preventDefault();
-                    logConversation();
-                    clickCount = 0;
-                }
-            });
-
-            closeButton.addEventListener('click', () => {
-                chatWindow.style.display = 'none';
-            });
-
-            // Odeslání zprávy
-            sendButton.addEventListener('click', () => {
-                const message = chatInput.value.trim();
-                if (message) {
-                    sendMessage(message);
-                }
-            });
-
-            // Enter pro odeslání (Shift+Enter pro nový řádek)
-            chatInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    const message = chatInput.value.trim();
-                    if (message) {
-                        sendMessage(message);
-                    }
-                }
-            });
-        }
-
-        // Inicializace
-        async function init() {
-            console.log('🚀 Inicializace Vyvoj Chat Widget...');
-            console.log('🔧 Client ID:', clientID);
-            console.log('🌐 API Base:', API_BASE);
-            
-            // Test konektivity
-            const serverAvailable = await testServerConnection();
-            if (!serverAvailable) {
-                console.warn('⚠️ Server není dostupný, některé funkce nemusí fungovat');
-            }
-            
-            // Načtení konfigurace
-            await loadClientConfig();
-            
-            // Načtení topic ID
-            currentTopicId = loadTopicId();
-            
-            // Nastavení event listenerů
-            setupEventListeners();
-            setupAutoResize();
-            
-            console.log('✅ Vyvoj Chat Widget inicializován');
-        }
-
-        // Spuštění inicializace
-        init();
     }
 
-    // --- 4. VLOŽENÍ DO STRÁNKY ---
-    function injectVyvojWidget() {
-        // Kontrola, zda widget už není vložen
-        if (document.getElementById(WIDGET_CONTAINER_ID)) {
-            console.warn('Vyvoj Chat Widget je již vložen');
-            return;
-        }
-
-        // Vložení CSS stylů
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = styles;
-        document.head.appendChild(styleSheet);
-
-        // Vytvoření kontejneru widgetu
-        const widgetContainer = document.createElement('div');
-        widgetContainer.id = WIDGET_CONTAINER_ID;
-        widgetContainer.innerHTML = chatHTML;
-        document.body.appendChild(widgetContainer);
-
-        // Inicializace funkcionality//
-        initVyvojChatWidget();
-    }
-
-    // Spuštění po načtení stránky
+    // --- 5. SPOUŠTĚNÍ WIDGETU ---
+    // Zajistíme, že DOM je načtený před manipulací
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', injectVyvojWidget);
+        document.addEventListener('DOMContentLoaded', injectWidget);
     } else {
-        injectVyvojWidget();
+        injectWidget(); // DOM je již připraven
     }
 
 })();
