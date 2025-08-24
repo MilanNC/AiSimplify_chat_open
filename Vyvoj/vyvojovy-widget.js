@@ -2,7 +2,7 @@
     // Unikátní ID pro kontejner widgetu na cílové stránce
     const WIDGET_CONTAINER_ID = 'vyvoj-chat-widget-container';
 
-    // --- 1. CSS STYLY ---
+    // --- 1. CSS STYLY ---//
     const styles = `
     :root {
       --header-gradient: linear-gradient(90deg, #2E8B57, #228B22);
@@ -894,7 +894,7 @@
         widgetContainer.innerHTML = chatHTML;
         document.body.appendChild(widgetContainer);
 
-        // Inicializace funkcionality
+        // Inicializace funkcionality//
         initVyvojChatWidget();
     }
 
