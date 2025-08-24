@@ -288,7 +288,7 @@
         // Načtení historie chatu
         function loadChatHistory() {
             try {
-                const history = localStorage.getItem(STORAGE_KEY);
+                const history = sessionStorage.getItem(STORAGE_KEY);
                 return history ? JSON.parse(history) : [];
             } catch (error) {
                 console.error('Chyba při načítání historie chatu:', error);
@@ -299,7 +299,7 @@
         // Uložení historie chatu
         function saveChatHistory(messages) {
             try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+                sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
             } catch (error) {
                 console.error('Chyba při ukládání historie chatu:', error);
             }
@@ -328,7 +328,7 @@
                 });
                 
                 // Vymazání lokálních dat
-                localStorage.removeItem(STORAGE_KEY);
+                sessionStorage.removeItem(STORAGE_KEY);
                 localStorage.removeItem(TOPIC_KEY);
                 currentTopicId = null;
                 
@@ -346,6 +346,23 @@
             } catch (error) {
                 console.error('Chyba při resetování chatu:', error);
             }
+        }
+
+        // Debug funkce pro výpis konverzace
+        function logConversation() {
+            const messages = [];
+            const messageElements = document.querySelectorAll('.message');
+            
+            messageElements.forEach(msg => {
+                if (msg.id === 'typingIndicator') return;
+                
+                const content = msg.querySelector('.message-content').textContent;
+                const type = msg.classList.contains('user-message') ? 'user' : 'assistant';
+                messages.push({ content, type });
+            });
+            
+            console.log('💬 Aktuální konverzace:', messages);
+            return messages;
         }
 
         // Načtení konfigurace klienta
@@ -370,21 +387,136 @@
             }
 
             try {
-                let content = '';
-                const selectors = chatConfig.current_page_scrape.selectors || ['body'];
+                console.log('🔍 Scrapování obsahu stránky...');
                 
-                selectors.forEach(selector => {
-                    const elements = document.querySelectorAll(selector);
-                    elements.forEach(element => {
-                        content += element.textContent + ' ';
-                    });
+                const currentUrl = window.location.href;
+                let extractedContent = {
+                    url: currentUrl,
+                    title: document.title || '',
+                    headings: [],
+                    content: [],
+                    products: [],
+                    metadata: {}
+                };
+
+                // Meta description
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    extractedContent.metadata.description = metaDesc.getAttribute('content');
+                }
+
+                // Extrakce podle selektorů
+                const includeSelectors = chatConfig.current_page_scrape.selectors?.include || ['h1', 'h2', 'h3', 'p'];
+                const excludeSelectors = chatConfig.current_page_scrape.selectors?.exclude || [];
+
+                // Vytvoření temp kontejneru pro bezpečné odebírání elementů
+                const tempContainer = document.createElement('div');
+                tempContainer.innerHTML = document.body.innerHTML;
+
+                // Odebrání nežádoucích elementů
+                excludeSelectors.forEach(selector => {
+                    try {
+                        const elements = tempContainer.querySelectorAll(selector);
+                        elements.forEach(el => el.remove());
+                    } catch (e) {
+                        console.warn('Chybný exclude selector:', selector);
+                    }
                 });
 
+                // Odebrání widgetu a podobných elementů
+                const widgetSelectors = [
+                    `#${WIDGET_CONTAINER_ID}`,
+                    '[id*="chat"]',
+                    '[class*="chat"]',
+                    'script',
+                    'style',
+                    'noscript'
+                ];
+                
+                widgetSelectors.forEach(selector => {
+                    try {
+                        const elements = tempContainer.querySelectorAll(selector);
+                        elements.forEach(el => el.remove());
+                    } catch (e) {
+                        // Ignoruj chybné selektory
+                    }
+                });
+
+                // Extrakce obsahu podle include selektorů
+                includeSelectors.forEach(selector => {
+                    try {
+                        const elements = tempContainer.querySelectorAll(selector);
+                        elements.forEach(element => {
+                            const text = element.textContent.trim();
+                            if (text && text.length > 10) {
+                                if (selector.match(/^h[1-6]$/i)) {
+                                    extractedContent.headings.push(text);
+                                } else {
+                                    extractedContent.content.push(text);
+                                }
+                            }
+                        });
+                    } catch (e) {
+                        console.warn('Chybný include selector:', selector);
+                    }
+                });
+
+                // Detekce produktů
+                const productSelectors = ['.product', '.product-card', '[class*="product"]'];
+                productSelectors.forEach(selector => {
+                    try {
+                        const elements = tempContainer.querySelectorAll(selector);
+                        elements.forEach(element => {
+                            const productData = {
+                                name: element.querySelector('h1, h2, h3, .title, .name')?.textContent?.trim(),
+                                price: element.querySelector('.price, [class*="price"]')?.textContent?.trim(),
+                                description: element.querySelector('.description, .desc, p')?.textContent?.trim()?.substring(0, 200)
+                            };
+                            
+                            if (productData.name) {
+                                extractedContent.products.push(productData);
+                            }
+                        });
+                    } catch (e) {
+                        // Ignoruj chyby
+                    }
+                });
+
+                // Formátování výsledku
+                let formattedContent = '';
+                
+                if (extractedContent.title) {
+                    formattedContent += `Název stránky: ${extractedContent.title}\n\n`;
+                }
+                
+                if (extractedContent.metadata.description) {
+                    formattedContent += `Popis: ${extractedContent.metadata.description}\n\n`;
+                }
+                
+                if (extractedContent.headings.length > 0) {
+                    formattedContent += `Nadpisy:\n${extractedContent.headings.slice(0, 5).join('\n')}\n\n`;
+                }
+                
+                if (extractedContent.content.length > 0) {
+                    const contentText = extractedContent.content.slice(0, 10).join(' ').substring(0, 1500);
+                    formattedContent += `Obsah:\n${contentText}\n\n`;
+                }
+                
+                if (extractedContent.products.length > 0) {
+                    formattedContent += `Produkty na stránce:\n`;
+                    extractedContent.products.slice(0, 3).forEach(product => {
+                        formattedContent += `- ${product.name}${product.price ? ` (${product.price})` : ''}\n`;
+                    });
+                }
+
+                console.log('📄 Extrakovaný obsah:', formattedContent.substring(0, 200) + '...');
+                
                 return {
-                    url: window.location.href,
-                    title: document.title,
-                    content: content.trim().substring(0, 3000) // Limit na 3000 znaků
+                    url: currentUrl,
+                    title: extractedContent.title,
+                    content: formattedContent.trim().substring(0, 3000) // Limit na 3000 znaků
                 };
+                
             } catch (error) {
                 console.error('Chyba při scrapingu stránky:', error);
                 return null;
@@ -494,9 +626,85 @@
             
             const messageContent = document.createElement('div');
             messageContent.className = 'message-content';
-            messageContent.textContent = content;
+            
+            // Použití marked pro markdown rendering pokud je k dispozici
+            if (typeof marked !== 'undefined') {
+                messageContent.innerHTML = marked.parse(content);
+            } else {
+                messageContent.textContent = content;
+            }
             
             messageDiv.appendChild(messageContent);
+            
+            // Přidání copy funkcionality pro zprávy asistenta
+            if (type === 'assistant') {
+                messageDiv.addEventListener('mouseenter', () => {
+                    // Odebrání existujících ikon
+                    document.querySelectorAll('.save-icon').forEach(el => {
+                        el.classList.remove('visible');
+                        setTimeout(() => el.remove(), 250);
+                    });
+                    
+                    if (!messageDiv.querySelector('.save-icon')) {
+                        const saveIcon = document.createElement('span');
+                        saveIcon.className = 'save-icon';
+                        saveIcon.textContent = '💾';
+                        saveIcon.style.cssText = `
+                            position: absolute;
+                            top: 5px;
+                            right: 5px;
+                            cursor: pointer;
+                            background: rgba(0,0,0,0.1);
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 12px;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                        `;
+                        
+                        messageDiv.style.position = 'relative';
+                        messageDiv.appendChild(saveIcon);
+                        
+                        setTimeout(() => saveIcon.style.opacity = '1', 10);
+                        
+                        const removeIcon = () => {
+                            saveIcon.style.opacity = '0';
+                            setTimeout(() => saveIcon.remove(), 250);
+                        };
+                        
+                        const timer = setTimeout(removeIcon, 3000);
+                        
+                        saveIcon.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            clearTimeout(timer);
+                            const textToCopy = messageContent.textContent.trim();
+                            navigator.clipboard.writeText(textToCopy)
+                                .then(() => {
+                                    saveIcon.textContent = '✅';
+                                    setTimeout(removeIcon, 1000);
+                                })
+                                .catch(err => {
+                                    console.error('Chyba při kopírování:', err);
+                                    saveIcon.textContent = '❌';
+                                    setTimeout(removeIcon, 1000);
+                                });
+                        });
+                    }
+                });
+                
+                messageDiv.addEventListener('mouseleave', () => {
+                    const saveIcon = messageDiv.querySelector('.save-icon');
+                    if (saveIcon) {
+                        saveIcon.style.opacity = '0';
+                        setTimeout(() => saveIcon.remove(), 250);
+                    }
+                });
+            }
+            
             messagesContainer.appendChild(messageDiv);
             
             // Scroll na konec
@@ -586,14 +794,41 @@
             const sendButton = document.getElementById('sendButton');
             const chatInput = document.getElementById('chatInput');
 
-            // Otevření/zavření chatu
-            chatIcon.addEventListener('click', () => {
-                const isVisible = chatWindow.style.display === 'flex';
-                chatWindow.style.display = isVisible ? 'none' : 'flex';
+            let clickCount = 0;
+            let clickTimer = null;
+
+            // Otevření/zavření chatu s multi-click funkcemi
+            chatIcon.addEventListener('click', (e) => {
+                clickCount++;
                 
-                if (!isVisible) {
-                    chatInput.focus();
-                    loadMessages();
+                if (clickCount === 1) {
+                    clickTimer = setTimeout(() => {
+                        // Single click - otevření/zavření chatu
+                        const isVisible = chatWindow.style.display === 'flex';
+                        chatWindow.style.display = isVisible ? 'none' : 'flex';
+                        
+                        if (!isVisible) {
+                            chatInput.focus();
+                            loadMessages();
+                        }
+                        clickCount = 0;
+                    }, 300);
+                } else if (clickCount === 2) {
+                    clearTimeout(clickTimer);
+                    clickTimer = setTimeout(() => {
+                        // Double click - reset chatu
+                        e.preventDefault();
+                        if (confirm('Opravdu chcete vymazat historii chatu?')) {
+                            resetChat();
+                        }
+                        clickCount = 0;
+                    }, 300);
+                } else if (clickCount === 3) {
+                    clearTimeout(clickTimer);
+                    // Triple click - výpis konverzace do konzole
+                    e.preventDefault();
+                    logConversation();
+                    clickCount = 0;
                 }
             });
 
@@ -617,14 +852,6 @@
                     if (message) {
                         sendMessage(message);
                     }
-                }
-            });
-
-            // Double-click na ikonu pro reset
-            chatIcon.addEventListener('dblclick', (e) => {
-                e.preventDefault();
-                if (confirm('Opravdu chcete vymazat historii chatu?')) {
-                    resetChat();
                 }
             });
         }
