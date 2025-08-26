@@ -589,7 +589,7 @@
 
           chatBoxContainer.classList.add('open');
           inputBox.focus();
-          const text = 'Ahoj! Jsem Evžen, váš AI asistent. Toto je zatím nenakonfigurovaný AI chatbot, bez instrukcí a znalostní báze, ale funguje 😉';
+          const text = 'Ahoj! Jsem Evžen, váš AI asistent. Toto je zatím nenakonfigurovaný AI chatbot, bez instrukcí a se znalostní bází sdílenou s Áďou, ale funguje 😉';
           const bubble = document.createElement('div');
           bubble.className = 'message assistant-message';
           bubble.style.filter = 'blur(10px)'; bubble.style.opacity = '0';
