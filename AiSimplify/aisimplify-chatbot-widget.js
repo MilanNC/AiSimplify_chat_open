@@ -8,7 +8,7 @@
  * 
  * Autor: Milan Roušavý
  * Web: www.aisimplify.cz
- * Email: info@aisimplify.cz
+ * Email: milan@aisimplify.cz
  * 
  * VAROVÁNÍ - AUTORSKÁ PRÁVA:
  * Tento software je chráněn autorským zákonem České republiky
@@ -27,7 +27,7 @@
  * - Peněžitému trestu až do výše 5 000 000 Kč
  * - Náhradě škody včetně ušlého zisku
  * 
- * Pro licencování kontaktujte: license@aisimplify.cz
+ * Pro licencování kontaktujte: milan@aisimplify.cz
  * 
  * =====================================================
  */
