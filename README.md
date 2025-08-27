@@ -29,4 +29,4 @@ Porušení těchto podmínek může vést k:
 ---
 
 ## Licencování
-Pro licencování kontaktujte: **license@aisimplify.cz**
+Pro licencování kontaktujte: **milan@aisimplify.cz**
