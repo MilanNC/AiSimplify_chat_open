@@ -6,7 +6,7 @@ Všechna práva vyhrazena.
 
 **Autor:** Milan Roušavý  
 **Web:** [www.aisimplify.cz](https://www.aisimplify.cz)  
-**Email:** info@aisimplify.cz  
+**Email:** milan@aisimplify.cz  
 
 ---
 
