@@ -33,18 +33,53 @@
  */
 
 (function() {
+    // =====================================================
+    // KONFIGURAČNÍ PROMĚNNÉ - ČASTO MĚNĚNÉ NASTAVENÍ
+    // =====================================================
+    
+    // Základní identifikace
+    const CLIENT_ID = 'AiSimplify';
+    const ASSISTANT_NAME = 'Milan';
+    
+    // Barvy a vzhled
+    const BRAND_GRADIENT = 'linear-gradient(90deg, #b477ff, #000000)'; // Hlavní gradient pro hlavičku a ikony - fialová do černé
+    const PRIMARY_COLOR = '#b477ff'; // Hlavní fialová barva pro zvýraznění a UI prvky
+    const USER_BUBBLE_COLOR = '#b477ff'; // Barva pozadí pro bubliny uživatelských zpráv
+    const ASSISTANT_BUBBLE_COLOR = '#f0f0f5'; // Světle šedá barva pro bubliny zpráv asistenta
+    const USER_BUBBLE_TEXT_COLOR = '#ffffff'; // Barva textu v uživatelských bublinách (bílá na fialovém pozadí)
+    const ASSISTANT_BUBBLE_TEXT_COLOR = '#000000'; // Barva textu v bublinách asistenta (černá na světlém pozadí)
+    const TEXT_LIGHT = '#ffffff'; // Bílá barva textu - používá se na tmavých pozadích (hlavička, tooltips)
+    const TEXT_DARK = '#000000'; // Černá barva textu - používá se na světlých pozadích
+    const BACKGROUND_COLOR = '#fff'; // Bílá barva pozadí pro obecné použití
+    
+    // Avatar a obrázky
+    const AVATAR_URL = 'https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png';
+    
+    // Úvodní zpráva asistenta
+    const INITIAL_MESSAGE = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně nabízených služeb AiSimplify! Odpovím Vám do pár vteřin😉';
+    
+    // Server API
+    const API_BASE_URL = 'https://chatbot-production-4d1d.up.railway.app';
+    
+    // =====================================================
+    // KONEC KONFIGURAČNÍCH PROMĚNNÝCH
+    // =====================================================
+
     const WIDGET_CONTAINER_ID = 'ai-simplify-chat-widget-container';
 
     const styles = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
     :root {
-      --header-gradient: linear-gradient(90deg, #b477ff, #000000);
-      --user-gradient: #b477ff;
-      --assistant-color: #f0f0f5;
-      --text-light: #ffffff;
-      --text-dark: #000000;
-      --bg: #fff;
+      --header-gradient: ${BRAND_GRADIENT};
+      --primary-color: ${PRIMARY_COLOR};
+      --user-bubble-color: ${USER_BUBBLE_COLOR};
+      --assistant-color: ${ASSISTANT_BUBBLE_COLOR};
+      --user-bubble-text: ${USER_BUBBLE_TEXT_COLOR};
+      --assistant-bubble-text: ${ASSISTANT_BUBBLE_TEXT_COLOR};
+      --text-light: ${TEXT_LIGHT};
+      --text-dark: ${TEXT_DARK};
+      --bg: ${BACKGROUND_COLOR};
       --shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
       --shadow-hover: rgba(0, 0, 0, 0.2) 0 6px 16px;
     }
@@ -323,11 +358,11 @@
       display: flex; flex-direction: column; gap: 12px;
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: var(--user-gradient) transparent;
+      scrollbar-color: var(--primary-color) transparent;
     }
     #chatBox::-webkit-scrollbar { width: 6px; }
     #chatBox::-webkit-scrollbar-thumb {
-      background: var(--user-gradient);
+      background: var(--primary-color);
       border-radius: 3px;
     }
 
@@ -371,13 +406,13 @@
     
     #chatBox .assistant-message {
       background: var(--assistant-color);
-      color: var(--text-dark);
+      color: var(--assistant-bubble-text);
       align-self: flex-start;
       border-top-left-radius: 4px; /* "Ocas" bubliny */
     }
     #chatBox .user-message {
-      background: var(--user-gradient);
-      color: var(--text-light);
+      background: var(--user-bubble-color);
+      color: var(--user-bubble-text);
       align-self: flex-end;
       border-top-right-radius: 4px; /* "Ocas" bubliny */
     }
@@ -396,7 +431,7 @@
       width: 16px;
       height: 16px;
       border: 2px solid rgba(180, 119, 255, 0.3);
-      border-top: 2px solid var(--user-gradient);
+      border-top: 2px solid var(--primary-color);
       border-radius: 50%;
       animation: formSpinner 1s linear infinite;
       flex-shrink: 0;
@@ -426,7 +461,7 @@
     }
     /* Vlastní odrážka pro moderní vzhled */
     #chatBox .assistant-message li::marker {
-      color: var(--user-gradient);
+      color: var(--primary-color);
       font-weight: bold;
     }
     #chatBox .assistant-message li strong {
@@ -497,7 +532,7 @@
       }
     }
     #sendIcon path {
-      fill: var(--user-gradient); /* Správné nastavení barvy ikony */
+      fill: var(--primary-color); /* Správné nastavení barvy ikony */
     }
     #sendButton .send-tooltip {
       position: absolute;
@@ -566,16 +601,24 @@
       /* Zajistíme, že se header správně zobrazuje v mobilní verzi */
       #chatHeader {
         display: flex !important;
-        padding: 12px 16px !important;
+        padding: 10px 12px !important; /* Zmenšeno z 12px 16px */
+        justify-content: space-between !important;
+        align-items: center !important;
       }
       
       .assistant-title {
         display: flex !important;
-        font-size: 18px !important;
+        font-size: 16px !important; /* Zmenšeno z 18px na 16px */
+        white-space: nowrap !important; /* Zabrání zalomení textu */
+        overflow: hidden !important; /* Skryje přetečený text */
+        text-overflow: ellipsis !important; /* Přidá trojtečku při přetečení */
+        max-width: calc(100vw - 120px) !important; /* Zajistí místo pro ikony */
       }
       
       #chatHeader > div {
         display: flex !important;
+        gap: 15px !important; /* Zmenšeno z default 25px */
+        margin-right: 5px !important; /* Zmenšeno z default 10px */
       }
     }
 
@@ -589,13 +632,13 @@
       border-radius: 12px;
       margin: 10px 0;
       font-style: italic;
-      color: var(--user-gradient);
+      color: var(--primary-color);
     }
     .form-spinner {
       width: 20px;
       height: 20px;
       border: 2px solid rgba(180, 119, 255, 0.3);
-      border-top: 2px solid var(--user-gradient);
+      border-top: 2px solid var(--primary-color);
       border-radius: 50%;
       animation: formSpinner 1s linear infinite;
     }
@@ -605,16 +648,16 @@
     const widgetHTML = `
       <div id="chatContainer">
         <div id="chatIcon">
-          <img src="https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png" alt="Virtuální asistent Milan" />
+          <img src="${AVATAR_URL}" alt="Virtuální asistent ${ASSISTANT_NAME}" />
           <div class="tooltip">Potřebujete poradit?</div>
         </div>
         <div id="chatBoxContainer" class="close">
           <div id="chatHeader">
             <span class="assistant-title">
-              <img src="https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png" alt="Avatar" />
-              Virtuální asistent <b>Milan</b>
+              <img src="${AVATAR_URL}" alt="Avatar" />
+              Virtuální asistent <b>${ASSISTANT_NAME}</b>
               <div class="title-tooltip">
-                Vytvořili mě v <a href="https://www.aisimplify.cz" target="_blank" style="color: #b477ff; text-decoration: none; font-weight: bold;">www.aisimplify.cz</a> 😉
+                Vytvořili mě v <a href="https://www.aisimplify.cz" target="_blank" style="color: ${PRIMARY_COLOR}; text-decoration: none; font-weight: bold;">www.aisimplify.cz</a> 😉
               </div>
             </span>
             <div>
@@ -672,9 +715,9 @@
             return;
         }
 
-        const API_BASE = 'https://chatbot-production-4d1d.up.railway.app';
-        const clientID = 'AiSimplify'; // Můžete zvážit předání jako data atributu na kontejneru
-        const STORAGE_KEY = 'chat_history_' + clientID; // Unikátní klíč pro různé instance
+        const API_BASE = API_BASE_URL;
+        const clientID = CLIENT_ID;
+        const STORAGE_KEY = 'chat_history_' + clientID;
         const TOPIC_KEY = 'etrieve_topic_id_' + clientID;
         let conversation = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
         let topicId = sessionStorage.getItem(TOPIC_KEY) || null;
@@ -751,7 +794,7 @@
 
           chatBoxContainer.classList.add('open');
           inputBox.focus();
-          const text = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně nabízených služeb AiSimplify! Odpovím Vám do pár vteřin😉';
+          const text = INITIAL_MESSAGE;
           const bubble = document.createElement('div');
           bubble.className = 'message assistant-message';
           bubble.style.filter = 'blur(10px)'; bubble.style.opacity = '0';
