@@ -3,7 +3,7 @@
  * AiSimplify Chatbot Widget - Proprietární Software
  * =====================================================
  * 
- * Copyright © 2025 AiSimplify s.r.o.
+ * Copyright © 2025 AiSimplify
  * Všechna práva vyhrazena.
  * 
  * Autor: Milan Roušavý
@@ -55,6 +55,9 @@
     // Avatar a obrázky
     const AVATAR_URL = 'https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png';
     
+    // Texty a zprávy
+    const CHAT_ICON_TOOLTIP = 'Ahoj! Klikni na mě a pomůžu ti s čímkoli ohledně AiSimplify! 😊';
+    
     // Úvodní zpráva asistenta
     const INITIAL_MESSAGE = 'Dobrý den, s čím Vám mohu pomoci?😉 Můžete se mě zeptat na cokoli ohledně nabízených služeb AiSimplify! Odpovím Vám do pár vteřin😉';
     
@@ -69,7 +72,24 @@
 
     const styles = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=refresh,close');
+    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+    
+    /* Material Symbols CSS pravidla */
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
     
     :root {
       --header-gradient: ${BRAND_GRADIENT};
@@ -97,17 +117,32 @@
 
     @keyframes gradientFlow {
       0% { background-position: 0% 50%; }
-      25% { background-position: 100% 25%; }
-      50% { background-position: 100% 75%; }
-      75% { background-position: 0% 100%; }
+      8% { background-position: 15% 30%; }
+      16% { background-position: 40% 70%; }
+      24% { background-position: 70% 20%; }
+      32% { background-position: 85% 80%; }
+      40% { background-position: 60% 40%; }
+      48% { background-position: 20% 90%; }
+      56% { background-position: 90% 10%; }
+      64% { background-position: 30% 60%; }
+      72% { background-position: 75% 85%; }
+      80% { background-position: 10% 25%; }
+      88% { background-position: 55% 95%; }
+      96% { background-position: 95% 45%; }
       100% { background-position: 0% 50%; }
     }
     @keyframes gradientRotate {
-      0% { transform: scale(1.2) rotate(0deg); }
-      25% { transform: scale(1.3) rotate(90deg); }
-      50% { transform: scale(1.4) rotate(180deg); }
-      75% { transform: scale(1.3) rotate(270deg); }
-      100% { transform: scale(1.2) rotate(360deg); }
+      0% { transform: scale(1.1) rotate(0deg); }
+      10% { transform: scale(1.15) rotate(18deg); }
+      20% { transform: scale(1.2) rotate(45deg); }
+      30% { transform: scale(1.25) rotate(72deg); }
+      40% { transform: scale(1.3) rotate(108deg); }
+      50% { transform: scale(1.35) rotate(144deg); }
+      60% { transform: scale(1.3) rotate(180deg); }
+      70% { transform: scale(1.25) rotate(216deg); }
+      80% { transform: scale(1.2) rotate(252deg); }
+      90% { transform: scale(1.15) rotate(288deg); }
+      100% { transform: scale(1.1) rotate(360deg); }
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -139,8 +174,14 @@
       display: flex; align-items: center; justify-content: center;
       color: var(--text-light); font-size: 36px;
       cursor: pointer; animation: pulse 2.5s infinite;
-      box-shadow: var(--shadow); position: relative; overflow: hidden;
+      box-shadow: var(--shadow), 0 0 40px rgba(180, 119, 255, 0.6), 0 0 80px rgba(180, 119, 255, 0.3); /* 2x výraznější záře s větším dosahem */
+      position: relative; overflow: hidden;
       background: white;
+      border: 2px solid var(--primary-color); /* Tenký obrys z PRIMARY_COLOR */
+      transition: box-shadow 0.3s ease; /* Plynulá transition pro hover efekt */
+    }
+    #chatIcon:hover {
+      box-shadow: var(--shadow-hover), 0 0 60px rgba(180, 119, 255, 1.0), 0 0 120px rgba(180, 119, 255, 0.5); /* 2x výraznější hover záře s větším dosahem */
     }
     #chatIcon img {
       width: 100%;
@@ -151,38 +192,30 @@
       z-index: 2;
     }
     #chatIcon:hover::before {
-      animation: gradientFlow 2s ease-in-out infinite, gradientRotate 2s ease-in-out infinite;
+      /* Animace zůstává stejná - neovlivňuje hover efekt */
+      animation: gradientFlow 15s ease-in-out infinite, gradientRotate 20s ease-in-out infinite;
       filter: blur(10px);
     }
     #chatIcon:hover::after {
-      animation: gradientFlow 3s ease-in-out infinite reverse;
-      opacity: 1;
+      /* Animace zůstává stejná - neovlivňuje hover efekt */
+      animation: gradientFlow 18s ease-in-out infinite reverse;
+      opacity: 0.8;
     }
     #chatIcon::before {
       content: ""; position: absolute; inset: 0;
-      background: var(--header-gradient); background-size: 300% 300%;
-      animation: gradientFlow 4s ease-in-out infinite, gradientRotate 4s ease-in-out infinite;
-      filter: blur(15px); z-index: 1;
+      background: var(--header-gradient); background-size: 600% 600%;
+      animation: gradientFlow 15s ease-in-out infinite, gradientRotate 20s ease-in-out infinite;
+      filter: blur(10px); z-index: 1;
       border-radius: 50%;
     }
     #chatIcon::after {
       content: ""; position: absolute; inset: -5px;
       background: linear-gradient(45deg, #b477ff, transparent, #000000, transparent, #b477ff);
-      background-size: 400% 400%;
-      animation: gradientFlow 6s ease-in-out infinite reverse;
-      filter: blur(20px); opacity: 0.7;
+      background-size: 600% 600%;
+      animation: gradientFlow 18s ease-in-out infinite reverse;
+      filter: blur(15px); opacity: 0.8;
       border-radius: 50%;
       z-index: 0;
-    }
-    #chatIcon .tooltip {
-      position: absolute; bottom: 70px; right: 0;
-      background: var(--header-gradient); color: var(--text-light);
-      padding: 6px 10px; border-radius: 12px; font-size: 0.85rem;
-      white-space: nowrap; opacity: 0; transition: opacity 0.3s;
-      pointer-events: none;
-    }
-    #chatIcon:hover .tooltip {
-      opacity: 1;
     }
 
     /* --- Okno chatu --- */
@@ -266,7 +299,7 @@
     .assistant-title:hover img {
       transform: scale(1.1); /* Mírné zvětšení při hoveru */
     }
-    /* Tooltip pro asistent title */
+    /* Tooltip pro asistent title - defaultně skrytý */
     .assistant-title .title-tooltip {
       position: absolute;
       bottom: -45px; /* Pod názvem */
@@ -279,10 +312,11 @@
       white-space: nowrap;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
       box-shadow: var(--shadow);
       z-index: 1000;
       transform: translateY(-5px);
+      visibility: hidden;
     }
     .assistant-title .title-tooltip::before {
       content: '';
@@ -295,16 +329,12 @@
       border-right: 5px solid transparent;
       border-bottom: 5px solid white;
     }
+    /* CSS hover povolený - stejně jako u ikon */
     .assistant-title:hover .title-tooltip {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
-    /* Pomalý fadeout tooltip po 2 sekundách */
-    .assistant-title .title-tooltip.fade-out {
-      opacity: 0;
-      transform: translateY(-5px);
-      transition: opacity 2s ease, transform 2s ease; /* Pomalý 2s fadeout */
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: all !important;
+      visibility: visible !important;
     }
     #chatHeader > div {
       display: flex;
@@ -321,7 +351,7 @@
     }
     #chatHeader .icon-container .icon {
       cursor: pointer;
-      font-size: 20px;
+      font-size: 30px;
       color: var(--text-light);
       transition: transform 0.3s ease;
       padding: 8px; /* Větší plocha pro kliknutí a lepší zarovnání */
@@ -329,8 +359,27 @@
       align-items: center;
       justify-content: center;
     }
+    /* Specifické styly pro Material Symbols ikony */
+    #chatHeader .icon-container .icon.material-symbols-outlined {
+      font-family: 'Material Symbols Outlined' !important;
+      font-weight: normal !important;
+      font-style: normal !important;
+      font-size: 30px !important;
+      line-height: 1 !important;
+      letter-spacing: normal !important;
+      text-transform: none !important;
+      white-space: nowrap !important;
+      word-wrap: normal !important;
+      direction: ltr !important;
+      -webkit-font-feature-settings: 'liga' !important;
+      -webkit-font-smoothing: antialiased !important;
+    }
     #chatHeader .icon-container .icon:hover {
-      transform: scale(1.1) rotate(90deg);
+      transform: scale(1.1);
+    }
+    /* Speciální hover efekt pro refresh ikonu */
+    #chatHeader .icon-container #chatRefresh:hover {
+      transform: scale(1.1) rotate(180deg);
     }
     #chatHeader .icon-container .icon-tooltip {
       position: absolute;
@@ -617,7 +666,7 @@
         position: relative !important; /* Pro tooltip pozicování */
       }
       
-      /* Mobilní tooltip - viditelný při doteku */
+      /* Mobilní tooltip - zobrazuje se při hover/touch */
       .assistant-title .title-tooltip {
         position: absolute !important;
         bottom: -50px !important; /* Pod názvem v mobilní verzi */
@@ -632,6 +681,18 @@
         z-index: 1001 !important;
         max-width: 250px !important;
         transition: opacity 0.3s ease, transform 0.3s ease !important;
+        opacity: 0 !important;
+        transform: translateY(-5px) !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+      }
+      
+      /* MOBILNÍ HOVER FUNGUJE - stejně jako u ikon */
+      .assistant-title:hover .title-tooltip {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: all !important;
+        visibility: visible !important;
       }
       
       #chatHeader > div {
@@ -668,7 +729,6 @@
       <div id="chatContainer">
         <div id="chatIcon">
           <img src="${AVATAR_URL}" alt="Virtuální asistent ${ASSISTANT_NAME}" />
-          <div class="tooltip">Potřebujete poradit?</div>
         </div>
         <div id="chatBoxContainer" class="close">
           <div id="chatHeader">
@@ -705,7 +765,20 @@
     `;
 
     // --- 3. VLOŽENÍ CSS A HTML DO STRÁNKY ---
+    function loadMaterialIcons() {
+        // Přidání Material Icons link do head pro spolehlivější načtení
+        if (!document.querySelector('link[href*="Material+Symbols+Outlined"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+            document.head.appendChild(link);
+        }
+    }
+
     function injectWidget() {
+        // Načtení Material Icons fontů
+        loadMaterialIcons();
+        
         // Vložení CSS
         const styleSheet = document.createElement("style");
         styleSheet.textContent = styles; // Použijte textContent pro <style>
@@ -1322,50 +1395,75 @@
         if (sendButton) sendButton.addEventListener('click', sendMessage);
         if (inputBox) inputBox.addEventListener('keypress', e=>{ if(e.key==='Enter') sendMessage(); });
 
-        // Tooltip fadeout logika - nezačne mizet dokud uživatel neopustí celou oblast
+        // Tooltip logika pro assistant title - konzistentní s ikonami
         const assistantTitle = document.querySelector(`#${WIDGET_CONTAINER_ID} .assistant-title`);
         if (assistantTitle) {
-          let tooltipTimeout;
+          let hoverTimeout;
+          let mobileTimeout;
           
-          assistantTitle.addEventListener('mouseenter', () => {
+          // Funkce pro detekci mobilního zařízení
+          const isMobile = () => {
+            return window.innerWidth <= 600 || 
+                   /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                   ('ontouchstart' in window);
+          };
+          
+          // Funkce pro zobrazení tooltip
+          const showTooltip = () => {
             const tooltip = assistantTitle.querySelector('.title-tooltip');
             if (tooltip) {
-              tooltip.classList.remove('fade-out');
-              clearTimeout(tooltipTimeout);
-              // Odebrali jsme automatický fadeout po 2 sekundách
+              tooltip.style.opacity = '1';
+              tooltip.style.transform = 'translateY(0)';
+              tooltip.style.pointerEvents = 'all';
+              tooltip.style.visibility = 'visible';
             }
-          });
+          };
           
-          assistantTitle.addEventListener('mouseleave', () => {
+          // Funkce pro skrytí tooltip
+          const hideTooltip = () => {
             const tooltip = assistantTitle.querySelector('.title-tooltip');
             if (tooltip) {
-              clearTimeout(tooltipTimeout);
-              tooltip.classList.add('fade-out');
+              tooltip.style.opacity = '0';
+              tooltip.style.transform = 'translateY(-5px)';
+              tooltip.style.pointerEvents = 'none';
+              tooltip.style.visibility = 'hidden';
             }
-          });
-        }
-
-        // Mobilní funkcionalita - zobrazení "vytvořili mě v aisimplify" po kliknutí na avatar/název
-        if (assistantTitle) {
-          assistantTitle.addEventListener('click', () => {
-            // Detekce mobilního zařízení
-            const isMobile = window.innerWidth <= 600;
-            if (isMobile) {
-              const tooltip = assistantTitle.querySelector('.title-tooltip');
-              if (tooltip) {
-                // Zobrazíme tooltip na 3 sekundy
-                tooltip.style.opacity = '1';
-                tooltip.style.transform = 'translateY(0)';
-                tooltip.style.pointerEvents = 'all';
-                
-                setTimeout(() => {
-                  tooltip.style.opacity = '0';
-                  tooltip.style.transform = 'translateY(-5px)';
-                  tooltip.style.pointerEvents = 'none';
-                }, 3000);
+          };
+          
+          // Pro mobilní zařízení - click events (stejně jako u ikon)
+          if (isMobile()) {
+            assistantTitle.addEventListener('click', (e) => {
+              e.stopPropagation(); // Zabrání propagaci eventu
+              showTooltip();
+              
+              // Automatické skrytí po 3 sekundách na mobilu
+              clearTimeout(mobileTimeout);
+              mobileTimeout = setTimeout(() => {
+                hideTooltip();
+              }, 3000);
+            });
+            
+            // Skrytí při kliknutí mimo element
+            document.addEventListener('click', (e) => {
+              if (!assistantTitle.contains(e.target)) {
+                clearTimeout(mobileTimeout);
+                hideTooltip();
               }
-            }
-          });
+            });
+          } else {
+            // Pro PC - mouse events s automatickým skrytím po 3 sekundách
+            assistantTitle.addEventListener('mouseenter', () => {
+              clearTimeout(hoverTimeout);
+              // Na PC se tooltip skryje automaticky po 3 sekundách
+              hoverTimeout = setTimeout(() => {
+                hideTooltip();
+              }, 3000);
+            });
+            
+            assistantTitle.addEventListener('mouseleave', () => {
+              clearTimeout(hoverTimeout);
+            });
+          }
         }
 
         // Inicializace - načtení konfigurace
