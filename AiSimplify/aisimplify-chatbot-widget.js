@@ -69,6 +69,7 @@
 
     const styles = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=refresh,close');
     
     :root {
       --header-gradient: ${BRAND_GRADIENT};
@@ -613,6 +614,24 @@
         overflow: hidden !important; /* Skryje přetečený text */
         text-overflow: ellipsis !important; /* Přidá trojtečku při přetečení */
         max-width: calc(100vw - 120px) !important; /* Zajistí místo pro ikony */
+        position: relative !important; /* Pro tooltip pozicování */
+      }
+      
+      /* Mobilní tooltip - viditelný při doteku */
+      .assistant-title .title-tooltip {
+        position: absolute !important;
+        bottom: -50px !important; /* Pod názvem v mobilní verzi */
+        left: 0 !important;
+        background: white !important;
+        color: #333 !important;
+        padding: 10px 15px !important;
+        border-radius: 12px !important;
+        font-size: 0.9rem !important;
+        white-space: nowrap !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+        z-index: 1001 !important;
+        max-width: 250px !important;
+        transition: opacity 0.3s ease, transform 0.3s ease !important;
       }
       
       #chatHeader > div {
@@ -662,11 +681,11 @@
             </span>
             <div>
               <div class="icon-container">
-                <span id="chatRefresh" class="icon">⟲</span>
+                <span id="chatRefresh" class="icon material-symbols-outlined">refresh</span>
                 <div class="icon-tooltip">Nový chat</div>
               </div>
               <div class="icon-container">
-                <span id="chatClose" class="icon">✖</span>
+                <span id="chatClose" class="icon material-symbols-outlined">close</span>
                 <div class="icon-tooltip">Zavřít chat</div>
               </div>
             </div>
@@ -1322,6 +1341,29 @@
             if (tooltip) {
               clearTimeout(tooltipTimeout);
               tooltip.classList.add('fade-out');
+            }
+          });
+        }
+
+        // Mobilní funkcionalita - zobrazení "vytvořili mě v aisimplify" po kliknutí na avatar/název
+        if (assistantTitle) {
+          assistantTitle.addEventListener('click', () => {
+            // Detekce mobilního zařízení
+            const isMobile = window.innerWidth <= 600;
+            if (isMobile) {
+              const tooltip = assistantTitle.querySelector('.title-tooltip');
+              if (tooltip) {
+                // Zobrazíme tooltip na 3 sekundy
+                tooltip.style.opacity = '1';
+                tooltip.style.transform = 'translateY(0)';
+                tooltip.style.pointerEvents = 'all';
+                
+                setTimeout(() => {
+                  tooltip.style.opacity = '0';
+                  tooltip.style.transform = 'translateY(-5px)';
+                  tooltip.style.pointerEvents = 'none';
+                }, 3000);
+              }
             }
           });
         }
