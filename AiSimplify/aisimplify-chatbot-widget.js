@@ -53,7 +53,7 @@
     const BACKGROUND_COLOR = '#fff'; // Bílá barva pozadí pro obecné použití
     
     // Avatar a obrázky
-    const AVATAR_URL = 'https://static.wixstatic.com/media/ae7bf7_4c28c0f4765b482182668193d4f80fed~mv2.png';
+    const AVATAR_URL = 'https://static.wixstatic.com/media/ae7bf7_fed23385ed1a405b8234979ba8122f42~mv2.png';
     
     // Texty a zprávy
     const CHAT_ICON_TOOLTIP = 'Ahoj! Klikni na mě a pomůžu ti s čímkoli ohledně AiSimplify! 😊';
