@@ -635,7 +635,7 @@
       }
       
       #chatBox .message { max-width: 90%; }
-      #inputContainer { padding-bottom: 20px; }
+      #inputContainer { padding-bottom: 20%; }
       
       /* Explicitně bílá barva pro ikony v mobilní verzi */
       #chatHeader .icon-container .icon {
