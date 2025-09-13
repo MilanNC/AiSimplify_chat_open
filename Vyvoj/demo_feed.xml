@@ -1,0 +1,2403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SHOP>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00001</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 1</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 1</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 1 je Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/1</URL>
+    <IMGURL>https://picsum.photos/seed/cz1/600/600</IMGURL>
+    <PRICE_VAT>5831.16</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00002</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 2</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 2</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 2 je Oceníte při každodenním používání. Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/2</URL>
+    <IMGURL>https://picsum.photos/seed/cz2/600/600</IMGURL>
+    <PRICE_VAT>8403.29</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00003</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 3</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 3</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 3 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/3</URL>
+    <IMGURL>https://picsum.photos/seed/cz3/600/600</IMGURL>
+    <PRICE_VAT>45342.33</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00004</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 4</PRODUCTNAME>
+    <PRODUCT>LG Produkt 4</PRODUCT>
+    <DESCRIPTION>LG Produkt 4 je Kvalitní zpracování zajišťuje dlouhou životnost. Moderní a úsporný produkt, který šetří váš čas i peníze. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/4</URL>
+    <IMGURL>https://picsum.photos/seed/cz4/600/600</IMGURL>
+    <PRICE_VAT>36735.94</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00005</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 5</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 5</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 5 je Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/5</URL>
+    <IMGURL>https://picsum.photos/seed/cz5/600/600</IMGURL>
+    <PRICE_VAT>14944.18</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00006</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 6</PRODUCTNAME>
+    <PRODUCT>LG Produkt 6</PRODUCT>
+    <DESCRIPTION>LG Produkt 6 je Oblíbený produkt mezi českými zákazníky. Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/6</URL>
+    <IMGURL>https://picsum.photos/seed/cz6/600/600</IMGURL>
+    <PRICE_VAT>38555.34</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00007</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 7</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 7</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 7 je Výborný poměr ceny a výkonu. Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/7</URL>
+    <IMGURL>https://picsum.photos/seed/cz7/600/600</IMGURL>
+    <PRICE_VAT>20212.79</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00008</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 8</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 8</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 8 je Vhodné jako dárek pro vaše blízké. Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/8</URL>
+    <IMGURL>https://picsum.photos/seed/cz8/600/600</IMGURL>
+    <PRICE_VAT>25748.28</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00009</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 9</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 9</PRODUCT>
+    <DESCRIPTION>ETA Produkt 9 je Oblíbený produkt mezi českými zákazníky. Snadné ovládání a intuitivní design. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/9</URL>
+    <IMGURL>https://picsum.photos/seed/cz9/600/600</IMGURL>
+    <PRICE_VAT>17177.35</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00010</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 10</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 10</PRODUCT>
+    <DESCRIPTION>ETA Produkt 10 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/10</URL>
+    <IMGURL>https://picsum.photos/seed/cz10/600/600</IMGURL>
+    <PRICE_VAT>9858.56</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00011</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 11</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 11</PRODUCT>
+    <DESCRIPTION>Makita Produkt 11 je Oceníte při každodenním používání. Výborný poměr ceny a výkonu. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/11</URL>
+    <IMGURL>https://picsum.photos/seed/cz11/600/600</IMGURL>
+    <PRICE_VAT>26833.88</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00012</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 12</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 12</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 12 je Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/12</URL>
+    <IMGURL>https://picsum.photos/seed/cz12/600/600</IMGURL>
+    <PRICE_VAT>8111.20</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00013</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 13</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 13</PRODUCT>
+    <DESCRIPTION>Concept Produkt 13 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/13</URL>
+    <IMGURL>https://picsum.photos/seed/cz13/600/600</IMGURL>
+    <PRICE_VAT>7169.02</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00014</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 14</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 14</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 14 je Oceníte při každodenním používání. Oblíbený produkt mezi českými zákazníky. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/14</URL>
+    <IMGURL>https://picsum.photos/seed/cz14/600/600</IMGURL>
+    <PRICE_VAT>31896.29</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00015</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 15</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 15</PRODUCT>
+    <DESCRIPTION>ETA Produkt 15 je Kvalitní zpracování zajišťuje dlouhou životnost. Oceníte při každodenním používání. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/15</URL>
+    <IMGURL>https://picsum.photos/seed/cz15/600/600</IMGURL>
+    <PRICE_VAT>4603.82</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00016</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 16</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 16</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 16 je Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/16</URL>
+    <IMGURL>https://picsum.photos/seed/cz16/600/600</IMGURL>
+    <PRICE_VAT>49274.73</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00017</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 17</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 17</PRODUCT>
+    <DESCRIPTION>Concept Produkt 17 je Oceníte při každodenním používání. Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/17</URL>
+    <IMGURL>https://picsum.photos/seed/cz17/600/600</IMGURL>
+    <PRICE_VAT>1677.72</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00018</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 18</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 18</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 18 je Snadné ovládání a intuitivní design. Oceníte při každodenním používání. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/18</URL>
+    <IMGURL>https://picsum.photos/seed/cz18/600/600</IMGURL>
+    <PRICE_VAT>37333.64</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00019</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 19</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 19</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 19 je Oblíbený produkt mezi českými zákazníky. Snadné ovládání a intuitivní design. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/19</URL>
+    <IMGURL>https://picsum.photos/seed/cz19/600/600</IMGURL>
+    <PRICE_VAT>38918.58</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00020</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 20</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 20</PRODUCT>
+    <DESCRIPTION>Makita Produkt 20 je Oceníte při každodenním používání. Kvalitní zpracování zajišťuje dlouhou životnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/20</URL>
+    <IMGURL>https://picsum.photos/seed/cz20/600/600</IMGURL>
+    <PRICE_VAT>40212.69</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00021</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 21</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 21</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 21 je Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/21</URL>
+    <IMGURL>https://picsum.photos/seed/cz21/600/600</IMGURL>
+    <PRICE_VAT>17802.21</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00022</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 22</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 22</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 22 je Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/22</URL>
+    <IMGURL>https://picsum.photos/seed/cz22/600/600</IMGURL>
+    <PRICE_VAT>43634.04</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00023</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 23</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 23</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 23 je Oceníte při každodenním používání. Kvalitní zpracování zajišťuje dlouhou životnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/23</URL>
+    <IMGURL>https://picsum.photos/seed/cz23/600/600</IMGURL>
+    <PRICE_VAT>11632.76</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00024</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 24</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 24</PRODUCT>
+    <DESCRIPTION>Makita Produkt 24 je Oblíbený produkt mezi českými zákazníky. Výborný poměr ceny a výkonu. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/24</URL>
+    <IMGURL>https://picsum.photos/seed/cz24/600/600</IMGURL>
+    <PRICE_VAT>44381.49</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00025</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 25</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 25</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 25 je Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/25</URL>
+    <IMGURL>https://picsum.photos/seed/cz25/600/600</IMGURL>
+    <PRICE_VAT>38026.70</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00026</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 26</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 26</PRODUCT>
+    <DESCRIPTION>Philips Produkt 26 je Výborný poměr ceny a výkonu. Kvalitní zpracování zajišťuje dlouhou životnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/26</URL>
+    <IMGURL>https://picsum.photos/seed/cz26/600/600</IMGURL>
+    <PRICE_VAT>4645.18</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00027</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 27</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 27</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 27 je Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/27</URL>
+    <IMGURL>https://picsum.photos/seed/cz27/600/600</IMGURL>
+    <PRICE_VAT>36662.74</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00028</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 28</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 28</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 28 je Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/28</URL>
+    <IMGURL>https://picsum.photos/seed/cz28/600/600</IMGURL>
+    <PRICE_VAT>45767.66</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00029</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 29</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 29</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 29 je Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/29</URL>
+    <IMGURL>https://picsum.photos/seed/cz29/600/600</IMGURL>
+    <PRICE_VAT>34941.22</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00030</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 30</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 30</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 30 je Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/30</URL>
+    <IMGURL>https://picsum.photos/seed/cz30/600/600</IMGURL>
+    <PRICE_VAT>16117.58</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00031</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 31</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 31</PRODUCT>
+    <DESCRIPTION>Concept Produkt 31 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/31</URL>
+    <IMGURL>https://picsum.photos/seed/cz31/600/600</IMGURL>
+    <PRICE_VAT>48872.91</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00032</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 32</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 32</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 32 je Oblíbený produkt mezi českými zákazníky. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/32</URL>
+    <IMGURL>https://picsum.photos/seed/cz32/600/600</IMGURL>
+    <PRICE_VAT>18741.60</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00033</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 33</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 33</PRODUCT>
+    <DESCRIPTION>ETA Produkt 33 je Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/33</URL>
+    <IMGURL>https://picsum.photos/seed/cz33/600/600</IMGURL>
+    <PRICE_VAT>3054.39</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00034</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 34</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 34</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 34 je Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/34</URL>
+    <IMGURL>https://picsum.photos/seed/cz34/600/600</IMGURL>
+    <PRICE_VAT>32518.37</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00035</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 35</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 35</PRODUCT>
+    <DESCRIPTION>Concept Produkt 35 je Oceníte při každodenním používání. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/35</URL>
+    <IMGURL>https://picsum.photos/seed/cz35/600/600</IMGURL>
+    <PRICE_VAT>25299.29</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00036</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 36</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 36</PRODUCT>
+    <DESCRIPTION>Makita Produkt 36 je Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/36</URL>
+    <IMGURL>https://picsum.photos/seed/cz36/600/600</IMGURL>
+    <PRICE_VAT>21691.94</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00037</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 37</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 37</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 37 je Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/37</URL>
+    <IMGURL>https://picsum.photos/seed/cz37/600/600</IMGURL>
+    <PRICE_VAT>16629.13</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00038</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 38</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 38</PRODUCT>
+    <DESCRIPTION>Philips Produkt 38 je Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/38</URL>
+    <IMGURL>https://picsum.photos/seed/cz38/600/600</IMGURL>
+    <PRICE_VAT>35434.57</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00039</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 39</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 39</PRODUCT>
+    <DESCRIPTION>Makita Produkt 39 je Výborný poměr ceny a výkonu. Kvalitní zpracování zajišťuje dlouhou životnost. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/39</URL>
+    <IMGURL>https://picsum.photos/seed/cz39/600/600</IMGURL>
+    <PRICE_VAT>14612.08</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00040</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 40</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 40</PRODUCT>
+    <DESCRIPTION>Makita Produkt 40 je Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/40</URL>
+    <IMGURL>https://picsum.photos/seed/cz40/600/600</IMGURL>
+    <PRICE_VAT>33851.61</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00041</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 41</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 41</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 41 je Snadné ovládání a intuitivní design. Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/41</URL>
+    <IMGURL>https://picsum.photos/seed/cz41/600/600</IMGURL>
+    <PRICE_VAT>25242.02</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00042</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 42</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 42</PRODUCT>
+    <DESCRIPTION>Philips Produkt 42 je Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/42</URL>
+    <IMGURL>https://picsum.photos/seed/cz42/600/600</IMGURL>
+    <PRICE_VAT>30836.64</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00043</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 43</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 43</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 43 je Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/43</URL>
+    <IMGURL>https://picsum.photos/seed/cz43/600/600</IMGURL>
+    <PRICE_VAT>39989.54</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00044</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 44</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 44</PRODUCT>
+    <DESCRIPTION>ETA Produkt 44 je Navrženo pro maximální komfort a bezpečnost. Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/44</URL>
+    <IMGURL>https://picsum.photos/seed/cz44/600/600</IMGURL>
+    <PRICE_VAT>8115.46</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00045</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 45</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 45</PRODUCT>
+    <DESCRIPTION>Philips Produkt 45 je Výborný poměr ceny a výkonu. Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/45</URL>
+    <IMGURL>https://picsum.photos/seed/cz45/600/600</IMGURL>
+    <PRICE_VAT>45546.19</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00046</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 46</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 46</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 46 je Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/46</URL>
+    <IMGURL>https://picsum.photos/seed/cz46/600/600</IMGURL>
+    <PRICE_VAT>27572.92</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00047</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 47</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 47</PRODUCT>
+    <DESCRIPTION>Philips Produkt 47 je Oblíbený produkt mezi českými zákazníky. Snadné ovládání a intuitivní design. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/47</URL>
+    <IMGURL>https://picsum.photos/seed/cz47/600/600</IMGURL>
+    <PRICE_VAT>6079.61</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00048</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 48</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 48</PRODUCT>
+    <DESCRIPTION>Philips Produkt 48 je Moderní a úsporný produkt, který šetří váš čas i peníze. Oceníte při každodenním používání. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/48</URL>
+    <IMGURL>https://picsum.photos/seed/cz48/600/600</IMGURL>
+    <PRICE_VAT>23561.83</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00049</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 49</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 49</PRODUCT>
+    <DESCRIPTION>Philips Produkt 49 je Navrženo pro maximální komfort a bezpečnost. Navrženo pro maximální komfort a bezpečnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/49</URL>
+    <IMGURL>https://picsum.photos/seed/cz49/600/600</IMGURL>
+    <PRICE_VAT>19809.30</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00050</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 50</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 50</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 50 je Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/50</URL>
+    <IMGURL>https://picsum.photos/seed/cz50/600/600</IMGURL>
+    <PRICE_VAT>6735.95</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00051</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 51</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 51</PRODUCT>
+    <DESCRIPTION>Makita Produkt 51 je Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/51</URL>
+    <IMGURL>https://picsum.photos/seed/cz51/600/600</IMGURL>
+    <PRICE_VAT>14793.45</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00052</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 52</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 52</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 52 je Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/52</URL>
+    <IMGURL>https://picsum.photos/seed/cz52/600/600</IMGURL>
+    <PRICE_VAT>36938.75</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00053</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 53</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 53</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 53 je Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/53</URL>
+    <IMGURL>https://picsum.photos/seed/cz53/600/600</IMGURL>
+    <PRICE_VAT>7458.34</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00054</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 54</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 54</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 54 je Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/54</URL>
+    <IMGURL>https://picsum.photos/seed/cz54/600/600</IMGURL>
+    <PRICE_VAT>7747.25</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00055</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 55</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 55</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 55 je Navrženo pro maximální komfort a bezpečnost. Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/55</URL>
+    <IMGURL>https://picsum.photos/seed/cz55/600/600</IMGURL>
+    <PRICE_VAT>8009.02</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00056</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 56</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 56</PRODUCT>
+    <DESCRIPTION>ETA Produkt 56 je Moderní a úsporný produkt, který šetří váš čas i peníze. Oceníte při každodenním používání. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/56</URL>
+    <IMGURL>https://picsum.photos/seed/cz56/600/600</IMGURL>
+    <PRICE_VAT>47825.81</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00057</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 57</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 57</PRODUCT>
+    <DESCRIPTION>Philips Produkt 57 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/57</URL>
+    <IMGURL>https://picsum.photos/seed/cz57/600/600</IMGURL>
+    <PRICE_VAT>4925.45</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00058</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 58</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 58</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 58 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/58</URL>
+    <IMGURL>https://picsum.photos/seed/cz58/600/600</IMGURL>
+    <PRICE_VAT>40825.28</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00059</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 59</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 59</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 59 je Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/59</URL>
+    <IMGURL>https://picsum.photos/seed/cz59/600/600</IMGURL>
+    <PRICE_VAT>12106.42</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00060</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 60</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 60</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 60 je Oblíbený produkt mezi českými zákazníky. Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/60</URL>
+    <IMGURL>https://picsum.photos/seed/cz60/600/600</IMGURL>
+    <PRICE_VAT>18845.24</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00061</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 61</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 61</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 61 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/61</URL>
+    <IMGURL>https://picsum.photos/seed/cz61/600/600</IMGURL>
+    <PRICE_VAT>34666.48</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00062</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 62</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 62</PRODUCT>
+    <DESCRIPTION>Makita Produkt 62 je Moderní a úsporný produkt, který šetří váš čas i peníze. Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/62</URL>
+    <IMGURL>https://picsum.photos/seed/cz62/600/600</IMGURL>
+    <PRICE_VAT>19236.86</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00063</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 63</PRODUCTNAME>
+    <PRODUCT>LG Produkt 63</PRODUCT>
+    <DESCRIPTION>LG Produkt 63 je Vhodné jako dárek pro vaše blízké. Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/63</URL>
+    <IMGURL>https://picsum.photos/seed/cz63/600/600</IMGURL>
+    <PRICE_VAT>20254.05</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00064</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 64</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 64</PRODUCT>
+    <DESCRIPTION>Philips Produkt 64 je Oceníte při každodenním používání. Navrženo pro maximální komfort a bezpečnost. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/64</URL>
+    <IMGURL>https://picsum.photos/seed/cz64/600/600</IMGURL>
+    <PRICE_VAT>14523.33</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00065</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 65</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 65</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 65 je Navrženo pro maximální komfort a bezpečnost. Moderní a úsporný produkt, který šetří váš čas i peníze. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/65</URL>
+    <IMGURL>https://picsum.photos/seed/cz65/600/600</IMGURL>
+    <PRICE_VAT>36571.67</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00066</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 66</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 66</PRODUCT>
+    <DESCRIPTION>Philips Produkt 66 je Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/66</URL>
+    <IMGURL>https://picsum.photos/seed/cz66/600/600</IMGURL>
+    <PRICE_VAT>49995.71</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00067</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 67</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 67</PRODUCT>
+    <DESCRIPTION>ETA Produkt 67 je Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/67</URL>
+    <IMGURL>https://picsum.photos/seed/cz67/600/600</IMGURL>
+    <PRICE_VAT>3310.66</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00068</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 68</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 68</PRODUCT>
+    <DESCRIPTION>Makita Produkt 68 je Oblíbený produkt mezi českými zákazníky. Navrženo pro maximální komfort a bezpečnost. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/68</URL>
+    <IMGURL>https://picsum.photos/seed/cz68/600/600</IMGURL>
+    <PRICE_VAT>31243.37</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00069</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 69</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 69</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 69 je Kvalitní zpracování zajišťuje dlouhou životnost. Oceníte při každodenním používání. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/69</URL>
+    <IMGURL>https://picsum.photos/seed/cz69/600/600</IMGURL>
+    <PRICE_VAT>40062.75</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00070</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 70</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 70</PRODUCT>
+    <DESCRIPTION>Concept Produkt 70 je Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/70</URL>
+    <IMGURL>https://picsum.photos/seed/cz70/600/600</IMGURL>
+    <PRICE_VAT>31156.23</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00071</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 71</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 71</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 71 je Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/71</URL>
+    <IMGURL>https://picsum.photos/seed/cz71/600/600</IMGURL>
+    <PRICE_VAT>517.25</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00072</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 72</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 72</PRODUCT>
+    <DESCRIPTION>Philips Produkt 72 je Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/72</URL>
+    <IMGURL>https://picsum.photos/seed/cz72/600/600</IMGURL>
+    <PRICE_VAT>9145.26</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00073</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 73</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 73</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 73 je Navrženo pro maximální komfort a bezpečnost. Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/73</URL>
+    <IMGURL>https://picsum.photos/seed/cz73/600/600</IMGURL>
+    <PRICE_VAT>43748.51</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00074</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 74</PRODUCTNAME>
+    <PRODUCT>LG Produkt 74</PRODUCT>
+    <DESCRIPTION>LG Produkt 74 je Oblíbený produkt mezi českými zákazníky. Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/74</URL>
+    <IMGURL>https://picsum.photos/seed/cz74/600/600</IMGURL>
+    <PRICE_VAT>43813.84</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00075</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 75</PRODUCTNAME>
+    <PRODUCT>LG Produkt 75</PRODUCT>
+    <DESCRIPTION>LG Produkt 75 je Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/75</URL>
+    <IMGURL>https://picsum.photos/seed/cz75/600/600</IMGURL>
+    <PRICE_VAT>15751.64</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00076</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 76</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 76</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 76 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/76</URL>
+    <IMGURL>https://picsum.photos/seed/cz76/600/600</IMGURL>
+    <PRICE_VAT>3750.28</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00077</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 77</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 77</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 77 je Výborný poměr ceny a výkonu. Kvalitní zpracování zajišťuje dlouhou životnost. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/77</URL>
+    <IMGURL>https://picsum.photos/seed/cz77/600/600</IMGURL>
+    <PRICE_VAT>29125.38</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00078</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 78</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 78</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 78 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/78</URL>
+    <IMGURL>https://picsum.photos/seed/cz78/600/600</IMGURL>
+    <PRICE_VAT>47269.32</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00079</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 79</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 79</PRODUCT>
+    <DESCRIPTION>ETA Produkt 79 je Moderní a úsporný produkt, který šetří váš čas i peníze. Oblíbený produkt mezi českými zákazníky. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/79</URL>
+    <IMGURL>https://picsum.photos/seed/cz79/600/600</IMGURL>
+    <PRICE_VAT>10807.52</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00080</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 80</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 80</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 80 je Kvalitní zpracování zajišťuje dlouhou životnost. Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/80</URL>
+    <IMGURL>https://picsum.photos/seed/cz80/600/600</IMGURL>
+    <PRICE_VAT>39960.03</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00081</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 81</PRODUCTNAME>
+    <PRODUCT>LG Produkt 81</PRODUCT>
+    <DESCRIPTION>LG Produkt 81 je Oceníte při každodenním používání. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/81</URL>
+    <IMGURL>https://picsum.photos/seed/cz81/600/600</IMGURL>
+    <PRICE_VAT>48725.91</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00082</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 82</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 82</PRODUCT>
+    <DESCRIPTION>ETA Produkt 82 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/82</URL>
+    <IMGURL>https://picsum.photos/seed/cz82/600/600</IMGURL>
+    <PRICE_VAT>39211.82</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00083</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 83</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 83</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 83 je Navrženo pro maximální komfort a bezpečnost. Oblíbený produkt mezi českými zákazníky. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/83</URL>
+    <IMGURL>https://picsum.photos/seed/cz83/600/600</IMGURL>
+    <PRICE_VAT>20843.23</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00084</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 84</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 84</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 84 je Kvalitní zpracování zajišťuje dlouhou životnost. Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/84</URL>
+    <IMGURL>https://picsum.photos/seed/cz84/600/600</IMGURL>
+    <PRICE_VAT>26227.35</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00085</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 85</PRODUCTNAME>
+    <PRODUCT>LG Produkt 85</PRODUCT>
+    <DESCRIPTION>LG Produkt 85 je Vhodné jako dárek pro vaše blízké. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/85</URL>
+    <IMGURL>https://picsum.photos/seed/cz85/600/600</IMGURL>
+    <PRICE_VAT>1957.82</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00086</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 86</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 86</PRODUCT>
+    <DESCRIPTION>Concept Produkt 86 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/86</URL>
+    <IMGURL>https://picsum.photos/seed/cz86/600/600</IMGURL>
+    <PRICE_VAT>8874.54</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00087</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 87</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 87</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 87 je Kvalitní zpracování zajišťuje dlouhou životnost. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/87</URL>
+    <IMGURL>https://picsum.photos/seed/cz87/600/600</IMGURL>
+    <PRICE_VAT>37840.78</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00088</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 88</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 88</PRODUCT>
+    <DESCRIPTION>ETA Produkt 88 je Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/88</URL>
+    <IMGURL>https://picsum.photos/seed/cz88/600/600</IMGURL>
+    <PRICE_VAT>48777.41</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00089</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 89</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 89</PRODUCT>
+    <DESCRIPTION>ETA Produkt 89 je Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/89</URL>
+    <IMGURL>https://picsum.photos/seed/cz89/600/600</IMGURL>
+    <PRICE_VAT>16107.52</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00090</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 90</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 90</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 90 je Oceníte při každodenním používání. Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/90</URL>
+    <IMGURL>https://picsum.photos/seed/cz90/600/600</IMGURL>
+    <PRICE_VAT>12146.26</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00091</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 91</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 91</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 91 je Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/91</URL>
+    <IMGURL>https://picsum.photos/seed/cz91/600/600</IMGURL>
+    <PRICE_VAT>7784.92</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00092</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 92</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 92</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 92 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/92</URL>
+    <IMGURL>https://picsum.photos/seed/cz92/600/600</IMGURL>
+    <PRICE_VAT>25256.60</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00093</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 93</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 93</PRODUCT>
+    <DESCRIPTION>Concept Produkt 93 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/93</URL>
+    <IMGURL>https://picsum.photos/seed/cz93/600/600</IMGURL>
+    <PRICE_VAT>11627.77</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00094</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 94</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 94</PRODUCT>
+    <DESCRIPTION>Concept Produkt 94 je Oceníte při každodenním používání. Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/94</URL>
+    <IMGURL>https://picsum.photos/seed/cz94/600/600</IMGURL>
+    <PRICE_VAT>43307.12</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00095</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 95</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 95</PRODUCT>
+    <DESCRIPTION>Makita Produkt 95 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/95</URL>
+    <IMGURL>https://picsum.photos/seed/cz95/600/600</IMGURL>
+    <PRICE_VAT>2381.29</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00096</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 96</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 96</PRODUCT>
+    <DESCRIPTION>Makita Produkt 96 je Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/96</URL>
+    <IMGURL>https://picsum.photos/seed/cz96/600/600</IMGURL>
+    <PRICE_VAT>33445.88</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00097</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 97</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 97</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 97 je Vhodné jako dárek pro vaše blízké. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/97</URL>
+    <IMGURL>https://picsum.photos/seed/cz97/600/600</IMGURL>
+    <PRICE_VAT>21714.08</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00098</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 98</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 98</PRODUCT>
+    <DESCRIPTION>Makita Produkt 98 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/98</URL>
+    <IMGURL>https://picsum.photos/seed/cz98/600/600</IMGURL>
+    <PRICE_VAT>33870.01</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00099</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 99</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 99</PRODUCT>
+    <DESCRIPTION>Philips Produkt 99 je Kvalitní zpracování zajišťuje dlouhou životnost. Snadné ovládání a intuitivní design. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/99</URL>
+    <IMGURL>https://picsum.photos/seed/cz99/600/600</IMGURL>
+    <PRICE_VAT>30197.30</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00100</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 100</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 100</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 100 je Vhodné jako dárek pro vaše blízké. Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/100</URL>
+    <IMGURL>https://picsum.photos/seed/cz100/600/600</IMGURL>
+    <PRICE_VAT>9580.82</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00101</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 101</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 101</PRODUCT>
+    <DESCRIPTION>Makita Produkt 101 je Vhodné jako dárek pro vaše blízké. Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/101</URL>
+    <IMGURL>https://picsum.photos/seed/cz101/600/600</IMGURL>
+    <PRICE_VAT>4125.63</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00102</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 102</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 102</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 102 je Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/102</URL>
+    <IMGURL>https://picsum.photos/seed/cz102/600/600</IMGURL>
+    <PRICE_VAT>34774.60</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00103</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 103</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 103</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 103 je Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/103</URL>
+    <IMGURL>https://picsum.photos/seed/cz103/600/600</IMGURL>
+    <PRICE_VAT>40996.78</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00104</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 104</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 104</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 104 je Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/104</URL>
+    <IMGURL>https://picsum.photos/seed/cz104/600/600</IMGURL>
+    <PRICE_VAT>5148.94</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00105</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 105</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 105</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 105 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/105</URL>
+    <IMGURL>https://picsum.photos/seed/cz105/600/600</IMGURL>
+    <PRICE_VAT>17784.15</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00106</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 106</PRODUCTNAME>
+    <PRODUCT>LG Produkt 106</PRODUCT>
+    <DESCRIPTION>LG Produkt 106 je Kvalitní zpracování zajišťuje dlouhou životnost. Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/106</URL>
+    <IMGURL>https://picsum.photos/seed/cz106/600/600</IMGURL>
+    <PRICE_VAT>19895.88</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00107</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 107</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 107</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 107 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/107</URL>
+    <IMGURL>https://picsum.photos/seed/cz107/600/600</IMGURL>
+    <PRICE_VAT>8009.49</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00108</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 108</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 108</PRODUCT>
+    <DESCRIPTION>Concept Produkt 108 je Výborný poměr ceny a výkonu. Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/108</URL>
+    <IMGURL>https://picsum.photos/seed/cz108/600/600</IMGURL>
+    <PRICE_VAT>41999.60</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00109</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 109</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 109</PRODUCT>
+    <DESCRIPTION>Makita Produkt 109 je Vhodné jako dárek pro vaše blízké. Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/109</URL>
+    <IMGURL>https://picsum.photos/seed/cz109/600/600</IMGURL>
+    <PRICE_VAT>45575.17</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00110</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 110</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 110</PRODUCT>
+    <DESCRIPTION>Philips Produkt 110 je Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/110</URL>
+    <IMGURL>https://picsum.photos/seed/cz110/600/600</IMGURL>
+    <PRICE_VAT>31508.91</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00111</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 111</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 111</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 111 je Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/111</URL>
+    <IMGURL>https://picsum.photos/seed/cz111/600/600</IMGURL>
+    <PRICE_VAT>43384.27</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00112</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 112</PRODUCTNAME>
+    <PRODUCT>LG Produkt 112</PRODUCT>
+    <DESCRIPTION>LG Produkt 112 je Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/112</URL>
+    <IMGURL>https://picsum.photos/seed/cz112/600/600</IMGURL>
+    <PRICE_VAT>38824.58</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00113</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 113</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 113</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 113 je Vhodné jako dárek pro vaše blízké. Oblíbený produkt mezi českými zákazníky. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/113</URL>
+    <IMGURL>https://picsum.photos/seed/cz113/600/600</IMGURL>
+    <PRICE_VAT>38965.26</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00114</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 114</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 114</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 114 je Navrženo pro maximální komfort a bezpečnost. Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/114</URL>
+    <IMGURL>https://picsum.photos/seed/cz114/600/600</IMGURL>
+    <PRICE_VAT>27611.79</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00115</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 115</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 115</PRODUCT>
+    <DESCRIPTION>Concept Produkt 115 je Snadné ovládání a intuitivní design. Oceníte při každodenním používání. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/115</URL>
+    <IMGURL>https://picsum.photos/seed/cz115/600/600</IMGURL>
+    <PRICE_VAT>7416.85</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00116</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 116</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 116</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 116 je Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/116</URL>
+    <IMGURL>https://picsum.photos/seed/cz116/600/600</IMGURL>
+    <PRICE_VAT>31034.12</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00117</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 117</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 117</PRODUCT>
+    <DESCRIPTION>Philips Produkt 117 je Výborný poměr ceny a výkonu. Moderní a úsporný produkt, který šetří váš čas i peníze. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/117</URL>
+    <IMGURL>https://picsum.photos/seed/cz117/600/600</IMGURL>
+    <PRICE_VAT>46508.25</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00118</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 118</PRODUCTNAME>
+    <PRODUCT>LG Produkt 118</PRODUCT>
+    <DESCRIPTION>LG Produkt 118 je Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/118</URL>
+    <IMGURL>https://picsum.photos/seed/cz118/600/600</IMGURL>
+    <PRICE_VAT>38698.78</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00119</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 119</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 119</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 119 je Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/119</URL>
+    <IMGURL>https://picsum.photos/seed/cz119/600/600</IMGURL>
+    <PRICE_VAT>2543.71</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00120</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 120</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 120</PRODUCT>
+    <DESCRIPTION>ETA Produkt 120 je Vhodné jako dárek pro vaše blízké. Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/120</URL>
+    <IMGURL>https://picsum.photos/seed/cz120/600/600</IMGURL>
+    <PRICE_VAT>5177.93</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00121</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 121</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 121</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 121 je Výborný poměr ceny a výkonu. Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/121</URL>
+    <IMGURL>https://picsum.photos/seed/cz121/600/600</IMGURL>
+    <PRICE_VAT>44601.39</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00122</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 122</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 122</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 122 je Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/122</URL>
+    <IMGURL>https://picsum.photos/seed/cz122/600/600</IMGURL>
+    <PRICE_VAT>37026.08</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00123</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 123</PRODUCTNAME>
+    <PRODUCT>LG Produkt 123</PRODUCT>
+    <DESCRIPTION>LG Produkt 123 je Oblíbený produkt mezi českými zákazníky. Navrženo pro maximální komfort a bezpečnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/123</URL>
+    <IMGURL>https://picsum.photos/seed/cz123/600/600</IMGURL>
+    <PRICE_VAT>36413.51</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00124</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 124</PRODUCTNAME>
+    <PRODUCT>LG Produkt 124</PRODUCT>
+    <DESCRIPTION>LG Produkt 124 je Výborný poměr ceny a výkonu. Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/124</URL>
+    <IMGURL>https://picsum.photos/seed/cz124/600/600</IMGURL>
+    <PRICE_VAT>37328.35</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00125</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 125</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 125</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 125 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/125</URL>
+    <IMGURL>https://picsum.photos/seed/cz125/600/600</IMGURL>
+    <PRICE_VAT>12003.46</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00126</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 126</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 126</PRODUCT>
+    <DESCRIPTION>ETA Produkt 126 je Snadné ovládání a intuitivní design. Moderní a úsporný produkt, který šetří váš čas i peníze. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/126</URL>
+    <IMGURL>https://picsum.photos/seed/cz126/600/600</IMGURL>
+    <PRICE_VAT>36091.08</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00127</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 127</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 127</PRODUCT>
+    <DESCRIPTION>Philips Produkt 127 je Výborný poměr ceny a výkonu. Navrženo pro maximální komfort a bezpečnost. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/127</URL>
+    <IMGURL>https://picsum.photos/seed/cz127/600/600</IMGURL>
+    <PRICE_VAT>39633.54</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00128</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 128</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 128</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 128 je Oblíbený produkt mezi českými zákazníky. Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/128</URL>
+    <IMGURL>https://picsum.photos/seed/cz128/600/600</IMGURL>
+    <PRICE_VAT>31057.95</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00129</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 129</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 129</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 129 je Navrženo pro maximální komfort a bezpečnost. Oblíbený produkt mezi českými zákazníky. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/129</URL>
+    <IMGURL>https://picsum.photos/seed/cz129/600/600</IMGURL>
+    <PRICE_VAT>4014.69</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00130</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 130</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 130</PRODUCT>
+    <DESCRIPTION>Makita Produkt 130 je Kvalitní zpracování zajišťuje dlouhou životnost. Navrženo pro maximální komfort a bezpečnost. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/130</URL>
+    <IMGURL>https://picsum.photos/seed/cz130/600/600</IMGURL>
+    <PRICE_VAT>5244.36</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00131</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 131</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 131</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 131 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/131</URL>
+    <IMGURL>https://picsum.photos/seed/cz131/600/600</IMGURL>
+    <PRICE_VAT>22332.11</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00132</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 132</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 132</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 132 je Vhodné jako dárek pro vaše blízké. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/132</URL>
+    <IMGURL>https://picsum.photos/seed/cz132/600/600</IMGURL>
+    <PRICE_VAT>18950.97</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00133</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 133</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 133</PRODUCT>
+    <DESCRIPTION>Philips Produkt 133 je Oblíbený produkt mezi českými zákazníky. Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/133</URL>
+    <IMGURL>https://picsum.photos/seed/cz133/600/600</IMGURL>
+    <PRICE_VAT>5623.10</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00134</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 134</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 134</PRODUCT>
+    <DESCRIPTION>Makita Produkt 134 je Vhodné jako dárek pro vaše blízké. Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/134</URL>
+    <IMGURL>https://picsum.photos/seed/cz134/600/600</IMGURL>
+    <PRICE_VAT>9330.07</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00135</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 135</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 135</PRODUCT>
+    <DESCRIPTION>Makita Produkt 135 je Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/135</URL>
+    <IMGURL>https://picsum.photos/seed/cz135/600/600</IMGURL>
+    <PRICE_VAT>36972.27</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00136</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 136</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 136</PRODUCT>
+    <DESCRIPTION>Makita Produkt 136 je Snadné ovládání a intuitivní design. Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/136</URL>
+    <IMGURL>https://picsum.photos/seed/cz136/600/600</IMGURL>
+    <PRICE_VAT>41877.39</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00137</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 137</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 137</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 137 je Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/137</URL>
+    <IMGURL>https://picsum.photos/seed/cz137/600/600</IMGURL>
+    <PRICE_VAT>11660.11</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00138</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 138</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 138</PRODUCT>
+    <DESCRIPTION>Philips Produkt 138 je Oceníte při každodenním používání. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/138</URL>
+    <IMGURL>https://picsum.photos/seed/cz138/600/600</IMGURL>
+    <PRICE_VAT>48491.90</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00139</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 139</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 139</PRODUCT>
+    <DESCRIPTION>Concept Produkt 139 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/139</URL>
+    <IMGURL>https://picsum.photos/seed/cz139/600/600</IMGURL>
+    <PRICE_VAT>1631.22</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00140</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 140</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 140</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 140 je Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/140</URL>
+    <IMGURL>https://picsum.photos/seed/cz140/600/600</IMGURL>
+    <PRICE_VAT>12476.67</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00141</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 141</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 141</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 141 je Navrženo pro maximální komfort a bezpečnost. Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/141</URL>
+    <IMGURL>https://picsum.photos/seed/cz141/600/600</IMGURL>
+    <PRICE_VAT>19392.92</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00142</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 142</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 142</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 142 je Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/142</URL>
+    <IMGURL>https://picsum.photos/seed/cz142/600/600</IMGURL>
+    <PRICE_VAT>37158.79</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00143</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 143</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 143</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 143 je Oceníte při každodenním používání. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/143</URL>
+    <IMGURL>https://picsum.photos/seed/cz143/600/600</IMGURL>
+    <PRICE_VAT>14249.52</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00144</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 144</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 144</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 144 je Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/144</URL>
+    <IMGURL>https://picsum.photos/seed/cz144/600/600</IMGURL>
+    <PRICE_VAT>7837.61</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00145</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 145</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 145</PRODUCT>
+    <DESCRIPTION>Philips Produkt 145 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/145</URL>
+    <IMGURL>https://picsum.photos/seed/cz145/600/600</IMGURL>
+    <PRICE_VAT>48851.56</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00146</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 146</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 146</PRODUCT>
+    <DESCRIPTION>Philips Produkt 146 je Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/146</URL>
+    <IMGURL>https://picsum.photos/seed/cz146/600/600</IMGURL>
+    <PRICE_VAT>25769.71</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00147</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 147</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 147</PRODUCT>
+    <DESCRIPTION>Concept Produkt 147 je Vhodné jako dárek pro vaše blízké. Oblíbený produkt mezi českými zákazníky. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/147</URL>
+    <IMGURL>https://picsum.photos/seed/cz147/600/600</IMGURL>
+    <PRICE_VAT>16552.36</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00148</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 148</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 148</PRODUCT>
+    <DESCRIPTION>Philips Produkt 148 je Výborný poměr ceny a výkonu. Výborný poměr ceny a výkonu. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/148</URL>
+    <IMGURL>https://picsum.photos/seed/cz148/600/600</IMGURL>
+    <PRICE_VAT>33352.41</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00149</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 149</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 149</PRODUCT>
+    <DESCRIPTION>Philips Produkt 149 je Oblíbený produkt mezi českými zákazníky. Vhodné jako dárek pro vaše blízké. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/149</URL>
+    <IMGURL>https://picsum.photos/seed/cz149/600/600</IMGURL>
+    <PRICE_VAT>7279.76</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00150</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 150</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 150</PRODUCT>
+    <DESCRIPTION>Makita Produkt 150 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/150</URL>
+    <IMGURL>https://picsum.photos/seed/cz150/600/600</IMGURL>
+    <PRICE_VAT>47514.83</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00151</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 151</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 151</PRODUCT>
+    <DESCRIPTION>Makita Produkt 151 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/151</URL>
+    <IMGURL>https://picsum.photos/seed/cz151/600/600</IMGURL>
+    <PRICE_VAT>18812.16</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00152</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 152</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 152</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 152 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/152</URL>
+    <IMGURL>https://picsum.photos/seed/cz152/600/600</IMGURL>
+    <PRICE_VAT>8978.45</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00153</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 153</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 153</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 153 je Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/153</URL>
+    <IMGURL>https://picsum.photos/seed/cz153/600/600</IMGURL>
+    <PRICE_VAT>10532.50</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Hračky | Stavebnice | LEGO</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00154</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 154</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 154</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 154 je Oblíbený produkt mezi českými zákazníky. Vhodné jako dárek pro vaše blízké. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/154</URL>
+    <IMGURL>https://picsum.photos/seed/cz154/600/600</IMGURL>
+    <PRICE_VAT>25712.32</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00155</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 155</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 155</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 155 je Vhodné jako dárek pro vaše blízké. Kvalitní zpracování zajišťuje dlouhou životnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/155</URL>
+    <IMGURL>https://picsum.photos/seed/cz155/600/600</IMGURL>
+    <PRICE_VAT>7641.58</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00156</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 156</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 156</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 156 je Navrženo pro maximální komfort a bezpečnost. Vhodné jako dárek pro vaše blízké. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/156</URL>
+    <IMGURL>https://picsum.photos/seed/cz156/600/600</IMGURL>
+    <PRICE_VAT>10854.93</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00157</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 157</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 157</PRODUCT>
+    <DESCRIPTION>Philips Produkt 157 je Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/157</URL>
+    <IMGURL>https://picsum.photos/seed/cz157/600/600</IMGURL>
+    <PRICE_VAT>12752.49</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00158</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 158</PRODUCTNAME>
+    <PRODUCT>LG Produkt 158</PRODUCT>
+    <DESCRIPTION>LG Produkt 158 je Navrženo pro maximální komfort a bezpečnost. Navrženo pro maximální komfort a bezpečnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/158</URL>
+    <IMGURL>https://picsum.photos/seed/cz158/600/600</IMGURL>
+    <PRICE_VAT>46102.92</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00159</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 159</PRODUCTNAME>
+    <PRODUCT>LG Produkt 159</PRODUCT>
+    <DESCRIPTION>LG Produkt 159 je Výborný poměr ceny a výkonu. Snadné ovládání a intuitivní design. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/159</URL>
+    <IMGURL>https://picsum.photos/seed/cz159/600/600</IMGURL>
+    <PRICE_VAT>3159.46</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00160</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 160</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 160</PRODUCT>
+    <DESCRIPTION>Makita Produkt 160 je Výborný poměr ceny a výkonu. Navrženo pro maximální komfort a bezpečnost. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/160</URL>
+    <IMGURL>https://picsum.photos/seed/cz160/600/600</IMGURL>
+    <PRICE_VAT>28336.86</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00161</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 161</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 161</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 161 je Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/161</URL>
+    <IMGURL>https://picsum.photos/seed/cz161/600/600</IMGURL>
+    <PRICE_VAT>9149.98</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00162</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 162</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 162</PRODUCT>
+    <DESCRIPTION>Makita Produkt 162 je Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/162</URL>
+    <IMGURL>https://picsum.photos/seed/cz162/600/600</IMGURL>
+    <PRICE_VAT>32139.76</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00163</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 163</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 163</PRODUCT>
+    <DESCRIPTION>ETA Produkt 163 je Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/163</URL>
+    <IMGURL>https://picsum.photos/seed/cz163/600/600</IMGURL>
+    <PRICE_VAT>20370.30</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00164</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 164</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 164</PRODUCT>
+    <DESCRIPTION>ETA Produkt 164 je Oceníte při každodenním používání. Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/164</URL>
+    <IMGURL>https://picsum.photos/seed/cz164/600/600</IMGURL>
+    <PRICE_VAT>12481.06</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00165</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 165</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 165</PRODUCT>
+    <DESCRIPTION>Concept Produkt 165 je Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/165</URL>
+    <IMGURL>https://picsum.photos/seed/cz165/600/600</IMGURL>
+    <PRICE_VAT>24112.21</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00166</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 166</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 166</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 166 je Vhodné jako dárek pro vaše blízké. Vhodné jako dárek pro vaše blízké. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/166</URL>
+    <IMGURL>https://picsum.photos/seed/cz166/600/600</IMGURL>
+    <PRICE_VAT>6190.76</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00167</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 167</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 167</PRODUCT>
+    <DESCRIPTION>Concept Produkt 167 je Oceníte při každodenním používání. Kvalitní zpracování zajišťuje dlouhou životnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/167</URL>
+    <IMGURL>https://picsum.photos/seed/cz167/600/600</IMGURL>
+    <PRICE_VAT>45806.02</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00168</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 168</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 168</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 168 je Snadné ovládání a intuitivní design. Výborný poměr ceny a výkonu. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/168</URL>
+    <IMGURL>https://picsum.photos/seed/cz168/600/600</IMGURL>
+    <PRICE_VAT>12639.95</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00169</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 169</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 169</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 169 je Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/169</URL>
+    <IMGURL>https://picsum.photos/seed/cz169/600/600</IMGURL>
+    <PRICE_VAT>12131.86</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00170</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 170</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 170</PRODUCT>
+    <DESCRIPTION>Makita Produkt 170 je Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/170</URL>
+    <IMGURL>https://picsum.photos/seed/cz170/600/600</IMGURL>
+    <PRICE_VAT>1198.45</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00171</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 171</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 171</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 171 je Navrženo pro maximální komfort a bezpečnost. Výborný poměr ceny a výkonu. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/171</URL>
+    <IMGURL>https://picsum.photos/seed/cz171/600/600</IMGURL>
+    <PRICE_VAT>42625.68</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00172</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 172</PRODUCTNAME>
+    <PRODUCT>LG Produkt 172</PRODUCT>
+    <DESCRIPTION>LG Produkt 172 je Navrženo pro maximální komfort a bezpečnost. Vhodné jako dárek pro vaše blízké. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/172</URL>
+    <IMGURL>https://picsum.photos/seed/cz172/600/600</IMGURL>
+    <PRICE_VAT>4155.21</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00173</ITEM_ID>
+    <PRODUCTNAME>ETA Produkt 173</PRODUCTNAME>
+    <PRODUCT>ETA Produkt 173</PRODUCT>
+    <DESCRIPTION>ETA Produkt 173 je Vhodné jako dárek pro vaše blízké. Navrženo pro maximální komfort a bezpečnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/173</URL>
+    <IMGURL>https://picsum.photos/seed/cz173/600/600</IMGURL>
+    <PRICE_VAT>26406.22</PRICE_VAT>
+    <MANUFACTURER>ETA</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00174</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 174</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 174</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 174 je Výborný poměr ceny a výkonu. Oceníte při každodenním používání. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/174</URL>
+    <IMGURL>https://picsum.photos/seed/cz174/600/600</IMGURL>
+    <PRICE_VAT>6898.90</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00175</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 175</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 175</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 175 je Oblíbený produkt mezi českými zákazníky. Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/175</URL>
+    <IMGURL>https://picsum.photos/seed/cz175/600/600</IMGURL>
+    <PRICE_VAT>46643.84</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00176</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 176</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 176</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 176 je Oblíbený produkt mezi českými zákazníky. Kvalitní zpracování zajišťuje dlouhou životnost. Oblíbený produkt mezi českými zákazníky.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/176</URL>
+    <IMGURL>https://picsum.photos/seed/cz176/600/600</IMGURL>
+    <PRICE_VAT>20844.12</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00177</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 177</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 177</PRODUCT>
+    <DESCRIPTION>Makita Produkt 177 je Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/177</URL>
+    <IMGURL>https://picsum.photos/seed/cz177/600/600</IMGURL>
+    <PRICE_VAT>39264.55</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Malé spotřebiče | Kuchyňské roboty</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00178</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 178</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 178</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 178 je Oblíbený produkt mezi českými zákazníky. Oceníte při každodenním používání. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/178</URL>
+    <IMGURL>https://picsum.photos/seed/cz178/600/600</IMGURL>
+    <PRICE_VAT>31819.03</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00179</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 179</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 179</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 179 je Výborný poměr ceny a výkonu. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/179</URL>
+    <IMGURL>https://picsum.photos/seed/cz179/600/600</IMGURL>
+    <PRICE_VAT>16072.75</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00180</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 180</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 180</PRODUCT>
+    <DESCRIPTION>Concept Produkt 180 je Vhodné jako dárek pro vaše blízké. Navrženo pro maximální komfort a bezpečnost. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/180</URL>
+    <IMGURL>https://picsum.photos/seed/cz180/600/600</IMGURL>
+    <PRICE_VAT>35118.38</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00181</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 181</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 181</PRODUCT>
+    <DESCRIPTION>Makita Produkt 181 je Oblíbený produkt mezi českými zákazníky. Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/181</URL>
+    <IMGURL>https://picsum.photos/seed/cz181/600/600</IMGURL>
+    <PRICE_VAT>22243.19</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00182</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 182</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 182</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 182 je Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/182</URL>
+    <IMGURL>https://picsum.photos/seed/cz182/600/600</IMGURL>
+    <PRICE_VAT>36273.96</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00183</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 183</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 183</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 183 je Výborný poměr ceny a výkonu. Kvalitní zpracování zajišťuje dlouhou životnost. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/183</URL>
+    <IMGURL>https://picsum.photos/seed/cz183/600/600</IMGURL>
+    <PRICE_VAT>30808.17</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00184</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 184</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 184</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 184 je Snadné ovládání a intuitivní design. Oceníte při každodenním používání. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/184</URL>
+    <IMGURL>https://picsum.photos/seed/cz184/600/600</IMGURL>
+    <PRICE_VAT>15135.04</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00185</ITEM_ID>
+    <PRODUCTNAME>LG Produkt 185</PRODUCTNAME>
+    <PRODUCT>LG Produkt 185</PRODUCT>
+    <DESCRIPTION>LG Produkt 185 je Navrženo pro maximální komfort a bezpečnost. Oceníte při každodenním používání. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/185</URL>
+    <IMGURL>https://picsum.photos/seed/cz185/600/600</IMGURL>
+    <PRICE_VAT>38728.18</PRICE_VAT>
+    <MANUFACTURER>LG</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00186</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 186</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 186</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 186 je Oblíbený produkt mezi českými zákazníky. Vhodné jako dárek pro vaše blízké. Výborný poměr ceny a výkonu.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/186</URL>
+    <IMGURL>https://picsum.photos/seed/cz186/600/600</IMGURL>
+    <PRICE_VAT>23121.76</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Mobilní telefony | Smartphone</CATEGORYTEXT>
+    <DELIVERY_DATE>1</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00187</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 187</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 187</PRODUCT>
+    <DESCRIPTION>Philips Produkt 187 je Oblíbený produkt mezi českými zákazníky. Snadné ovládání a intuitivní design. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/187</URL>
+    <IMGURL>https://picsum.photos/seed/cz187/600/600</IMGURL>
+    <PRICE_VAT>9632.49</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Elektronika | Televize | LED televize</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00188</ITEM_ID>
+    <PRODUCTNAME>Hecht Produkt 188</PRODUCTNAME>
+    <PRODUCT>Hecht Produkt 188</PRODUCT>
+    <DESCRIPTION>Hecht Produkt 188 je Výborný poměr ceny a výkonu. Navrženo pro maximální komfort a bezpečnost. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/188</URL>
+    <IMGURL>https://picsum.photos/seed/cz188/600/600</IMGURL>
+    <PRICE_VAT>37736.54</PRICE_VAT>
+    <MANUFACTURER>Hecht</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00189</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 189</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 189</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 189 je Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/189</URL>
+    <IMGURL>https://picsum.photos/seed/cz189/600/600</IMGURL>
+    <PRICE_VAT>22073.83</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00190</ITEM_ID>
+    <PRODUCTNAME>Bosch Produkt 190</PRODUCTNAME>
+    <PRODUCT>Bosch Produkt 190</PRODUCT>
+    <DESCRIPTION>Bosch Produkt 190 je Moderní a úsporný produkt, který šetří váš čas i peníze. Výborný poměr ceny a výkonu. Vhodné jako dárek pro vaše blízké.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/190</URL>
+    <IMGURL>https://picsum.photos/seed/cz190/600/600</IMGURL>
+    <PRICE_VAT>11668.51</PRICE_VAT>
+    <MANUFACTURER>Bosch</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00191</ITEM_ID>
+    <PRODUCTNAME>Makita Produkt 191</PRODUCTNAME>
+    <PRODUCT>Makita Produkt 191</PRODUCT>
+    <DESCRIPTION>Makita Produkt 191 je Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/191</URL>
+    <IMGURL>https://picsum.photos/seed/cz191/600/600</IMGURL>
+    <PRICE_VAT>10073.54</PRICE_VAT>
+    <MANUFACTURER>Makita</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00192</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 192</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 192</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 192 je Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/192</URL>
+    <IMGURL>https://picsum.photos/seed/cz192/600/600</IMGURL>
+    <PRICE_VAT>9314.62</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Dům a zahrada | Topení | Kotle na tuhá paliva</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00193</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 193</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 193</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 193 je Moderní a úsporný produkt, který šetří váš čas i peníze. Moderní a úsporný produkt, který šetří váš čas i peníze. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/193</URL>
+    <IMGURL>https://picsum.photos/seed/cz193/600/600</IMGURL>
+    <PRICE_VAT>12489.21</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00194</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 194</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 194</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 194 je Oceníte při každodenním používání. Snadné ovládání a intuitivní design. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/194</URL>
+    <IMGURL>https://picsum.photos/seed/cz194/600/600</IMGURL>
+    <PRICE_VAT>43700.80</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Chovatelské potřeby | Psi | Krmivo</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00195</ITEM_ID>
+    <PRODUCTNAME>ROJEK Produkt 195</PRODUCTNAME>
+    <PRODUCT>ROJEK Produkt 195</PRODUCT>
+    <DESCRIPTION>ROJEK Produkt 195 je Oblíbený produkt mezi českými zákazníky. Výborný poměr ceny a výkonu. Navrženo pro maximální komfort a bezpečnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/195</URL>
+    <IMGURL>https://picsum.photos/seed/cz195/600/600</IMGURL>
+    <PRICE_VAT>30224.28</PRICE_VAT>
+    <MANUFACTURER>ROJEK</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00196</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 196</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 196</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 196 je Moderní a úsporný produkt, který šetří váš čas i peníze. Snadné ovládání a intuitivní design. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/196</URL>
+    <IMGURL>https://picsum.photos/seed/cz196/600/600</IMGURL>
+    <PRICE_VAT>10402.88</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Kancelář | Tiskárny | Multifunkční tiskárny</CATEGORYTEXT>
+    <DELIVERY_DATE>2</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00197</ITEM_ID>
+    <PRODUCTNAME>Sencor Produkt 197</PRODUCTNAME>
+    <PRODUCT>Sencor Produkt 197</PRODUCT>
+    <DESCRIPTION>Sencor Produkt 197 je Moderní a úsporný produkt, který šetří váš čas i peníze. Navrženo pro maximální komfort a bezpečnost. Snadné ovládání a intuitivní design.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/197</URL>
+    <IMGURL>https://picsum.photos/seed/cz197/600/600</IMGURL>
+    <PRICE_VAT>16022.69</PRICE_VAT>
+    <MANUFACTURER>Sencor</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>3</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00198</ITEM_ID>
+    <PRODUCTNAME>Whirlpool Produkt 198</PRODUCTNAME>
+    <PRODUCT>Whirlpool Produkt 198</PRODUCT>
+    <DESCRIPTION>Whirlpool Produkt 198 je Oblíbený produkt mezi českými zákazníky. Snadné ovládání a intuitivní design. Kvalitní zpracování zajišťuje dlouhou životnost.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/198</URL>
+    <IMGURL>https://picsum.photos/seed/cz198/600/600</IMGURL>
+    <PRICE_VAT>38586.85</PRICE_VAT>
+    <MANUFACTURER>Whirlpool</MANUFACTURER>
+    <CATEGORYTEXT>Zdraví | Péče o tělo | Elektrické zubní kartáčky</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00199</ITEM_ID>
+    <PRODUCTNAME>Concept Produkt 199</PRODUCTNAME>
+    <PRODUCT>Concept Produkt 199</PRODUCT>
+    <DESCRIPTION>Concept Produkt 199 je Kvalitní zpracování zajišťuje dlouhou životnost. Výborný poměr ceny a výkonu. Oceníte při každodenním používání.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/199</URL>
+    <IMGURL>https://picsum.photos/seed/cz199/600/600</IMGURL>
+    <PRICE_VAT>33732.48</PRICE_VAT>
+    <MANUFACTURER>Concept</MANUFACTURER>
+    <CATEGORYTEXT>Auto-moto | Pneumatiky | Letní pneu</CATEGORYTEXT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>CZ-00200</ITEM_ID>
+    <PRODUCTNAME>Philips Produkt 200</PRODUCTNAME>
+    <PRODUCT>Philips Produkt 200</PRODUCT>
+    <DESCRIPTION>Philips Produkt 200 je Vhodné jako dárek pro vaše blízké. Navrženo pro maximální komfort a bezpečnost. Moderní a úsporný produkt, který šetří váš čas i peníze.</DESCRIPTION>
+    <URL>https://demo-obchod.cz/produkt/200</URL>
+    <IMGURL>https://picsum.photos/seed/cz200/600/600</IMGURL>
+    <PRICE_VAT>38354.73</PRICE_VAT>
+    <MANUFACTURER>Philips</MANUFACTURER>
+    <CATEGORYTEXT>Sport | Fitness | Běžecké pásy</CATEGORYTEXT>
+    <DELIVERY_DATE>7</DELIVERY_DATE>
+  </SHOPITEM>
+</SHOP>
