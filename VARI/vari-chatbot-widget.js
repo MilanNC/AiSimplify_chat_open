@@ -42,7 +42,7 @@
     const ASSISTANT_NAME = 'VariQ';
     
     // Barvy a vzhled
-    const BRAND_GRADIENT = 'linear-gradient(90deg, #ff0000ff, #000000)'; // Hlavní gradient pro hlavičku a ikony - fialová do černé
+    const BRAND_GRADIENT = 'linear-gradient(90deg, #ff0000ff, #530000)'; // Hlavní gradient pro hlavičku a ikony - fialová do černé
     const PRIMARY_COLOR = '#ff0000ff'; // Hlavní fialová barva pro zvýraznění a UI prvky
     const USER_BUBBLE_COLOR = '#ff0000ff'; // Barva pozadí pro bubliny uživatelských zpráv
     const ASSISTANT_BUBBLE_COLOR = '#f0f0f5'; // Světle šedá barva pro bubliny zpráv asistenta
