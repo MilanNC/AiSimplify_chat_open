@@ -42,7 +42,7 @@
     const ASSISTANT_NAME = 'VariQ';
     
     // Barvy a vzhled
-    const BRAND_GRADIENT = 'linear-gradient(90deg, #ff0000ff, #530000)'; // Hlavní gradient pro hlavičku a ikony - fialová do černé
+    const BRAND_GRADIENT = 'linear-gradient(90deg, #ff0000ff, #570707ff)'; // Hlavní gradient pro hlavičku a ikony - fialová do černé
     const PRIMARY_COLOR = '#ff0000ff'; // Hlavní fialová barva pro zvýraznění a UI prvky
     const USER_BUBBLE_COLOR = '#ff0000ff'; // Barva pozadí pro bubliny uživatelských zpráv
     const ASSISTANT_BUBBLE_COLOR = '#f0f0f5'; // Světle šedá barva pro bubliny zpráv asistenta
@@ -168,21 +168,27 @@
     }
 
     #chatIcon {
-      width: 3vw; height: 3vw; border-radius: 50%;
-      min-width: 60px; min-height: 60px;
-      max-width: 80px; max-height: 80px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-light); font-size: 36px;
-      cursor: pointer; animation: pulse 2.5s infinite;
-      box-shadow: var(--shadow), 0 0 40px rgba(180, 119, 255, 0.6), 0 0 80px rgba(180, 119, 255, 0.3); /* 2x výraznější záře s větším dosahem */
-      position: relative; overflow: hidden;
-      background: white;
-      border: 2px solid var(--primary-color); /* Tenký obrys z PRIMARY_COLOR */
-      transition: box-shadow 0.3s ease; /* Plynulá transition pro hover efekt */
-    }
-    #chatIcon:hover {
-      box-shadow: var(--shadow-hover), 0 0 60px rgba(180, 119, 255, 1.0), 0 0 120px rgba(180, 119, 255, 0.5); /* 2x výraznější hover záře s větším dosahem */
-    }
+  width: 3vw; height: 3vw; border-radius: 50%;
+  min-width: 60px; min-height: 60px;
+  max-width: 80px; max-height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-light); font-size: 36px;
+  cursor: pointer; animation: pulse 2.5s infinite;
+  box-shadow: var(--shadow),
+              0 0 40px color-mix(in srgb, var(--primary-color) 60%, transparent),
+              0 0 80px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  position: relative; overflow: hidden;
+  background: white;
+  border: 2px solid var(--primary-color);
+  transition: box-shadow 0.3s ease;
+}
+
+#chatIcon:hover {
+  box-shadow: var(--shadow-hover),
+              0 0 60px color-mix(in srgb, var(--primary-color) 100%, transparent),
+              0 0 120px color-mix(in srgb, var(--primary-color) 50%, transparent);
+}
+
     #chatIcon img {
       width: 100%;
       height: 100%;
@@ -536,8 +542,12 @@
       transition: border-color .3s ease, box-shadow .3s ease;
     }
     #inputBox:focus {
-      border-color: #b477ff;
-      box-shadow: 0 0 0 3px rgba(180, 119, 255, 0.2);
+      border-color: var(--primary-color);
+      box-shadow:
+  0 0 1px 1px var(--primary-color),
+  0 0 5px 2px rgba(0, 120, 255, 0.25);
+
+
     }
     #sendButton {
       background: none; border: none;
@@ -704,24 +714,26 @@
 
     /* --- Načítací kolečko pro formulář --- */
     .form-generator-loading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px;
-      background: rgba(180, 119, 255, 0.1);
-      border-radius: 12px;
-      margin: 10px 0;
-      font-style: italic;
-      color: var(--primary-color);
-    }
-    .form-spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(180, 119, 255, 0.3);
-      border-top: 2px solid var(--primary-color);
-      border-radius: 50%;
-      animation: formSpinner 1s linear infinite;
-    }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  border-radius: 12px;
+  margin: 10px 0;
+  font-style: italic;
+  color: var(--primary-color);
+}
+
+.form-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: formSpinner 1s linear infinite;
+}
+
 `;
 
     // --- 2. HTML STRUKTURA WIDGETU ---
