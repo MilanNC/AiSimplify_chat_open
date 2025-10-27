@@ -53,7 +53,7 @@
     const BACKGROUND_COLOR = '#fff'; // Bílá barva pozadí pro obecné použití
     
     // Avatar a obrázky
-    const AVATAR_URL = 'https://static.wixstatic.com/media/ae7bf7_fed23385ed1a405b8234979ba8122f42~mv2.png';
+    const AVATAR_URL = 'https://static.wixstatic.com/media/ae7bf7_8d7b71ed413249fcbc6716e9cf649dcd~mv2.png';
     
     // Texty a zprávy
     const CHAT_ICON_TOOLTIP = 'Ahoj! Klikni na mě a pomůžu ti s čímkoli ohledně AiSimplify! 😊';
@@ -290,8 +290,8 @@
       position: relative; /* Pro tooltip */
     }
     .assistant-title img {
-      width: 40px; /* Zvětšeno z 32px na 40px */
-      height: 40px; /* Zvětšeno z 32px na 40px */
+      width: 55px; /* Zvětšeno z 32px na 40px */
+      height: 55px; /* Zvětšeno z 32px na 40px */
       border-radius: 50%;
       object-fit: cover;
       transition: transform 0.3s ease; /* Animace pro hover efekt */
