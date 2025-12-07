@@ -5,7 +5,7 @@
 Všechna práva vyhrazena.  
 
 **Autor:** Milan Roušavý  
-**Web:** [www.aisimplify.cz](https://www.aisimplify.cz)  
+**Web:** [www.aisimplify.cz](https://www.aisimplify.cz)  / https://www.czech-gpt.cz
 **Email:** milan@aisimplify.cz  
 
 ---
